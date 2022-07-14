@@ -6,7 +6,9 @@
   "author": "Mateus0808 <loiolamateus7@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": ""
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev --ignore node_modules src/server.ts"
   },
   "dependencies": {
     "express": "^4.18.1"
