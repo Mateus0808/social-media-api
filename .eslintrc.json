@@ -1,6 +1,6 @@
 {
     "env": {
-        "browser": true,
+        "node": true,
         "es2021": true
     },
     "extends": [
@@ -15,7 +15,10 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "semi": ["error", "always"],
-        "quotes": ["error", "double"]
+        "semi": ["error", "never"],
+        "quotes": ["error", "single"],
+        "indent": ["error", 2],
+        "object-property-newline": ["error", { "allowAllPropertiesOnSameLine": true }],
+        "import/prefer-default-export": "off"
     }
 }
