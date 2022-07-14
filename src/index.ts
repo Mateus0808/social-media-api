@@ -1,5 +1,9 @@
-import express, { Express } from 'express'
+import express from 'express'
 
-const app: Express = express()
+export class App {
+  public server: express.Application
 
-export { app }
+  constructor () {
+    this.server = express()
+  }
+}
