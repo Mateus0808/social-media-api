@@ -1,7 +1,10 @@
+import { CommentDbModel } from './../../application/ports/repositories/models/comment-model';
+import { UserDbModel } from './../../application/ports/repositories/models/user-model';
+
 export interface PostEntity {
-  userId: string;
+  user: UserDbModel;
   title: string;
   content: string;
   totalLikes: number;
-  comment: string[]
+  comment: CommentDbModel[]
 }

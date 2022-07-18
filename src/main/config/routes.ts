@@ -1,3 +1,4 @@
+import { postRoutes } from './../routes/post-routes/index';
 import express, { Express, Router } from 'express'
 import { commentRouter } from '../routes/comment-routes'
 import { userRouter } from '../routes/user-routes'
@@ -11,4 +12,5 @@ export default (app: Express): void => {
 
   userRouter(router)
   commentRouter(router)
+  postRoutes(router)
 }

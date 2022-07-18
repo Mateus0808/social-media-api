@@ -51,5 +51,17 @@ export const checkApplicationError = (error: ApplicationError): HttpResponse => 
     return badRequest(error)
   }
 
+  if (error.name === 'PostNotCreatedError') {
+    return badRequest(error)
+  }
+
+  if (error.name === 'CommentNotCreatedError') {
+    return badRequest(error)
+  }
+
+  if (error.name === 'CommentsNotFoundError') {
+    return badRequest(error)
+  }
+
   return serverError(new ServerError())
 }

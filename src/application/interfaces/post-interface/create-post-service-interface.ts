@@ -1,20 +1,23 @@
 import { UserDbModel } from '../../ports/repositories/models/user-model';
 import { CommentDbModel } from './../../ports/repositories/models/comment-model';
 
-export interface  CreatePostServiceParams {
+export interface CreatePostParams {
   title: string
   content: string
   userId: string
 }
 
-export interface CreatePostServiceResponse {
+export interface CreatePostResponse {
   id: string
   title: string
   content: string
   totalLikes: number
+  comment: CommentDbModel[]
   user: UserDbModel
+  createdAt: Date
 }
 
 export interface CreatePostServiceInterface {
-  createPost: (createPostServiceParams: CreatePostServiceParams) => Promise<CreatePostServiceResponse>
+  createPost: (createPostParams: CreatePostParams) 
+    => Promise<CreatePostResponse>
 }

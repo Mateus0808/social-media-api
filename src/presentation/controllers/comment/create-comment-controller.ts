@@ -32,7 +32,6 @@ export class CreateCommentController implements Controller {
 
       return created(commentCreated)
     } catch (error: any) {
-      console.log(error)
       return checkApplicationError(error)
     }
   }
