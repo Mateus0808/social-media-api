@@ -1,4 +1,5 @@
 import express, { Express, Router } from 'express'
+import { commentRouter } from '../routes/comment-routes'
 import { userRouter } from '../routes/user-routes'
 
 export default (app: Express): void => {
@@ -9,4 +10,5 @@ export default (app: Express): void => {
   app.use('/api', router)
 
   userRouter(router)
+  commentRouter(router)
 }

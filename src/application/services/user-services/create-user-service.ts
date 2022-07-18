@@ -28,12 +28,15 @@ export class CreateUserService implements CreateUserServiceInterface {
       name: fixName(createUserParams.name),
       lastName: fixName(createUserParams.lastName),
       email,
+      address: null,
+      birthDate: createUserParams.birthDate,
+      maritalStatus: createUserParams.maritalStatus,
       phone: createUserParams.phone,
       gender: createUserParams.gender,
       password: hashedPassword,
       status: EnumAccountStatus.Active
     }
-    console.log('params.status', params.status)
+
     const userCreated = await this.createUserRepository.createUser(params)
 
     if (!userCreated) {

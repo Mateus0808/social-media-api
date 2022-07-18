@@ -24,6 +24,14 @@ const userSchema = new Schema<User>({
     type: String,
     required: true
   },
+  birthDate: {
+    type: Date,
+    required: true
+  },
+  maritalStatus: {
+    type: String,
+    required: true
+  },
   gender: {
     type: String,
     enum: ['MALE', 'FEMALE'],
@@ -37,6 +45,10 @@ const userSchema = new Schema<User>({
   password: {
     type: String,
     required: true
+  },
+  isAdmin: {
+    type: Boolean,
+    default: true
   },
   status: {
     type: String,

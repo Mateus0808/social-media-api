@@ -11,3 +11,4 @@ export interface UserDbModel extends UserEntity {
   createdAt: Date
   updatedAt: Date
 }
+

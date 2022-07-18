@@ -2,6 +2,8 @@ export interface CreateUserParams {
   name: string
   lastName: string
   email: string
+  birthDate: Date
+  maritalStatus: string
   password: string
   gender: 'MALE' |'FEMALE'
   phone: string
@@ -12,6 +14,8 @@ export interface CreateUserResponse {
   name: string
   lastName: string
   email: string
+  birthDate: Date
+  maritalStatus: string
   gender: 'MALE' |'FEMALE'
   phone: string
   status: 'Active' | 'Closed' | 'Canceled' | 'Disabled'

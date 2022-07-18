@@ -10,7 +10,10 @@ export class CreateUserController implements Controller {
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const requiredParams = ['name', 'lastName', 'phone', 'email', 'gender', 'password']
+      const requiredParams = [
+        'name', 'lastName', 'phone', 'maritalStatus', 'birthDate', 'email', 
+        'gender', 'password'
+      ]
 
       for (const param of requiredParams) {
         if (!httpRequest.body[param]) {
@@ -24,10 +27,13 @@ export class CreateUserController implements Controller {
         }
       }
 
-      const { name, lastName, phone, gender, email, password } = httpRequest.body
+      const { 
+        name, lastName, phone, birthDate, maritalStatus, gender, email, password 
+      } = httpRequest.body
 
       const userCreated = await this.createUserService.createUser({ 
-        name, lastName, phone, gender, email, password 
+        name, lastName, phone, birthDate, 
+        maritalStatus, gender, email, password 
       })
 
       return created(userCreated)

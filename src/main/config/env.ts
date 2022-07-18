@@ -4,5 +4,6 @@ dotenv.config()
 export const env = {
   port: process.env.PORT || 3333,
   nodeEnv: process.env.NODE_ENV,
-  dbProduction: process.env.DB_PRODUCTION
+  dbProduction: process.env.DB_PRODUCTION,
+  jwtSecret: process.env.JWT_SECRET
 }
