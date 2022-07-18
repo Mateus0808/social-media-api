@@ -27,12 +27,6 @@ const postSchema = new Schema({
       required: false,
     },
   ],
-  createdAt: {
-    type: Date,
-    required: true,
-  },
-  updatedAt: {
-    type: Date,
-    required: true,
-  },
+}, {
+  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
 })

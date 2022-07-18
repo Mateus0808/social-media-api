@@ -6,5 +6,4 @@ import { makeListCommentsControllerFactory } from '../../factories/controllers/c
 export const commentRouter = (router: Router): void => {
   router.post('/comment/register/:userId/:postId', expressRouterAdapter(makeCreateCommentControllerFactory()))
   router.get('/comments', expressRouterAdapter(makeListCommentsControllerFactory()))
-  // router.get('/comments/:id', expressRouterAdapter(makeListOneUserController()))
 }
