@@ -12,7 +12,6 @@ interface UsersServiceResponse {
   id: string
   name: string
   lastName: string
-  
   email: string
   registrationDate: Date
   status: string

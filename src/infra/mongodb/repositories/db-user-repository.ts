@@ -3,10 +3,13 @@ import { UserDbModel } from '../../../application/ports/repositories/models/user
 import { CreateUserRepositoryInterface, CreateUserRepositoryParams } from '../../../application/ports/repositories/user/create-user-repository-interface'
 import { LoadUserByEmailRepositoryInterface } from '../../../application/ports/repositories/user/load-user-by-email-repository-interface'
 import { MongoHelper } from '../helpers/mongo-helper'
-import { LoadUsersRepositoryParams, LoadUsersRepositoryResponse } from '../../../application/ports/repositories/user/load-users-repository-interface'
+import { LoadUsersRepositoryInterface, LoadUsersRepositoryParams, LoadUsersRepositoryResponse } from '../../../application/ports/repositories/user/load-users-repository-interface'
+import { LoadUserByIdRepositoryInterface } from '../../../application/ports/repositories/user/load-user-by-id-repository-interface'
 
 export class UserRepository implements LoadUserByEmailRepositoryInterface,
-CreateUserRepositoryInterface {
+ CreateUserRepositoryInterface,
+ LoadUserByIdRepositoryInterface,
+ LoadUsersRepositoryInterface {
   async createUser (createUserRepositoryParams: CreateUserRepositoryParams): Promise<UserDbModel | null> {
     const userCreated = await UserModel.create({ ...createUserRepositoryParams })
     if (!userCreated) {
