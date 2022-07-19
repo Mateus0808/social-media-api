@@ -17,10 +17,11 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
-  totalLikes: {
-    type: Number,
-    default: 0,
-  },
+  likes: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    default: [],
+  }],
   comment: [
     {
       type: Schema.Types.ObjectId,

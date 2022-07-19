@@ -5,11 +5,13 @@ import { LoadUserByEmailRepositoryInterface } from '../../../application/ports/r
 import { MongoHelper } from '../helpers/mongo-helper'
 import { LoadUsersRepositoryInterface, LoadUsersRepositoryParams, LoadUsersRepositoryResponse } from '../../../application/ports/repositories/user/load-users-repository-interface'
 import { LoadUserByIdRepositoryInterface } from '../../../application/ports/repositories/user/load-user-by-id-repository-interface'
+import { FollowUserRepositoryParams, UpdateFollowUserRepositoryInterface } from '../../../application/ports/repositories/user/follow-user-repository-interface'
 
 export class UserRepository implements LoadUserByEmailRepositoryInterface,
  CreateUserRepositoryInterface,
  LoadUserByIdRepositoryInterface,
- LoadUsersRepositoryInterface {
+ LoadUsersRepositoryInterface,
+ UpdateFollowUserRepositoryInterface {
   async createUser (createUserRepositoryParams: CreateUserRepositoryParams): Promise<UserDbModel | null> {
     const userCreated = await UserModel.create({ ...createUserRepositoryParams })
     if (!userCreated) {
@@ -53,6 +55,37 @@ export class UserRepository implements LoadUserByEmailRepositoryInterface,
     const response: LoadUsersRepositoryResponse = {
       users: usersArray,
       pagination: { ...restUsersProps }
+    }
+
+    return response
+  }
+
+  async updateFollowUser (followUser: FollowUserRepositoryParams): Promise<UserDbModel | null> {
+    let response: UserDbModel
+
+    const { currentUserId, userId } = followUser
+
+    const currentUser = await UserModel.findById(currentUserId)
+    if (!currentUser) {
+      return null
+    }
+
+    const userIWillFollow = await UserModel.findById(userId)
+    if (!userIWillFollow) {
+      return null
+    }
+
+    if(!currentUser.followings.includes(userId)) {
+      response = await currentUser.updateOne(
+        { $push: { followings: userId } },
+        { new: true })
+      await userIWillFollow.updateOne({ $push: { followers: currentUserId } })
+    } else {
+      response = await currentUser.updateOne(
+        { $pull: { followings: userId } }, 
+        { new: true }
+      )
+      await userIWillFollow.updateOne({ $pull: { followers: currentUserId } })
     }
 
     return response

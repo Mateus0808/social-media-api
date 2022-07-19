@@ -11,7 +11,7 @@ export interface CreatePostResponse {
   id: string
   title: string
   content: string
-  totalLikes: number
+  likes: Array<string>
   comment: CommentDbModel[]
   user: UserDbModel
   createdAt: Date

@@ -5,6 +5,6 @@ export interface PostEntity {
   user: UserDbModel;
   title: string;
   content: string;
-  totalLikes: number;
-  comment: CommentDbModel[]
+  likes: Array<string>;
+  comment: CommentDbModel[];
 }

@@ -3,8 +3,10 @@ import { PostDbModel } from './../../../application/ports/repositories/models/po
 import { CreatePostRepositoryInterface, CreatePostRepositoryParams } from "../../../application/ports/repositories/post/create-post-repository-interface";
 import { PostModel } from '../models/post-model';
 import { MongoHelper } from '../helpers/mongo-helper';
+import { DeletePostRepositoryInterface } from '../../../application/ports/repositories/post/delete-post-repository-interface';
 
-export class PostRepository implements CreatePostRepositoryInterface, LoadPostsRepositoryInterface {
+export class PostRepository implements CreatePostRepositoryInterface, LoadPostsRepositoryInterface,
+DeletePostRepositoryInterface {
   async createPost (createPostRepositoryParams: CreatePostRepositoryParams): Promise<PostDbModel | null> {
     const { title, content, user } = createPostRepositoryParams;
     const postCreated = await PostModel.create({
@@ -35,5 +37,15 @@ export class PostRepository implements CreatePostRepositoryInterface, LoadPostsR
       pagination: { ...restPostsProps }
     }
     return response
+  }
+
+  async deletePost(id: string): Promise<boolean> {
+    const postDeleted = await PostModel.findByIdAndDelete(id)
+
+    if (!postDeleted) {
+      return false
+    }
+
+    return true
   }
 }

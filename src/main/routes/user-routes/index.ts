@@ -1,3 +1,4 @@
+import { makeFollowUserControllerFactory } from './../../factories/controllers/user/follow-user/follow-user-controller-factory';
 import { Router } from 'express'
 import { expressRouterAdapter } from '../../adapters/express-route-adapter'
 import { makeCreateUserController } from '../../factories/controllers/user/create-user-controller-factory'
@@ -10,4 +11,5 @@ export const userRouter = (router: Router): void => {
   router.post('/users/register', expressRouterAdapter(makeCreateUserController()))
   router.get('/users', expressRouterAdapter(makeListUsersControllerFactory()))
   router.get('/users/:id', expressRouterAdapter(makeListOneUserController()))
+  router.post('/user/follow/:currentUserId/following/:userId', expressRouterAdapter(makeFollowUserControllerFactory()))
 }

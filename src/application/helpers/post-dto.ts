@@ -9,7 +9,7 @@ export const postCreatedDto = (postCreated: CreatedPostModel): CreatePostRespons
   title: postCreated.title,
   user: postCreated.user,
   content: postCreated.content,
-  totalLikes: postCreated.totalLikes,
+  likes: postCreated.likes,
   comment: postCreated.comment,
   createdAt: new Date(postCreated.createdAt)
 })
@@ -21,7 +21,7 @@ export const postToPaginationDto = (param: LoadPostsRepositoryResponse): ListPos
       title: post.title,
       content: post.content,
       user: post.user,
-      totalLikes: post.totalLikes,
+      likes: post.likes,
       createdAt: new Date(post.createdAt),
       updatedAt: new Date(post.updatedAt)
     }

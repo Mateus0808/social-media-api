@@ -12,6 +12,10 @@ export const checkApplicationError = (error: ApplicationError): HttpResponse => 
     return unauthorized(error)
   }
 
+  if (error.name === 'UserNotFoundError') {
+    return notFound(error)
+  }
+
   if (error.name === 'UserNotCreatedError') {
     return notFound(error)
   }
@@ -21,6 +25,10 @@ export const checkApplicationError = (error: ApplicationError): HttpResponse => 
   }
 
   if (error.name === 'UserNotUpdatedError') {
+    return notFound(error)
+  }
+
+  if (error.name === 'UserUpdateFollowError') {
     return notFound(error)
   }
 

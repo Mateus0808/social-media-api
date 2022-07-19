@@ -18,6 +18,8 @@ export interface CreateUserResponse {
   maritalStatus: string
   gender: 'MALE' |'FEMALE'
   phone: string
+  followers: Array<string>
+  followings: Array<string>
   status: 'Active' | 'Closed' | 'Canceled' | 'Disabled'
 }
 

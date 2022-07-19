@@ -15,7 +15,7 @@ interface PostServiceResponse {
   id: string
   title: string
   content: string
-  totalLikes: number
+  likes: Array<string>
   user: UserDbModel
   createdAt: Date
   updatedAt: Date

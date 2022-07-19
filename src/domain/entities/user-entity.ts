@@ -9,6 +9,8 @@ export interface UserEntity {
   maritalStatus: string
   phone: string
   gender: 'MALE' |'FEMALE'
+  followers: Array<string>
+  followings: Array<string>
   isAdmin: boolean
   password: string
   status: 'Active' | 'Closed' | 'Canceled' | 'Disabled'

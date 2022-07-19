@@ -7,7 +7,8 @@ import { Validator } from '../../interfaces/validator'
 export class AuthUserController implements Controller {
   constructor (
     private readonly authUserService: AuthUserServiceInterface,
-    private readonly validator: Validator) {}
+    private readonly validator: Validator
+  ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {

@@ -13,6 +13,8 @@ export const userCreatedDto = (userCreated: CreatedUserModel): CreateUserRespons
   birthDate: userCreated.birthDate,
   phone: userCreated.phone,
   email: userCreated.email,
+  followers: userCreated.followers,
+  followings: userCreated.followings,
   status: userCreated.status
 })
 
@@ -26,6 +28,8 @@ export const userDto = (user: UserDbModel): ListOneUserResponse => ({
   phone: user.phone,
   address: user.address,
   gender: user.gender,
+  followers: user.followers,
+  followings: user.followings,
   isAdmin: user.isAdmin,
   maritalStatus: user.maritalStatus,
   status: user.status,
@@ -55,6 +59,8 @@ export const userToPaginationDto = (param: LoadUsersRepositoryResponse): ListUse
       name: user.name,
       lastName: user.lastName,
       status: user.status,
+      followers: user.followers,
+      followings: user.followings,
       registrationDate: new Date(user.createdAt)
     }
   }),

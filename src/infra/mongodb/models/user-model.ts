@@ -46,9 +46,17 @@ const userSchema = new Schema<User>({
     type: String,
     required: true
   },
+  followers: [{
+    type: String,
+    default: []
+  }],
+  followings: [{
+    type: String,
+    default: []
+  }],
   isAdmin: {
     type: Boolean,
-    default: true
+    default: false
   },
   status: {
     type: String,
