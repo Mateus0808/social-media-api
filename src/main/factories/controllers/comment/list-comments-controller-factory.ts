@@ -1,4 +1,4 @@
-import { ListCommentsService } from "../../../../application/services/comment-serivces/list-comments-service"
+import { ListCommentsService } from "../../../../application/services/comment-services/list-comments-service"
 import { CommentRepository } from "../../../../infra/mongodb/repositories/db-comment-repository"
 import { ListCommentsController } from "../../../../presentation/controllers/comment/list-comments-controller"
 

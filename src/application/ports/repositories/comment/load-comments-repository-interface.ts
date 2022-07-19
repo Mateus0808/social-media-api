@@ -1,8 +1,8 @@
 import { CommentDbModel } from './../models/comment-model';
 
 export interface LoadCommentsRepositoryParams {
-  page: string | null
-  limit: string | null
+  page: number | null
+  limit: number | null
 }
 
 export interface LoadCommentsRepositoryResponse {

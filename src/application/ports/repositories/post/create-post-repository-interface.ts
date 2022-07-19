@@ -1,4 +1,4 @@
-import { PostDbModel } from './../models/post-model';
+import { CreatedPostModel, PostDbModel } from './../models/post-model';
 import { CreatePostParams } from './../../../interfaces/post-interface/create-post-service-interface';
 import { UserDbModel } from '../models/user-model';
 
@@ -8,5 +8,5 @@ export interface CreatePostRepositoryParams extends Omit<CreatePostParams, 'user
 
 export interface CreatePostRepositoryInterface {
   createPost: (createPostRepository: CreatePostRepositoryParams) 
-    => Promise<PostDbModel | null>
+    => Promise<CreatedPostModel | null>
 }

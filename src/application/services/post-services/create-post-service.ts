@@ -1,7 +1,7 @@
+import { CreatedPostModel } from './../../ports/repositories/models/post-model';
 import { LoadUserByEmailRepositoryInterface } from './../../ports/repositories/user/load-user-by-email-repository-interface';
 import { CreatePostRepositoryInterface } from './../../ports/repositories/post/create-post-repository-interface';
 import { CreatePostParams, CreatePostServiceInterface } from './../../interfaces/post-interface/create-post-service-interface';
-import { PostDbModel } from '../../ports/repositories/models/post-model';
 import { UsersNotFoundError } from '../../errors/user-not-found-error';
 import { PostNotCreatedError } from '../../errors/post-errors/post-not-created-error';
 import { postCreatedDto } from '../../helpers/post-dto';
@@ -13,7 +13,7 @@ export class CreatePostService implements CreatePostServiceInterface {
     private readonly loadUserByIdRepository: LoadUserByIdRepositoryInterface
   ) {}
 
-  async createPost(createPostParams: CreatePostParams): Promise<PostDbModel> {
+  async createPost(createPostParams: CreatePostParams): Promise<CreatedPostModel> {
     const { content, userId, title } = createPostParams;
 
     const userExists = await this.loadUserByIdRepository.loadById(userId);

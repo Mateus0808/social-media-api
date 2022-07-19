@@ -16,5 +16,6 @@ export interface CreateCommentResponse {
 }
 
 export interface CreateCommentServiceInterface {
-  createComment: (createCommentParams: CreateCommentParams) => Promise<CreateCommentResponse>
+  createComment: (createCommentParams: CreateCommentParams) 
+    => Promise<CreateCommentResponse>
 }

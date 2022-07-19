@@ -39,7 +39,7 @@ export class UserRepository implements LoadUserByEmailRepositoryInterface,
 
     const users = await UserModel.paginate({
       page: page ?? 1,
-      limit: limit ?? 25
+      limit: limit ?? 10
     })
 
     if (!users) {

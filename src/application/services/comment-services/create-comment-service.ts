@@ -1,7 +1,7 @@
 import { CommentNotCreatedError } from '../../errors/comment-errors/comment-not-created-error';
 import { commentCreatedDto } from '../../helpers/comment-dto';
 import { CreateCommentRepositoryInterface } from '../../ports/repositories/comment/create-comment-repository-interface';
-import { CreateCommentParams, CreateCommentResponse, CreateCommentServiceInterface } from './../../interfaces/comment-interface/create-comment-service-interface';
+import { CreateCommentParams, CreateCommentResponse, CreateCommentServiceInterface } from '../../interfaces/comment-interface/create-comment-service-interface';
 
 export class CreateCommentService implements CreateCommentServiceInterface {
   constructor(
