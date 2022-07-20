@@ -13,6 +13,7 @@
  <a href="#variaveis-de-ambiente">Variaveis de Ambiente</a> •
  <a href="#como-executar">Como Executar</a> •
  <a href="#features">Features</a> •
+ <a href="#rotas">Rotas</a> •
  <a href="#padrões-de-código">Padrões de Código</a> •
 </p>
 
@@ -106,6 +107,28 @@ Tecnologias utilizadas.
 
 
 <p align="right">(<a href="#top">ir para o topo</a>)</p>
+
+----------------------------------------------------------------
+## Rotas
+
+* Usuário
+  - `/users/:id`
+  - `user/authentication`
+  - `/users/register`
+  - `/users`
+  - `/user/follow/:currentUserId/following/:userId`
+    * Exemplificando: `/user/follow/${IdUserAdmin}/:${normalUser}
+
+* Post
+  - `/post/register/:userId`
+  - `/post/:postId`
+  - `/posts`
+
+* Comentário
+  - `/comments`
+  - `/comment/register/:userId/:postId`
+
+----------------------------------------------------------------
 
 ## Padrões de Código
 

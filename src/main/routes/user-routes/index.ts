@@ -7,7 +7,7 @@ import { makeListUsersControllerFactory } from '../../factories/controllers/user
 import { makeAuthUserController } from '../../factories/controllers/user/login/auth-user-controller-factory'
 
 export const userRouter = (router: Router): void => {
-  router.post('/authentication/auth', expressRouterAdapter(makeAuthUserController()))
+  router.post('/user/authentication', expressRouterAdapter(makeAuthUserController()))
   router.post('/users/register', expressRouterAdapter(makeCreateUserController()))
   router.get('/users', expressRouterAdapter(makeListUsersControllerFactory()))
   router.get('/users/:id', expressRouterAdapter(makeListOneUserController()))
