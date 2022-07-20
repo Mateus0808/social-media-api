@@ -49,5 +49,6 @@ Thumbs.db
 *.wmv
 
 # Environments variables
-./.env
+.env
+.env.local
 
