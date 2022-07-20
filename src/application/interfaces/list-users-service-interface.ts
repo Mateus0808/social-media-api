@@ -18,5 +18,7 @@ interface UsersServiceResponse {
 }
 
 export interface ListUsersServiceInterface {
-  listUsers: (listUsersServiceParams: ListUsersServiceParams) => Promise<ListUsersServiceResponse>
+  listUsers: (
+    listUsersServiceParams: ListUsersServiceParams
+  ) => Promise<ListUsersServiceResponse>
 }
