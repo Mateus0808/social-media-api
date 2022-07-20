@@ -20,6 +20,10 @@ export const checkApplicationError = (error: ApplicationError): HttpResponse => 
     return notFound(error)
   }
 
+  if (error.name === 'PostUpdateCommentError') {
+    return notFound(error)
+  }
+
   if (error.name === 'UserAlreadyExistsError') {
     return notFound(error)
   }

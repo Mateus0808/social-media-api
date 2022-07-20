@@ -10,24 +10,21 @@ const commentSchema = new Schema({
     ref: 'User',
     required: true
   },
-  post: {
-    type: Schema.Types.ObjectId,
-    ref: 'Post',
-    required: true
-  },
   comment: {
     type: String,
     required: true
   },
-  totalLikes: {
-    type: Number,
-    default: 0
-  },
+  likes: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    default: [],
+  }],
 }, {
   timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
 })
 
 commentSchema.plugin(mongoosePagination)
-const CommentModel: Pagination<Comment> = mongoose.model<Comment, Pagination<Comment>>('Comment', commentSchema)
+const CommentModel: Pagination<Comment> 
+  = mongoose.model<Comment, Pagination<Comment>>('Comment', commentSchema)
 
 export { CommentModel }

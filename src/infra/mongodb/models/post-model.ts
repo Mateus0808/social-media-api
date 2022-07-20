@@ -22,13 +22,11 @@ const postSchema = new Schema({
     ref: 'User',
     default: [],
   }],
-  comment: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Comment',
-      required: false,
-    },
-  ],
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment',
+    default: [],
+  }],
 }, {
   timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
 })

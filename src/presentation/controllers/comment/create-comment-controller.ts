@@ -3,7 +3,7 @@ import { MissingParamError } from '../../errors/missing-param-error'
 import { checkApplicationError } from '../../helpers/application-errors-helper'
 import { badRequest, created } from '../../helpers/http-helper'
 import { Controller, HttpRequest, HttpResponse } from '../../interfaces/controller'
-import { CreateCommentServiceInterface } from '../../../application/interfaces/comment-interface/create-comment-service-interface';
+import { CreateCommentServiceInterface } from '../../../application/interfaces/post-interface/comment-interface/create-comment-service-interface';
 import { Validator } from '../../interfaces/validator'
 
 export class CreateCommentController implements Controller {
@@ -14,7 +14,8 @@ export class CreateCommentController implements Controller {
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      if (!httpRequest.body.comment) {
+      const { comment } = httpRequest.body
+      if (!comment) {
         return badRequest(new MissingParamError('comment'))
       }
 
@@ -23,9 +24,7 @@ export class CreateCommentController implements Controller {
         return badRequest(error)
       }
 
-      const { comment } = httpRequest.body
       const {  postId, userId } = httpRequest.params
-
       const commentCreated = await this.createCommentService.createComment({ 
         comment, postId, userId
       })

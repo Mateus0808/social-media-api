@@ -38,7 +38,6 @@ export class CreateUserController implements Controller {
 
       return created(userCreated)
     } catch (error: any) {
-      console.log(error)
       return checkApplicationError(error)
     }
   }

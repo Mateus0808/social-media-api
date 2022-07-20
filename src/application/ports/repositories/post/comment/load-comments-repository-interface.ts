@@ -1,4 +1,4 @@
-import { CommentDbModel } from './../models/comment-model';
+import { CommentDbModel } from '../../models/comment-model';
 
 export interface LoadCommentsRepositoryParams {
   page: number | null

@@ -1,12 +1,14 @@
+import { UpdatePostCommentsRepositoryResponse } from './../../../application/ports/repositories/post/update-post-comments-repository-interface';
 import { LoadPostsRepositoryInterface, LoadPostsRepositoryParams, LoadPostsRepositoryResponse } from './../../../application/ports/repositories/post/load-posts-repository-interface';
 import { PostDbModel } from './../../../application/ports/repositories/models/post-model';
 import { CreatePostRepositoryInterface, CreatePostRepositoryParams } from "../../../application/ports/repositories/post/create-post-repository-interface";
 import { PostModel } from '../models/post-model';
 import { MongoHelper } from '../helpers/mongo-helper';
 import { DeletePostRepositoryInterface } from '../../../application/ports/repositories/post/delete-post-repository-interface';
+import { UpdatePostCommentsRepositoryInterface, UpdatePostCommentsRepositoryParams } from '../../../application/ports/repositories/post/update-post-comments-repository-interface';
 
 export class PostRepository implements CreatePostRepositoryInterface, LoadPostsRepositoryInterface,
-DeletePostRepositoryInterface {
+DeletePostRepositoryInterface, UpdatePostCommentsRepositoryInterface {
   async createPost (createPostRepositoryParams: CreatePostRepositoryParams): Promise<PostDbModel | null> {
     const { title, content, user } = createPostRepositoryParams;
     const postCreated = await PostModel.create({
@@ -24,7 +26,8 @@ DeletePostRepositoryInterface {
     
     const posts = await PostModel.paginate({
       page: page ?? 1,
-      limit: limit ?? 10
+      limit: limit ?? 10,
+      populate: 'comments'
     })
 
     if (!posts) return null
@@ -48,4 +51,17 @@ DeletePostRepositoryInterface {
 
     return true
   }
-}
+
+  async updatePostComments (updatePostCommentsParams: UpdatePostCommentsRepositoryParams): 
+    Promise<UpdatePostCommentsRepositoryResponse | null> {
+    const { postId, commentId } = updatePostCommentsParams
+    
+    const post = await PostModel.findByIdAndUpdate(postId, 
+      { $push: { comments: commentId } }, 
+      { new: true }
+    )
+    if (!post) return null
+
+    return MongoHelper.mapToId(post.toObject())
+  }
+} 

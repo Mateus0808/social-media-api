@@ -1,8 +1,7 @@
 import { UserDbModel } from './../../application/ports/repositories/models/user-model';
 
 export interface CommentEntity {
-  user: UserDbModel;
-  post: string;
+  user: string;
   comment: string;
-  totalLikes: number;
+  likes: Array<string>
 }

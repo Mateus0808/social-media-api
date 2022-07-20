@@ -1,5 +1,6 @@
 import { PostDbModel } from './../../ports/repositories/models/post-model';
 import { UserDbModel } from "../../ports/repositories/models/user-model"
+import { CommentDbModel } from '../../ports/repositories/models/comment-model';
 
 export interface ListPostServiceParams {
   page: string | null
@@ -17,6 +18,7 @@ interface PostServiceResponse {
   content: string
   likes: Array<string>
   user: UserDbModel
+  comments: Array<string>
   createdAt: Date
   updatedAt: Date
 }

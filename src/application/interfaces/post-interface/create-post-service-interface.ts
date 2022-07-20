@@ -12,7 +12,7 @@ export interface CreatePostResponse {
   title: string
   content: string
   likes: Array<string>
-  comment: CommentDbModel[]
+  comments: Array<string>
   user: UserDbModel
   createdAt: Date
 }

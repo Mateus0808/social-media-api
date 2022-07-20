@@ -1,4 +1,4 @@
-import { UserDbModel } from "../../ports/repositories/models/user-model";
+import { CommentDbModel } from "../../../ports/repositories/models/comment-model";
 
 export interface CreateCommentParams {
   userId: string;
@@ -8,10 +8,9 @@ export interface CreateCommentParams {
 
 export interface CreateCommentResponse {
   id: string;
-  user: UserDbModel;
-  post: string;
+  user: string;
   comment: string;
-  totalLikes: number;
+  likes: Array<string>
   createdAt: Date;
 }
 

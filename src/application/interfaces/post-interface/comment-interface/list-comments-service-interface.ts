@@ -1,4 +1,4 @@
-import { UserDbModel } from "../../ports/repositories/models/user-model"
+import { UserDbModel } from "../../../ports/repositories/models/user-model"
 
 export interface ListCommentsServiceParams {
   page: string | null
@@ -13,13 +13,13 @@ export interface ListCommentsServiceResponse {
 interface CommentServiceResponse {
   id: string
   comment: string
-  totalLikes: number
-  post: string
-  user: UserDbModel
+  likes: Array<string>
+  user: string
   createdAt: Date
   updatedAt: Date
 }
 
 export interface ListCommentsServiceInterface {
-  listComments: (listCommentsServiceParams: ListCommentsServiceParams) => Promise<ListCommentsServiceResponse>
+  listComments: (listCommentsServiceParams: ListCommentsServiceParams) 
+    => Promise<ListCommentsServiceResponse>
 }

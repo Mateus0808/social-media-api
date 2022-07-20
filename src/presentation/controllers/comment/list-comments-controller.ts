@@ -1,4 +1,4 @@
-import { ListCommentsServiceInterface } from "../../../application/interfaces/comment-interface/list-comments-service-interface";
+import { ListCommentsServiceInterface } from "../../../application/interfaces/post-interface/comment-interface/list-comments-service-interface";
 
 import { InvalidParamError } from "../../errors/invalid-param-error";
 import { checkApplicationError } from "../../helpers/application-errors-helper";

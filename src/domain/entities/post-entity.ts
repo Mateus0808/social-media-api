@@ -6,5 +6,5 @@ export interface PostEntity {
   title: string;
   content: string;
   likes: Array<string>;
-  comment: CommentDbModel[];
+  comments: Array<string>
 }
