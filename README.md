@@ -85,25 +85,25 @@ Tecnologias utilizadas.
 
 ## Features
 
-- [X] Authenticate
-  - [X] 1.1 Middleware de autenticação
-  - [X] 1.2 Login do usuário com email e password
-- [X] Usuário
-  - [X] 1.1 Cadastrar usuário com email e password
-  - [X] 1.2 Listar usuários
-  - [X] 1.3 Listar usuário pelo ID
-  - [X] 1.4 Seguir um usuário
-  - [X] 1.4 Parar de seguir usuário
-- [X] Post
-  - [X] 1.1 Criar post
-  - [X] 1.2 Listar posts
-  - [ ] 1.3 Listar post pelo ID
-  - [X] 1.4 Deletar post
-  - [X] 1.5 Adicionar comentário em um post
-  - [X] 1.5 Deletar comentário de um post
-  - [X] 1.6 Listar comentários de um post
-  - [X] 1.4 Curtir um post
-  - [X] 1.4 Deixar de curtir um post
+- Authenticate
+    - [X] 1.1 Middleware de autenticação
+    - [X] 1.2 Login do usuário com email e password
+- Usuário
+    - [X] 1.1 Cadastrar usuário com email e password
+    - [X] 1.2 Listar usuários
+    - [X] 1.3 Listar usuário pelo ID
+    - [X] 1.4 Seguir um usuário
+    - [X] 1.4 Parar de seguir usuário
+- Post
+    - [X] 1.1 Criar post
+    - [X] 1.2 Listar posts
+    - [ ] 1.3 Listar post pelo ID
+    - [X] 1.4 Deletar post
+    - [X] 1.5 Adicionar comentário em um post
+    - [X] 1.5 Deletar comentário de um post
+    - [X] 1.6 Listar comentários de um post
+    - [X] 1.4 Curtir um post
+    - [X] 1.4 Deixar de curtir um post
 
 
 <p align="right">(<a href="#top">ir para o topo</a>)</p>
@@ -112,30 +112,30 @@ Tecnologias utilizadas.
 ## Rotas
 
 * Usuário
-  - `/users/:id`
-  - `user/authentication`
-  - `/users/register`
-  - `/users`
-  - `/user/follow/:currentUserId/following/:userId`
-    * Exemplificando: `/user/follow/${IdUserAdmin}/:${normalUser}
+    - `/users/:id`
+    - `user/authentication`
+    - `/users/register`
+    - `/users`
+    - `/user/follow/:currentUserId/following/:userId`
+      * Exemplificando: `/user/follow/${IdUserAdmin}/:${normalUser}
 
 * Post
-  - `/post/register/:userId`
-  - `/post/:postId`
-  - `/posts`
+    - `/post/register/:userId`
+    - `/post/:postId`
+    - `/posts`
 
 * Comentário
-  - `/comments`
-  - `/comment/register/:userId/:postId`
+    - `/comments`
+    - `/comment/register/:userId/:postId`
 
 ----------------------------------------------------------------
 
 ## Padrões de Código
 
 ### Padrão 1
-Indentação: utilizar dois (2) espaços
-Convenção de Nomes: PascalCase
-Clean Architecture
+* Indentação: utilizar dois (2) espaços
+* Convenção de Nomes: PascalCase
+* Clean Architecture
 
 <p align="right">(<a href="#top">ir para o topo</a>)</p>
 
