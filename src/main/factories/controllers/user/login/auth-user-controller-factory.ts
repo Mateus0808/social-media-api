@@ -10,10 +10,14 @@ import { env } from '../../../../config/env'
 export const makeAuthUserController = (): Controller => {
   const salt = 10
   const bcryptAdapter = new BcryptAdapter(salt)
-  const payload = env.jwtSecret
+  const payload = env.jwtSecret || ''
   const options = { expiresIn: 86400 }
-  const jwtAdapter = new JwtAdapter(payload!, options)
+  const jwtAdapter = new JwtAdapter(payload, options)
   const dbUserRepository = new UserRepository()
-  const authUserService = new AuthUserService(bcryptAdapter, jwtAdapter, dbUserRepository)
+  const authUserService = new AuthUserService(
+    bcryptAdapter,
+    jwtAdapter,
+    dbUserRepository,
+  )
   return new AuthUserController(authUserService, makeAuthUserValidator())
 }

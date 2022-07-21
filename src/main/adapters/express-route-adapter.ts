@@ -1,5 +1,8 @@
 import { Request, Response } from 'express'
-import { Controller, HttpRequest } from '../../presentation/interfaces/controller'
+import {
+  Controller,
+  HttpRequest,
+} from '../../presentation/interfaces/controller'
 
 export const expressRouterAdapter = (controller: Controller) => {
   return async (req: Request, res: Response) => {
@@ -7,7 +10,7 @@ export const expressRouterAdapter = (controller: Controller) => {
       headers: req.headers,
       params: req.params,
       queryParams: req.query,
-      body: req.body
+      body: req.body,
     }
 
     const httpResponse = await controller.handle(httpRequest)

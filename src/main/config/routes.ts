@@ -1,5 +1,5 @@
-import { postRoutes } from './../routes/post-routes/index';
 import express, { Express, Router } from 'express'
+import { postRoutes } from '../routes/post-routes/index'
 import { commentRouter } from '../routes/comment-routes'
 import { userRouter } from '../routes/user-routes'
 

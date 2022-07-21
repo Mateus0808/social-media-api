@@ -1,4 +1,4 @@
-import { PostDbModel } from "../models/post-model"
+import { PostDbModel } from '../models/post-model'
 
 export interface LoadPostsRepositoryParams {
   page: number | null
@@ -11,6 +11,7 @@ export interface LoadPostsRepositoryResponse {
 }
 
 export interface LoadPostsRepositoryInterface {
-  loadPosts: (loadPostsRepositoryParams: LoadPostsRepositoryParams) 
-    => Promise<LoadPostsRepositoryResponse | null>
+  loadPosts: (
+    loadPostsRepositoryParams: LoadPostsRepositoryParams,
+  ) => Promise<LoadPostsRepositoryResponse | null>
 }

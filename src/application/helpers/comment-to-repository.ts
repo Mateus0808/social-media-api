@@ -1,7 +1,9 @@
-import { ListPostServiceParams } from './../interfaces/post-interface/list-post-service-interface';
-import { LoadPostsRepositoryParams } from '../ports/repositories/post/load-posts-repository-interface';
+import { ListPostServiceParams } from '../interfaces/post-interface/list-post-service-interface'
+import { LoadPostsRepositoryParams } from '../ports/repositories/post/load-posts-repository-interface'
 
-export const commentToRepository = (params: ListPostServiceParams): LoadPostsRepositoryParams => ({
+export const commentToRepository = (
+  params: ListPostServiceParams,
+): LoadPostsRepositoryParams => ({
   page: params.page ? Number(params.page) : null,
-  limit: params.limit ? Number(params.limit) : null
+  limit: params.limit ? Number(params.limit) : null,
 })

@@ -11,6 +11,7 @@ export interface LoadUsersRepositoryResponse {
 }
 
 export interface LoadUsersRepositoryInterface {
-  loadUsers: (loadUsersRepositoryParams: LoadUsersRepositoryParams) 
-    => Promise<LoadUsersRepositoryResponse | null>
+  loadUsers: (
+    loadUsersRepositoryParams: LoadUsersRepositoryParams,
+  ) => Promise<LoadUsersRepositoryResponse | null>
 }

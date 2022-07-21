@@ -8,7 +8,7 @@ export interface UserEntity {
   birthDate: Date
   maritalStatus: string
   phone: string
-  gender: 'MALE' |'FEMALE'
+  gender: 'MALE' | 'FEMALE'
   followers: Array<string>
   followings: Array<string>
   isAdmin: boolean

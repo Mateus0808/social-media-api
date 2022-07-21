@@ -1,13 +1,6 @@
-import { UserDbModel } from "../../../ports/repositories/models/user-model"
-
 export interface ListCommentsServiceParams {
   page: string | null
   limit: string | null
-}
-
-export interface ListCommentsServiceResponse {
-  comments: CommentServiceResponse[]
-  pagination: any
 }
 
 interface CommentServiceResponse {
@@ -19,7 +12,13 @@ interface CommentServiceResponse {
   updatedAt: Date
 }
 
+export interface ListCommentsServiceResponse {
+  comments: CommentServiceResponse[]
+  pagination: any
+}
+
 export interface ListCommentsServiceInterface {
-  listComments: (listCommentsServiceParams: ListCommentsServiceParams) 
-    => Promise<ListCommentsServiceResponse>
+  listComments: (
+    listCommentsServiceParams: ListCommentsServiceParams,
+  ) => Promise<ListCommentsServiceResponse>
 }

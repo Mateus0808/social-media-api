@@ -1,31 +1,34 @@
 import mongoose, { Document, Schema } from 'mongoose'
 import { mongoosePagination, Pagination } from 'mongoose-paginate-ts'
 
-interface Address extends Document {}
+type Address = Document
 
 const addressSchema = new Schema({
   street: {
     type: String,
-    required: true
+    required: true,
   },
   city: {
     type: String,
-    required: true
+    required: true,
   },
   state: {
     type: String,
-    required: true
+    required: true,
   },
   country: {
     type: String,
-    required: true
+    required: true,
   },
   zipCode: {
-    type: String
-  }
+    type: String,
+  },
 })
 
 addressSchema.plugin(mongoosePagination)
-const AddressModel: Pagination<Address> = mongoose.model<Address, Pagination<Address>>('Address', addressSchema)
+const AddressModel: Pagination<Address> = mongoose.model<
+  Address,
+  Pagination<Address>
+>('Address', addressSchema)
 
 export { AddressModel }

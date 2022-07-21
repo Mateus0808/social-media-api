@@ -3,11 +3,6 @@ export interface ListUsersServiceParams {
   limit: string | null
 }
 
-export interface ListUsersServiceResponse {
-  users: UsersServiceResponse[]
-  pagination: any
-}
-
 interface UsersServiceResponse {
   id: string
   name: string
@@ -17,8 +12,13 @@ interface UsersServiceResponse {
   status: string
 }
 
+export interface ListUsersServiceResponse {
+  users: UsersServiceResponse[]
+  pagination: any
+}
+
 export interface ListUsersServiceInterface {
   listUsers: (
-    listUsersServiceParams: ListUsersServiceParams
+    listUsersServiceParams: ListUsersServiceParams,
   ) => Promise<ListUsersServiceResponse>
 }
