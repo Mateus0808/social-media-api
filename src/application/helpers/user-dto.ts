@@ -1,10 +1,15 @@
 import { CreateUserResponse } from '../interfaces/create-user-service-interface'
 import { ListOneUserResponse } from '../interfaces/list-one-user-service-interface'
 import { ListUsersServiceResponse } from '../interfaces/list-users-service-interface'
-import { CreatedUserModel, UserDbModel } from '../ports/repositories/models/user-model'
+import {
+  CreatedUserModel,
+  UserDbModel,
+} from '../ports/repositories/models/user-model'
 import { LoadUsersRepositoryResponse } from '../ports/repositories/user/load-users-repository-interface'
 
-export const userCreatedDto = (userCreated: CreatedUserModel): CreateUserResponse => ({
+export const userCreatedDto = (
+  userCreated: CreatedUserModel,
+): CreateUserResponse => ({
   id: userCreated.id,
   name: userCreated.name,
   lastName: userCreated.lastName,
@@ -15,9 +20,8 @@ export const userCreatedDto = (userCreated: CreatedUserModel): CreateUserRespons
   email: userCreated.email,
   followers: userCreated.followers,
   followings: userCreated.followings,
-  status: userCreated.status
+  status: userCreated.status,
 })
-
 
 export const userDto = (user: UserDbModel): ListOneUserResponse => ({
   id: user.id,
@@ -33,7 +37,7 @@ export const userDto = (user: UserDbModel): ListOneUserResponse => ({
   isAdmin: user.isAdmin,
   maritalStatus: user.maritalStatus,
   status: user.status,
-  registrationDate: new Date(user.createdAt)
+  registrationDate: new Date(user.createdAt),
 })
 
 export const fixName = (name: string | undefined): string => {
@@ -46,12 +50,14 @@ export const fixName = (name: string | undefined): string => {
     .split(' ')
     .reduce((acc, val) => {
       const firstLetter = val.charAt(0).toUpperCase()
-      return acc + val.replace(/^[a-zA-Z]/g, firstLetter) + ' '
-    }, '').trim()
+      return `${acc + val.replace(/^[a-zA-Z]/g, firstLetter)} `
+    }, '')
+    .trim()
 }
 
-
-export const userToPaginationDto = (param: LoadUsersRepositoryResponse): ListUsersServiceResponse => ({
+export const userToPaginationDto = (
+  param: LoadUsersRepositoryResponse,
+): ListUsersServiceResponse => ({
   users: param.users.map(user => {
     return {
       id: user.id,
@@ -61,8 +67,8 @@ export const userToPaginationDto = (param: LoadUsersRepositoryResponse): ListUse
       status: user.status,
       followers: user.followers,
       followings: user.followings,
-      registrationDate: new Date(user.createdAt)
+      registrationDate: new Date(user.createdAt),
     }
   }),
-  pagination: param.pagination
+  pagination: param.pagination,
 })

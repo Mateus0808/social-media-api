@@ -3,16 +3,26 @@ import { InvalidParamError } from '../../errors/invalid-param-error'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { checkApplicationError } from '../../helpers/application-errors-helper'
 import { badRequest, created } from '../../helpers/http-helper'
-import { Controller, HttpRequest, HttpResponse } from '../../interfaces/controller'
+import {
+  Controller,
+  HttpRequest,
+  HttpResponse,
+} from '../../interfaces/controller'
 
 export class CreateUserController implements Controller {
-  constructor (private readonly createUserService: CreateUserServiceInterface) { }
+  constructor(private readonly createUserService: CreateUserServiceInterface) {}
 
-  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const requiredParams = [
-        'name', 'lastName', 'phone', 'maritalStatus', 'birthDate', 'email', 
-        'gender', 'password'
+        'name',
+        'lastName',
+        'phone',
+        'maritalStatus',
+        'birthDate',
+        'email',
+        'gender',
+        'password',
       ]
 
       for (const param of requiredParams) {
@@ -27,13 +37,26 @@ export class CreateUserController implements Controller {
         }
       }
 
-      const { 
-        name, lastName, phone, birthDate, maritalStatus, gender, email, password 
+      const {
+        name,
+        lastName,
+        phone,
+        birthDate,
+        maritalStatus,
+        gender,
+        email,
+        password,
       } = httpRequest.body
 
-      const userCreated = await this.createUserService.createUser({ 
-        name, lastName, phone, birthDate, 
-        maritalStatus, gender, email, password 
+      const userCreated = await this.createUserService.createUser({
+        name,
+        lastName,
+        phone,
+        birthDate,
+        maritalStatus,
+        gender,
+        email,
+        password,
       })
 
       return created(userCreated)

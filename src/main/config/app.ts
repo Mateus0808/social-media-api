@@ -5,12 +5,12 @@ import setupRoutes from './routes'
 export class App {
   public server: Express
 
-  constructor () {
+  constructor() {
     this.server = express()
     this.router()
   }
 
-  private router () {
+  private router() {
     setupRoutes(this.server)
   }
 }

@@ -3,7 +3,9 @@ import { ListCommentsServiceResponse } from '../interfaces/post-interface/commen
 import { LoadCommentsRepositoryResponse } from '../ports/repositories/post/comment/load-comments-repository-interface'
 import { CommentDbModel } from '../ports/repositories/models/comment-model'
 
-export const commentCreatedDto = (commentCreated: CommentDbModel): CreateCommentResponse => ({
+export const commentCreatedDto = (
+  commentCreated: CommentDbModel,
+): CreateCommentResponse => ({
   id: commentCreated.id,
   user: commentCreated.user,
   comment: commentCreated.comment,
@@ -12,7 +14,7 @@ export const commentCreatedDto = (commentCreated: CommentDbModel): CreateComment
 })
 
 export const commentsToPaginationDto = (
-  param: LoadCommentsRepositoryResponse
+  param: LoadCommentsRepositoryResponse,
 ): ListCommentsServiceResponse => ({
   comments: param.comments.map(comment => {
     return {
@@ -21,8 +23,8 @@ export const commentsToPaginationDto = (
       likes: comment.likes,
       user: comment.user,
       createdAt: new Date(comment.createdAt),
-      updatedAt: new Date(comment.updatedAt)
+      updatedAt: new Date(comment.updatedAt),
     }
   }),
-  pagination: param.pagination
+  pagination: param.pagination,
 })

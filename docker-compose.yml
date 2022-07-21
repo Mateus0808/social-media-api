@@ -20,6 +20,7 @@ services:
     environment:
       NODE_ENV: ${NODE_ENV}
       JWT_SECRET: ${JWT_SECRET}
+      DB_DEVELOPMENT: ${DB_DEVELOPMENT}
       DB_PRODUCTION: ${DB_PRODUCTION}
     depends_on:
       - mongo_db

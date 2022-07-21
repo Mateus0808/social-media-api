@@ -1,18 +1,22 @@
-import { Validator } from './../../interfaces/validator';
-import { InvalidParamError } from '../../errors/invalid-param-error';
-import { MissingParamError } from '../../errors/missing-param-error';
-import { badRequest, created } from '../../helpers/http-helper';
-import { checkApplicationError } from './../../helpers/application-errors-helper';
-import { Controller, HttpRequest, HttpResponse } from './../../interfaces/controller';
-import { CreatePostServiceInterface } from '../../../application/interfaces/post-interface/create-post-service-interface';
+import { Validator } from '../../interfaces/validator'
+import { InvalidParamError } from '../../errors/invalid-param-error'
+import { MissingParamError } from '../../errors/missing-param-error'
+import { badRequest, created } from '../../helpers/http-helper'
+import { checkApplicationError } from '../../helpers/application-errors-helper'
+import {
+  Controller,
+  HttpRequest,
+  HttpResponse,
+} from '../../interfaces/controller'
+import { CreatePostServiceInterface } from '../../../application/interfaces/post-interface/create-post-service-interface'
 
 export class CreatePostController implements Controller {
-  constructor (
+  constructor(
     private readonly createPostService: CreatePostServiceInterface,
-    private readonly validator: Validator
-  ) { }
+    private readonly validator: Validator,
+  ) {}
 
-  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const requiredParams = ['title', 'content']
 
@@ -35,15 +39,15 @@ export class CreatePostController implements Controller {
 
       const { title, content } = httpRequest.body
 
-      const postCreated = await this.createPostService.createPost({ 
-        title, content, userId: httpRequest.params.userId
+      const postCreated = await this.createPostService.createPost({
+        title,
+        content,
+        userId: httpRequest.params.userId,
       })
 
       return created(postCreated)
-
     } catch (error: any) {
       return checkApplicationError(error)
     }
   }
-
 }

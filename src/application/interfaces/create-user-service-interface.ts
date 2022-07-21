@@ -5,7 +5,7 @@ export interface CreateUserParams {
   birthDate: Date
   maritalStatus: string
   password: string
-  gender: 'MALE' |'FEMALE'
+  gender: 'MALE' | 'FEMALE'
   phone: string
 }
 
@@ -16,7 +16,7 @@ export interface CreateUserResponse {
   email: string
   birthDate: Date
   maritalStatus: string
-  gender: 'MALE' |'FEMALE'
+  gender: 'MALE' | 'FEMALE'
   phone: string
   followers: Array<string>
   followings: Array<string>
@@ -24,5 +24,7 @@ export interface CreateUserResponse {
 }
 
 export interface CreateUserServiceInterface {
-  createUser: (createUserParams: CreateUserParams) => Promise<CreateUserResponse>
+  createUser: (
+    createUserParams: CreateUserParams,
+  ) => Promise<CreateUserResponse>
 }

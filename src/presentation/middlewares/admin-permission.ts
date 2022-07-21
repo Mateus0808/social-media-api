@@ -8,12 +8,12 @@ import { checkApplicationError } from '../helpers/application-errors-helper'
 import { MissingHeaderError } from '../errors/missing-header-error'
 
 export class AdminPermissionMiddleware implements Middleware {
-  constructor (
+  constructor(
     private readonly encrypterVerifier: EncrypterVerifier,
-    private readonly loadUserByIdRepository: LoadUserByIdRepositoryInterface
+    private readonly loadUserByIdRepository: LoadUserByIdRepositoryInterface,
   ) {}
 
-  async handle (httpRequest: HttpRequest): Promise<HttpResponse | null> {
+  async handle(httpRequest: HttpRequest): Promise<HttpResponse | null> {
     try {
       const authorizationHeader = httpRequest.headers.authorization
       if (!authorizationHeader) {

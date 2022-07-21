@@ -7,5 +7,8 @@ import { makeListOneUserValidator } from './list-one-user-validator-factory'
 export const makeListOneUserController = (): Controller => {
   const dbUserRepository = new UserRepository()
   const listOneUserService = new ListOneUserService(dbUserRepository)
-  return new ListOneUserController(listOneUserService, makeListOneUserValidator())
+  return new ListOneUserController(
+    listOneUserService,
+    makeListOneUserValidator(),
+  )
 }

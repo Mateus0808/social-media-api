@@ -1,4 +1,4 @@
-import { CommentDbModel } from '../../models/comment-model';
+import { CommentDbModel } from '../../models/comment-model'
 
 export interface LoadCommentsRepositoryParams {
   page: number | null
@@ -11,6 +11,7 @@ export interface LoadCommentsRepositoryResponse {
 }
 
 export interface LoadCommentsRepositoryInterface {
-  listComments: (loadCommentsRepositoryParams: LoadCommentsRepositoryParams) 
-    => Promise<LoadCommentsRepositoryResponse | null>
+  listComments: (
+    loadCommentsRepositoryParams: LoadCommentsRepositoryParams,
+  ) => Promise<LoadCommentsRepositoryResponse | null>
 }

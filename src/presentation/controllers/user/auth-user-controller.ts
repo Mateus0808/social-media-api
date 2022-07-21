@@ -1,16 +1,20 @@
 import { checkApplicationError } from '../../helpers/application-errors-helper'
 import { AuthUserServiceInterface } from '../../../application/interfaces/auth-user-service-interface'
 import { badRequest, ok } from '../../helpers/http-helper'
-import { Controller, HttpRequest, HttpResponse } from '../../interfaces/controller'
+import {
+  Controller,
+  HttpRequest,
+  HttpResponse,
+} from '../../interfaces/controller'
 import { Validator } from '../../interfaces/validator'
 
 export class AuthUserController implements Controller {
-  constructor (
+  constructor(
     private readonly authUserService: AuthUserServiceInterface,
-    private readonly validator: Validator
+    private readonly validator: Validator,
   ) {}
 
-  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const error = this.validator.validate(httpRequest.body)
       if (error) {
