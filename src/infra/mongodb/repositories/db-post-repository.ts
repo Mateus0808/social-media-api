@@ -1,4 +1,8 @@
 import {
+  DeleteCommentOnAPostParams,
+  DeleteCommentOnAPostRepositoryInterface,
+} from '../../../application/ports/repositories/post/delete-comment-on-a-post-repository-interface'
+import {
   UpdatePostCommentsRepositoryResponse,
   UpdatePostCommentsRepositoryInterface,
   UpdatePostCommentsRepositoryParams,
@@ -22,7 +26,8 @@ export class PostRepository
     CreatePostRepositoryInterface,
     LoadPostsRepositoryInterface,
     DeletePostRepositoryInterface,
-    UpdatePostCommentsRepositoryInterface
+    UpdatePostCommentsRepositoryInterface,
+    DeleteCommentOnAPostRepositoryInterface
 {
   async createPost(
     createPostRepositoryParams: CreatePostRepositoryParams,
@@ -85,5 +90,20 @@ export class PostRepository
     if (!post) return null
 
     return MongoHelper.mapToId(post.toObject())
+  }
+
+  async deleteCommentOnAPost(
+    deleteCommentOnAPostParams: DeleteCommentOnAPostParams,
+  ): Promise<boolean | null> {
+    const { postId, userId } = deleteCommentOnAPostParams
+
+    const post = await PostModel.findByIdAndUpdate(
+      postId,
+      { $pull: { comments: userId } },
+      { new: true },
+    )
+    if (!post) return null
+
+    return true
   }
 }
