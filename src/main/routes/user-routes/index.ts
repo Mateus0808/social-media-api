@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { makeUserTimelineControllerFactory } from '../../factories/controllers/user/user-timeline/user-timeline-controller-factory'
 import { makeFollowUserControllerFactory } from '../../factories/controllers/user/follow-user/follow-user-controller-factory'
 import { expressRouterAdapter } from '../../adapters/express-route-adapter'
 import { makeCreateUserController } from '../../factories/controllers/user/create-user-controller-factory'
@@ -20,5 +21,9 @@ export const userRouter = (router: Router): void => {
   router.post(
     '/user/follow/:currentUserId/following/:userId',
     expressRouterAdapter(makeFollowUserControllerFactory()),
+  )
+  router.get(
+    '/user/timeline/:userId',
+    expressRouterAdapter(makeUserTimelineControllerFactory()),
   )
 }

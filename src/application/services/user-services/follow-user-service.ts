@@ -1,3 +1,4 @@
+import { FollowingUserError } from '../../errors/following-user-error'
 import { UserUpdateFollowError } from '../../errors/user-update-follow-error'
 import { UsersNotFoundError } from '../../errors/user-not-found-error'
 import { UpdateFollowUserRepositoryInterface } from '../../ports/repositories/user/follow-user-repository-interface'
@@ -18,6 +19,8 @@ export class FollowUserService implements FollowUserServiceInterface {
     followUser: FollowUserParams,
   ): Promise<FollowUserServiceResponse> {
     const { currentUserId, userId } = followUser
+
+    if (currentUserId === userId) throw new FollowingUserError()
 
     const currentUser = await this.loadUserByIdRepository.loadById(
       currentUserId,
