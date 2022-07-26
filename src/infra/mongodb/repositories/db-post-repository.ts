@@ -1,5 +1,4 @@
 import {
-  LoadPostsFromUserByIdRepositoryResponse,
   LoadPostsFromUserByIdRepositoryInterface,
   LoadPostsFromUserByIdRepositoryParams,
 } from '../../../application/ports/repositories/post/load-posts-user-timeline-repository-interface'
