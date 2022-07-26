@@ -1,3 +1,4 @@
+import { DeleteCommentRepositoryInterface } from '../../../application/ports/repositories/post/comment/delete-comment-repository-interface'
 import {
   LoadCommentsRepositoryInterface,
   LoadCommentsRepositoryParams,
@@ -13,7 +14,10 @@ import { MongoHelper } from '../helpers/mongo-helper'
 import { CommentModel } from '../models/comment-model'
 
 export class CommentRepository
-  implements CreateCommentRepositoryInterface, LoadCommentsRepositoryInterface
+  implements
+    CreateCommentRepositoryInterface,
+    LoadCommentsRepositoryInterface,
+    DeleteCommentRepositoryInterface
 {
   async createComment(
     createCommentRepositoryParams: CreateCommentRepositoryParams,
@@ -47,6 +51,14 @@ export class CommentRepository
       comments: commentsArray,
       pagination: { ...restCommentsProps },
     }
+
     return response
+  }
+
+  async deleteComment(commentId: string): Promise<boolean | null> {
+    const commentDeleted = await CommentModel.findByIdAndDelete(commentId)
+    if (!commentDeleted) return null
+
+    return true
   }
 }

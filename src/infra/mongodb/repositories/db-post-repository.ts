@@ -1,4 +1,12 @@
 import {
+  LoadPostsFromUserByIdRepositoryInterface,
+  LoadPostsFromUserByIdRepositoryParams,
+} from '../../../application/ports/repositories/post/load-posts-user-timeline-repository-interface'
+import {
+  DeleteCommentOnAPostParams,
+  DeleteCommentOnAPostRepositoryInterface,
+} from '../../../application/ports/repositories/post/delete-comment-on-a-post-repository-interface'
+import {
   UpdatePostCommentsRepositoryResponse,
   UpdatePostCommentsRepositoryInterface,
   UpdatePostCommentsRepositoryParams,
@@ -22,7 +30,9 @@ export class PostRepository
     CreatePostRepositoryInterface,
     LoadPostsRepositoryInterface,
     DeletePostRepositoryInterface,
-    UpdatePostCommentsRepositoryInterface
+    UpdatePostCommentsRepositoryInterface,
+    DeleteCommentOnAPostRepositoryInterface,
+    LoadPostsFromUserByIdRepositoryInterface
 {
   async createPost(
     createPostRepositoryParams: CreatePostRepositoryParams,
@@ -85,5 +95,33 @@ export class PostRepository
     if (!post) return null
 
     return MongoHelper.mapToId(post.toObject())
+  }
+
+  async deleteCommentOnAPost(
+    deleteCommentOnAPostParams: DeleteCommentOnAPostParams,
+  ): Promise<boolean | null> {
+    const { postId, userId } = deleteCommentOnAPostParams
+
+    const post = await PostModel.findByIdAndUpdate(
+      postId,
+      { $pull: { comments: userId } },
+      { new: true },
+    )
+    if (!post) return null
+
+    return true
+  }
+
+  async loadPostsFromUserById(
+    repositoryParams: LoadPostsFromUserByIdRepositoryParams,
+  ): Promise<Array<PostDbModel> | null> {
+    const { userId } = repositoryParams
+
+    const posts = await PostModel.find({ user: userId })
+    if (!posts) return null
+
+    const postsArray = posts.map(post => MongoHelper.mapToId(post.toObject()))
+
+    return postsArray
   }
 }

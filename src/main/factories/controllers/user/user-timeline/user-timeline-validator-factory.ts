@@ -3,9 +3,9 @@ import { RequiredFieldValidator } from '../../../../../presentation/validators/r
 import { StringFieldValidator } from '../../../../../presentation/validators/string-field-validator'
 import { ValidatorComposite } from '../../../../../presentation/validators/validator-composite'
 
-export const makeCreateCommentValidator = (): ValidatorComposite => {
+export const makeUserTimelineValidator = (): ValidatorComposite => {
   const validators: Validator[] = []
-  const params = ['postId', 'userId']
+  const params = ['userId']
   for (const param of params) {
     validators.push(new RequiredFieldValidator(param))
     validators.push(new StringFieldValidator(param))
