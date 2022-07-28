@@ -38,6 +38,10 @@ export const checkApplicationError = (
     return notFound(error)
   }
 
+  if (error.name === 'ErrorUpdatingUserEmail') {
+    return notFound(error)
+  }
+
   if (error.name === 'FollowingUserError') {
     return badRequest(error)
   }

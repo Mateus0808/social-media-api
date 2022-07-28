@@ -3,7 +3,7 @@ export interface ListUsersServiceParams {
   limit: string | null
 }
 
-interface UsersServiceResponse {
+interface UserServiceResponse {
   id: string
   name: string
   lastName: string
@@ -13,7 +13,7 @@ interface UsersServiceResponse {
 }
 
 export interface ListUsersServiceResponse {
-  users: UsersServiceResponse[]
+  users: UserServiceResponse[]
   pagination: any
 }
 

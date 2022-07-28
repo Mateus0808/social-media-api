@@ -1,3 +1,8 @@
+import {
+  UpdateUserEmailRepositoryParams,
+  UpdateUserEmailRepositoryInterface,
+  UpdateUserEmailRepositoryResponse,
+} from '../../../application/ports/repositories/user/update-user-email-repository-interface'
 import { UserModel } from '../models/user-model'
 import { UserDbModel } from '../../../application/ports/repositories/models/user-model'
 import {
@@ -23,7 +28,8 @@ export class UserRepository
     CreateUserRepositoryInterface,
     LoadUserByIdRepositoryInterface,
     LoadUsersRepositoryInterface,
-    UpdateFollowUserRepositoryInterface
+    UpdateFollowUserRepositoryInterface,
+    UpdateUserEmailRepositoryInterface
 {
   async createUser(
     createUserRepositoryParams: CreateUserRepositoryParams,
@@ -111,5 +117,23 @@ export class UserRepository
     }
 
     return response
+  }
+
+  async updateUserEmail(
+    updateUserEmailRepositoryParams: UpdateUserEmailRepositoryParams,
+  ): Promise<UpdateUserEmailRepositoryResponse | null> {
+    const { userId, email } = updateUserEmailRepositoryParams
+
+    const user = await UserModel.findByIdAndUpdate(
+      userId,
+      {
+        $set: { email },
+      },
+      { new: true },
+    ).select({ email: 1, _id: 1 })
+
+    if (!user) return null
+
+    return MongoHelper.mapToId(user.toObject())
   }
 }

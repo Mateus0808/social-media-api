@@ -1,4 +1,4 @@
-import { UserAlreadyExistsError } from '../../errors/user-alredy-exists-error'
+import { UserAlreadyExistsError } from '../../errors/user-already-exists-error'
 import { UserNotCreatedError } from '../../errors/user-not-created-error'
 import { fixName, userCreatedDto } from '../../helpers/user-dto'
 import {

@@ -72,3 +72,8 @@ export const userToPaginationDto = (
   }),
   pagination: param.pagination,
 })
+
+export const userEmailDto = (user: { email: string; id: string }) => ({
+  id: user.id,
+  email: user.email,
+})
