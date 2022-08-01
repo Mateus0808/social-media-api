@@ -1,6 +1,6 @@
-<div align="center">
+<div id="top" align="center">
 
-# Desafio Técnico - eMotion Studios
+# Social Media
 
 </div>
 
@@ -14,7 +14,7 @@
  <a href="#como-executar">Como Executar</a> •
  <a href="#features">Features</a> •
  <a href="#rotas">Rotas</a> •
- <a href="#padrões-de-código">Padrões de Código</a> •
+ <a href="#padrões-de-código">Padrões de Código</a>
 </p>
 
 
@@ -93,11 +93,12 @@ Tecnologias utilizadas.
     - [X] 1.2 Listar usuários
     - [X] 1.3 Listar usuário pelo ID
     - [X] 1.4 Seguir um usuário
-    - [X] 1.4 Parar de seguir usuário
+    - [X] 1.5 Parar de seguir usuário
+    - [X] 1.6 Atualizar informaç~eos do usuário
 - Post
     - [X] 1.1 Criar post
     - [X] 1.2 Listar posts
-    - [ ] 1.3 Listar post pelo ID
+    - [X] 1.3 Listar post pelo ID
     - [X] 1.4 Deletar post
     - [X] 1.5 Adicionar comentário em um post
     - [X] 1.5 Deletar comentário de um post
@@ -133,9 +134,9 @@ Tecnologias utilizadas.
 ## Padrões de Código
 
 ### Padrão 1
-* Indentação: utilizar dois (2) espaços
-* Convenção de Nomes: PascalCase
-* Clean Architecture
+  * Indentação: utilizar dois (2) espaços
+  * Convenção de Nomes: PascalCase
+  * Clean Architecture
 
 <p align="right">(<a href="#top">ir para o topo</a>)</p>
 
