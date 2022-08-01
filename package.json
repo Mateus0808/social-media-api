@@ -10,7 +10,7 @@
     "start": "node dist/main/server.js",
     "dev": "ts-node-dev src/main/server.ts --poll --respawn --transpile-only --ignore-watch node_modules",
     "lint": "eslint .",
-    "lint:fix": "lint -- --fix ./src/*"
+    "lint:fix": "yarn lint -- --fix ./src/*/*.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
