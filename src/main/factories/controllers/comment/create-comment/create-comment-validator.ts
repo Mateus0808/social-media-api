@@ -1,9 +1,9 @@
-import { Validator } from "../../../../../presentation/interfaces/validator"
-import { RequiredFieldValidator } from "../../../../../presentation/validators/required-field-validator"
-import { StringFieldValidator } from "../../../../../presentation/validators/string-field-validator"
-import { ValidatorComposite } from "../../../../../presentation/validators/validator-composite"
+import { Validator } from '../../../../../presentation/interfaces/validator'
+import { RequiredFieldValidator } from '../../../../../presentation/validators/required-field-validator'
+import { StringFieldValidator } from '../../../../../presentation/validators/string-field-validator'
+import { ValidatorComposite } from '../../../../../presentation/validators/validator-composite'
 
-export const makeCommentValidator = (): ValidatorComposite => {
+export const makeCreateCommentValidator = (): ValidatorComposite => {
   const validators: Validator[] = []
   const params = ['postId', 'userId']
   for (const param of params) {

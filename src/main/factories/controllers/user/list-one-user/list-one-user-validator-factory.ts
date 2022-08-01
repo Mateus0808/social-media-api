@@ -4,7 +4,7 @@ import { RequiredFieldValidator } from '../../../../../presentation/validators/r
 
 export const makeListOneUserValidator = (): ValidatorComposite => {
   const validators: Validator[] = []
-  const requiredRouteParams = ['id']
+  const requiredRouteParams = ['userId']
   for (const param of requiredRouteParams) {
     validators.push(new RequiredFieldValidator(param))
   }

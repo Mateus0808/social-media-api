@@ -1,8 +1,10 @@
-import { FollowUserParams } from './../../../interfaces/follow-user-service-interface';
+import { FollowUserParams } from '../../../interfaces/user-interface/follow-user-service-interface'
 import { UserDbModel } from '../models/user-model'
 
-export interface FollowUserRepositoryParams extends FollowUserParams {}
+export type FollowUserRepositoryParams = FollowUserParams
 
 export interface UpdateFollowUserRepositoryInterface {
-  updateFollowUser: (followUser: FollowUserRepositoryParams) => Promise<UserDbModel | null>
+  updateFollowUser: (
+    followUser: FollowUserRepositoryParams,
+  ) => Promise<UserDbModel | null>
 }

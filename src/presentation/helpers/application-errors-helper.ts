@@ -3,7 +3,9 @@ import { ServerError } from '../errors/server-error'
 import { HttpResponse } from '../interfaces/controller'
 import { badRequest, notFound, serverError, unauthorized } from './http-helper'
 
-export const checkApplicationError = (error: ApplicationError): HttpResponse => {
+export const checkApplicationError = (
+  error: ApplicationError,
+): HttpResponse => {
   if (error.name === 'UserNotExistsError') {
     return notFound(error)
   }
@@ -36,23 +38,42 @@ export const checkApplicationError = (error: ApplicationError): HttpResponse => 
     return notFound(error)
   }
 
+  if (error.name === 'ErrorUpdatingUserName') {
+    return badRequest(error)
+  }
+
+  if (error.name === 'ErrorUpdatingUserUsername') {
+    return badRequest(error)
+  }
+
+  if (error.name === 'InvalidSectionError') {
+    return badRequest(error)
+  }
+  if (error.name === 'ErrorUpdatingUserEmail') {
+    return badRequest(error)
+  }
+
+  if (error.name === 'FollowingUserError') {
+    return badRequest(error)
+  }
+
   if (error.name === 'SendEmailError') {
     return notFound(error)
   }
 
   if (error.name === 'TokenExpiredError') {
-    const error = new Error('Token com tempo expirado')
-    return badRequest(error)
+    const errorResponse = new Error('Token com tempo expirado')
+    return badRequest(errorResponse)
   }
 
   if (error.name === 'JsonWebTokenError') {
-    const error = new Error('Token inválido')
-    return badRequest(error)
+    const errorResponse = new Error('Token inválido')
+    return badRequest(errorResponse)
   }
 
   if (error.name === 'CastError') {
-    const error = new Error('Parâmetro inválido')
-    return badRequest(error)
+    const errorResponse = new Error('Parâmetro inválido')
+    return badRequest(errorResponse)
   }
 
   if (error.name === 'InvalidHeaderError') {
@@ -63,6 +84,10 @@ export const checkApplicationError = (error: ApplicationError): HttpResponse => 
     return badRequest(error)
   }
 
+  if (error.name === 'MissingHeaderError') {
+    return badRequest(error)
+  }
+
   if (error.name === 'PostNotCreatedError') {
     return badRequest(error)
   }
@@ -70,7 +95,7 @@ export const checkApplicationError = (error: ApplicationError): HttpResponse => 
   if (error.name === 'PostsNotFoundError') {
     return badRequest(error)
   }
-  
+
   if (error.name === 'CommentNotCreatedError') {
     return badRequest(error)
   }

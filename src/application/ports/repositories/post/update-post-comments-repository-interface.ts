@@ -1,14 +1,14 @@
-import { CommentDbModel } from "../models/comment-model";
-import { PostDbModel } from "../models/post-model";
+import { CommentDbModel } from '../models/comment-model'
 
 export interface UpdatePostCommentsRepositoryParams {
-  postId: string;
-  commentId: string;
+  postId: string
+  commentId: string
 }
 
-export interface UpdatePostCommentsRepositoryResponse extends CommentDbModel {}
+export type UpdatePostCommentsRepositoryResponse = CommentDbModel
 
 export interface UpdatePostCommentsRepositoryInterface {
-  updatePostComments: (updatePostCommentsParams: UpdatePostCommentsRepositoryParams)
-   => Promise<UpdatePostCommentsRepositoryResponse | null>;
+  updatePostComments: (
+    updatePostCommentsParams: UpdatePostCommentsRepositoryParams,
+  ) => Promise<UpdatePostCommentsRepositoryResponse | null>
 }

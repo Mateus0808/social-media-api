@@ -1,7 +1,7 @@
 import { ApplicationError } from './application-error'
 
-export class UsersNotFoundError extends ApplicationError {
-  constructor () {
+export class UserNotFoundError extends ApplicationError {
+  constructor() {
     super('Usuário não encontrado')
     this.name = 'UserNotFoundError'
   }

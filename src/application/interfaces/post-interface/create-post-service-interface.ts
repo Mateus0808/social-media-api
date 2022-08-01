@@ -1,5 +1,4 @@
-import { UserDbModel } from '../../ports/repositories/models/user-model';
-import { CommentDbModel } from './../../ports/repositories/models/comment-model';
+import { UserDbModel } from '../../ports/repositories/models/user-model'
 
 export interface CreatePostParams {
   title: string
@@ -18,6 +17,7 @@ export interface CreatePostResponse {
 }
 
 export interface CreatePostServiceInterface {
-  createPost: (createPostParams: CreatePostParams) 
-    => Promise<CreatePostResponse>
+  createPost: (
+    createPostParams: CreatePostParams,
+  ) => Promise<CreatePostResponse>
 }

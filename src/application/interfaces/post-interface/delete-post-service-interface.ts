@@ -1,5 +1,5 @@
 export interface DeletePostServiceResponse {
-  success: boolean,
+  success: boolean
   message: string
 }
 

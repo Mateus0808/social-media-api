@@ -1,6 +1,4 @@
-import { PostDbModel } from './../../ports/repositories/models/post-model';
-import { UserDbModel } from "../../ports/repositories/models/user-model"
-import { CommentDbModel } from '../../ports/repositories/models/comment-model';
+import { UserDbModel } from '../../ports/repositories/models/user-model'
 
 export interface OnePostServiceResponse {
   id: string
@@ -14,5 +12,5 @@ export interface OnePostServiceResponse {
 }
 
 export interface ListOnePostServiceInterface {
-  listOnePost: (id: string) => Promise<OnePostServiceResponse>;
+  listOnePost: (id: string) => Promise<OnePostServiceResponse>
 }

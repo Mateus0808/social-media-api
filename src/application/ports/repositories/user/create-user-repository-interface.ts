@@ -1,8 +1,10 @@
-import { CreateUserParams } from '../../../interfaces/create-user-service-interface'
+import { CreateUserParams } from '../../../interfaces/user-interface/create-user-service-interface'
 import { CreatedUserModel } from '../models/user-model'
 
-export interface CreateUserRepositoryParams extends CreateUserParams {}
+export type CreateUserRepositoryParams = CreateUserParams
 
 export interface CreateUserRepositoryInterface {
-  createUser: (createUserRepositoryParams: CreateUserRepositoryParams) => Promise<CreatedUserModel | null>
+  createUser: (
+    createUserRepositoryParams: CreateUserRepositoryParams,
+  ) => Promise<CreatedUserModel | null>
 }
