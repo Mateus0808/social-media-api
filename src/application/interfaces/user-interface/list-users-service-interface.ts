@@ -3,17 +3,18 @@ export interface ListUsersServiceParams {
   limit: string | null
 }
 
-interface UsersServiceResponse {
+interface UserServiceResponse {
   id: string
   name: string
   lastName: string
+  username: string
   email: string
   registrationDate: Date
   status: string
 }
 
 export interface ListUsersServiceResponse {
-  users: UsersServiceResponse[]
+  users: UserServiceResponse[]
   pagination: any
 }
 

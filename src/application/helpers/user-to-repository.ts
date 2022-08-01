@@ -1,4 +1,4 @@
-import { ListUsersServiceParams } from '../interfaces/list-users-service-interface'
+import { ListUsersServiceParams } from '../interfaces/user-interface/list-users-service-interface'
 import { LoadUsersRepositoryParams } from '../ports/repositories/user/load-users-repository-interface'
 
 export const userToRepository = (

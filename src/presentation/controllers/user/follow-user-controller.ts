@@ -1,4 +1,4 @@
-import { FollowUserServiceInterface } from '../../../application/interfaces/follow-user-service-interface'
+import { FollowUserServiceInterface } from '../../../application/interfaces/user-interface/follow-user-service-interface'
 import {
   Controller,
   HttpRequest,

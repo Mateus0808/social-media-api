@@ -38,6 +38,21 @@ export const checkApplicationError = (
     return notFound(error)
   }
 
+  if (error.name === 'ErrorUpdatingUserName') {
+    return badRequest(error)
+  }
+
+  if (error.name === 'ErrorUpdatingUserUsername') {
+    return badRequest(error)
+  }
+
+  if (error.name === 'InvalidSectionError') {
+    return badRequest(error)
+  }
+  if (error.name === 'ErrorUpdatingUserEmail') {
+    return badRequest(error)
+  }
+
   if (error.name === 'FollowingUserError') {
     return badRequest(error)
   }
@@ -66,6 +81,10 @@ export const checkApplicationError = (
   }
 
   if (error.name === 'InvalidTokenError') {
+    return badRequest(error)
+  }
+
+  if (error.name === 'MissingHeaderError') {
     return badRequest(error)
   }
 

@@ -1,6 +1,9 @@
+import { UserEntity } from '../../../domain/entities/user-entity'
+
 export interface CreateUserParams {
   name: string
   lastName: string
+  username: string
   email: string
   birthDate: Date
   maritalStatus: string
@@ -9,18 +12,10 @@ export interface CreateUserParams {
   phone: string
 }
 
-export interface CreateUserResponse {
+export interface CreateUserResponse
+  extends Omit<UserEntity, 'password' | 'address' | 'isAdmin'> {
   id: string
-  name: string
-  lastName: string
-  email: string
-  birthDate: Date
-  maritalStatus: string
-  gender: 'MALE' | 'FEMALE'
-  phone: string
-  followers: Array<string>
-  followings: Array<string>
-  status: 'Active' | 'Closed' | 'Canceled' | 'Disabled'
+  createdAt: Date
 }
 
 export interface CreateUserServiceInterface {

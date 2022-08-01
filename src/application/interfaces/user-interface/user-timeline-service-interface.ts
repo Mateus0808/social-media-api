@@ -1,4 +1,4 @@
-import { OnePostServiceResponse } from './post-interface/list-one-post-service-interface'
+import { OnePostServiceResponse } from '../post-interface/list-one-post-service-interface'
 
 export interface UserTimelineParams {
   userId: string

@@ -1,11 +1,11 @@
-import { UsersNotFoundError } from '../../errors/user-not-found-error'
+import { UserNotFoundError } from '../../errors/user-not-found-error'
 import { userToPaginationDto } from '../../helpers/user-dto'
 import { userToRepository } from '../../helpers/user-to-repository'
 import {
   ListUsersServiceInterface,
   ListUsersServiceParams,
   ListUsersServiceResponse,
-} from '../../interfaces/list-users-service-interface'
+} from '../../interfaces/user-interface/list-users-service-interface'
 import { LoadUsersRepositoryInterface } from '../../ports/repositories/user/load-users-repository-interface'
 
 export class ListUsersService implements ListUsersServiceInterface {
@@ -19,7 +19,7 @@ export class ListUsersService implements ListUsersServiceInterface {
     const params = userToRepository(listUsersServiceParams)
     const response = await this.loadUsersRepository.loadUsers(params)
     if (response === null) {
-      throw new UsersNotFoundError()
+      throw new UserNotFoundError()
     }
 
     return userToPaginationDto(response)

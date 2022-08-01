@@ -1,11 +1,11 @@
-import { UserAlreadyExistsError } from '../../errors/user-alredy-exists-error'
+import { UserAlreadyExistsError } from '../../errors/user-already-exists-error'
 import { UserNotCreatedError } from '../../errors/user-not-created-error'
 import { fixName, userCreatedDto } from '../../helpers/user-dto'
 import {
   CreateUserParams,
   CreateUserResponse,
   CreateUserServiceInterface,
-} from '../../interfaces/create-user-service-interface'
+} from '../../interfaces/user-interface/create-user-service-interface'
 import { Hasher } from '../../ports/hasher/hasher'
 import { EnumAccountStatus } from '../../ports/repositories/models/enum-account-status'
 import { CreateUserRepositoryInterface } from '../../ports/repositories/user/create-user-repository-interface'
@@ -35,6 +35,7 @@ export class CreateUserService implements CreateUserServiceInterface {
     const params = {
       name: fixName(createUserParams.name),
       lastName: fixName(createUserParams.lastName),
+      username: createUserParams.username,
       email,
       address: null,
       birthDate: createUserParams.birthDate,
