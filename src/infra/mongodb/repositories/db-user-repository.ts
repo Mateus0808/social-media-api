@@ -1,3 +1,14 @@
+import { LoadUserByUsernameRepositoryInterface } from '../../../application/ports/repositories/user/load-user-by-username-repository-interface'
+import {
+  UpdateUserUsernameRepositoryInterface,
+  UpdateUserUsernameRepositoryParams,
+  UpdateUserUsernameRepositoryResponse,
+} from '../../../application/ports/repositories/user/update-user-username-repository-interface'
+import {
+  UpdateUserNameRepositoryInterface,
+  UpdateUserNameRepositoryParams,
+  UpdateUserNameRepositoryResponse,
+} from '../../../application/ports/repositories/user/update-user-name-repository-interface'
 import {
   UpdateUserEmailRepositoryParams,
   UpdateUserEmailRepositoryInterface,
@@ -29,7 +40,10 @@ export class UserRepository
     LoadUserByIdRepositoryInterface,
     LoadUsersRepositoryInterface,
     UpdateFollowUserRepositoryInterface,
-    UpdateUserEmailRepositoryInterface
+    UpdateUserEmailRepositoryInterface,
+    UpdateUserNameRepositoryInterface,
+    UpdateUserUsernameRepositoryInterface,
+    LoadUserByUsernameRepositoryInterface
 {
   async createUser(
     createUserRepositoryParams: CreateUserRepositoryParams,
@@ -132,6 +146,49 @@ export class UserRepository
       { new: true },
     ).select({ email: 1, _id: 1 })
 
+    if (!user) return null
+
+    return MongoHelper.mapToId(user.toObject())
+  }
+
+  async updateUserName(
+    updateUserNameRepositoryParams: UpdateUserNameRepositoryParams,
+  ): Promise<UpdateUserNameRepositoryResponse | null> {
+    const { userId, name, lastName } = updateUserNameRepositoryParams
+
+    const user = await UserModel.findByIdAndUpdate(
+      userId,
+      {
+        $set: { name, lastName },
+      },
+      { new: true },
+    ).select({ name: 1, lastName: 1, _id: 1 })
+
+    if (!user) return null
+
+    return MongoHelper.mapToId(user.toObject())
+  }
+
+  async updateUserUsername(
+    updateUserUsernameRepositoryParams: UpdateUserUsernameRepositoryParams,
+  ): Promise<UpdateUserUsernameRepositoryResponse | null> {
+    const { userId, username } = updateUserUsernameRepositoryParams
+
+    const user = await UserModel.findByIdAndUpdate(
+      userId,
+      {
+        $set: { username },
+      },
+      { new: true },
+    ).select({ username: 1, _id: 1 })
+
+    if (!user) return null
+
+    return MongoHelper.mapToId(user.toObject())
+  }
+
+  async loadUserByUsername(username: string): Promise<UserDbModel | null> {
+    const user = await UserModel.findOne({ username })
     if (!user) return null
 
     return MongoHelper.mapToId(user.toObject())

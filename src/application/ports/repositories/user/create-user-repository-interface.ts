@@ -1,4 +1,4 @@
-import { CreateUserParams } from '../../../interfaces/create-user-service-interface'
+import { CreateUserParams } from '../../../interfaces/user-interface/create-user-service-interface'
 import { CreatedUserModel } from '../models/user-model'
 
 export type CreateUserRepositoryParams = CreateUserParams

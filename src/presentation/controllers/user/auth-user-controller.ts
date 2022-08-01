@@ -1,5 +1,5 @@
 import { checkApplicationError } from '../../helpers/application-errors-helper'
-import { AuthUserServiceInterface } from '../../../application/interfaces/auth-user-service-interface'
+import { AuthUserServiceInterface } from '../../../application/interfaces/user-interface/auth-user-service-interface'
 import { badRequest, ok } from '../../helpers/http-helper'
 import {
   Controller,

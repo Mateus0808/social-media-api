@@ -1,6 +1,6 @@
-import { CreateUserResponse } from '../interfaces/create-user-service-interface'
-import { ListOneUserResponse } from '../interfaces/list-one-user-service-interface'
-import { ListUsersServiceResponse } from '../interfaces/list-users-service-interface'
+import { CreateUserResponse } from '../interfaces/user-interface/create-user-service-interface'
+import { ListOneUserResponse } from '../interfaces/user-interface/list-one-user-service-interface'
+import { ListUsersServiceResponse } from '../interfaces/user-interface/list-users-service-interface'
 import {
   CreatedUserModel,
   UserDbModel,
@@ -13,6 +13,7 @@ export const userCreatedDto = (
   id: userCreated.id,
   name: userCreated.name,
   lastName: userCreated.lastName,
+  username: userCreated.username,
   gender: userCreated.gender,
   maritalStatus: userCreated.maritalStatus,
   birthDate: userCreated.birthDate,
@@ -21,12 +22,14 @@ export const userCreatedDto = (
   followers: userCreated.followers,
   followings: userCreated.followings,
   status: userCreated.status,
+  createdAt: userCreated.createdAt,
 })
 
 export const userDto = (user: UserDbModel): ListOneUserResponse => ({
   id: user.id,
   name: user.name,
   email: user.email,
+  username: user.username,
   birthDate: user.birthDate,
   lastName: user.lastName,
   phone: user.phone,
@@ -55,6 +58,10 @@ export const fixName = (name: string | undefined): string => {
     .trim()
 }
 
+export const fixToLowerCase = (username: string): string => {
+  return username.trim().replace(' ', '_').toLowerCase()
+}
+
 export const userToPaginationDto = (
   param: LoadUsersRepositoryResponse,
 ): ListUsersServiceResponse => ({
@@ -63,6 +70,7 @@ export const userToPaginationDto = (
       id: user.id,
       email: user.email,
       name: user.name,
+      username: user.username,
       lastName: user.lastName,
       status: user.status,
       followers: user.followers,

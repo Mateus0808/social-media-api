@@ -1,4 +1,4 @@
-import { CreateUserServiceInterface } from '../../../application/interfaces/create-user-service-interface'
+import { CreateUserServiceInterface } from '../../../application/interfaces/user-interface/create-user-service-interface'
 import { InvalidParamError } from '../../errors/invalid-param-error'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { checkApplicationError } from '../../helpers/application-errors-helper'
@@ -17,6 +17,7 @@ export class CreateUserController implements Controller {
       const requiredParams = [
         'name',
         'lastName',
+        'username',
         'phone',
         'maritalStatus',
         'birthDate',
@@ -40,6 +41,7 @@ export class CreateUserController implements Controller {
       const {
         name,
         lastName,
+        username,
         phone,
         birthDate,
         maritalStatus,
@@ -51,6 +53,7 @@ export class CreateUserController implements Controller {
       const userCreated = await this.createUserService.createUser({
         name,
         lastName,
+        username,
         phone,
         birthDate,
         maritalStatus,

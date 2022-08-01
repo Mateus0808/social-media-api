@@ -1,4 +1,4 @@
-import { ListUsersServiceInterface } from '../../../application/interfaces/list-users-service-interface'
+import { ListUsersServiceInterface } from '../../../application/interfaces/user-interface/list-users-service-interface'
 import { InvalidParamError } from '../../errors/invalid-param-error'
 import { checkApplicationError } from '../../helpers/application-errors-helper'
 import { badRequest, ok } from '../../helpers/http-helper'

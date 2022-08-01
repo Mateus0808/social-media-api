@@ -1,4 +1,4 @@
-import { ListOneUserServiceInterface } from '../../../application/interfaces/list-one-user-service-interface'
+import { ListOneUserServiceInterface } from '../../../application/interfaces/user-interface/list-one-user-service-interface'
 import { checkApplicationError } from '../../helpers/application-errors-helper'
 import { badRequest, ok } from '../../helpers/http-helper'
 import {
@@ -20,9 +20,9 @@ export class ListOneUserController implements Controller {
       if (error) {
         return badRequest(error)
       }
-      const user = await this.listOneUserService.listOneUser(
-        httpRequest.params.id,
-      )
+      const { userId } = httpRequest.params
+      const user = await this.listOneUserService.listOneUser(userId)
+
       return ok(user)
     } catch (error: any) {
       return checkApplicationError(error)

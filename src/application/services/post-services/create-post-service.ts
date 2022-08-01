@@ -4,7 +4,7 @@ import {
   CreatePostParams,
   CreatePostServiceInterface,
 } from '../../interfaces/post-interface/create-post-service-interface'
-import { UsersNotFoundError } from '../../errors/user-not-found-error'
+import { UserNotFoundError } from '../../errors/user-not-found-error'
 import { PostNotCreatedError } from '../../errors/post-errors/post-not-created-error'
 import { postCreatedDto } from '../../helpers/post-dto'
 import { LoadUserByIdRepositoryInterface } from '../../ports/repositories/user/load-user-by-id-repository-interface'
@@ -23,7 +23,7 @@ export class CreatePostService implements CreatePostServiceInterface {
     const userExists = await this.loadUserByIdRepository.loadById(userId)
 
     if (!userExists) {
-      throw new UsersNotFoundError()
+      throw new UserNotFoundError()
     }
     const postCreated = await this.createPostRepository.createPost({
       title,

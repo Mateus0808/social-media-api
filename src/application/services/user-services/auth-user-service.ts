@@ -5,7 +5,7 @@ import {
   AuthUserServiceInterface,
   AuthUserParams,
   AuthUserResponse,
-} from '../../interfaces/auth-user-service-interface'
+} from '../../interfaces/user-interface/auth-user-service-interface'
 import { HashComparer } from '../../ports/hasher/hasher'
 import { Encrypter } from '../../ports/encrypter/encrypter'
 import { LoadUserByEmailRepositoryInterface } from '../../ports/repositories/user/load-user-by-email-repository-interface'

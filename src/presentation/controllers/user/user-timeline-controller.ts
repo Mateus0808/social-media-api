@@ -2,7 +2,7 @@ import { checkApplicationError } from '../../helpers/application-errors-helper'
 import { ok, badRequest } from '../../helpers/http-helper'
 import { Validator } from '../../interfaces/validator'
 import { InvalidParamError } from '../../errors/invalid-param-error'
-import { UserTimelineServiceInterface } from '../../../application/interfaces/user-timeline-service-interface'
+import { UserTimelineServiceInterface } from '../../../application/interfaces/user-interface/user-timeline-service-interface'
 import {
   Controller,
   HttpRequest,

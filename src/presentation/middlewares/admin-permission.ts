@@ -16,6 +16,7 @@ export class AdminPermissionMiddleware implements Middleware {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse | null> {
     try {
       const authorizationHeader = httpRequest.headers.authorization
+
       if (!authorizationHeader) {
         return badRequest(new MissingHeaderError('authorization'))
       }
@@ -26,7 +27,11 @@ export class AdminPermissionMiddleware implements Middleware {
       if (user && !user.isAdmin) {
         return forbidden()
       }
-      return null
+
+      return {
+        body: { currentUserId: id },
+        statusCode: 200,
+      }
     } catch (error: any) {
       return checkApplicationError(error)
     }

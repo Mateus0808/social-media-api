@@ -7,6 +7,7 @@ interface UserServiceResponse {
   id: string
   name: string
   lastName: string
+  username: string
   email: string
   registrationDate: Date
   status: string
