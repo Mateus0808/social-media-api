@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { makeUpdateCommentControllerFactory } from '../../factories/controllers/comment/update-comment/update-comment-controller-factory'
 import { expressMiddlewareAdapter } from '../../adapters/express-middleware-adapter'
 import { makeAdminPermissionMiddleware } from '../../factories/middlewares/admin-permission-middleware-factory'
 import { makeDeleteCommentControllerFactory } from '../../factories/controllers/comment/delete-comment/delete-comment-controller-factory'
@@ -21,5 +22,10 @@ export const commentRouter = (router: Router): void => {
     '/comments/:commentId',
     expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
     expressRouterAdapter(makeDeleteCommentControllerFactory()),
+  )
+  router.patch(
+    '/comment/update/:commentId',
+    expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
+    expressRouterAdapter(makeUpdateCommentControllerFactory()),
   )
 }
