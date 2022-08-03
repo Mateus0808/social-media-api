@@ -13,7 +13,7 @@ export class AdminPermissionMiddleware implements Middleware {
     private readonly loadUserByIdRepository: LoadUserByIdRepositoryInterface,
   ) {}
 
-  async handle(httpRequest: HttpRequest): Promise<HttpResponse | null> {
+  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const authorizationHeader = httpRequest.headers.authorization
 

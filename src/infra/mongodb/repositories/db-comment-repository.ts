@@ -1,3 +1,8 @@
+import {
+  UpdateCommentRepositoryInterface,
+  UpdateCommentRepositoryParams,
+  UpdateCommentRepositoryResponse,
+} from '../../../application/ports/repositories/post/comment/update-comment-repository-interface'
 import { DeleteCommentRepositoryInterface } from '../../../application/ports/repositories/post/comment/delete-comment-repository-interface'
 import {
   LoadCommentsRepositoryInterface,
@@ -17,7 +22,8 @@ export class CommentRepository
   implements
     CreateCommentRepositoryInterface,
     LoadCommentsRepositoryInterface,
-    DeleteCommentRepositoryInterface
+    DeleteCommentRepositoryInterface,
+    UpdateCommentRepositoryInterface
 {
   async createComment(
     createCommentRepositoryParams: CreateCommentRepositoryParams,
@@ -60,5 +66,22 @@ export class CommentRepository
     if (!commentDeleted) return null
 
     return true
+  }
+
+  async updateComment(
+    commentParams: UpdateCommentRepositoryParams,
+  ): Promise<UpdateCommentRepositoryResponse | null> {
+    const { commentId, comment } = commentParams
+
+    const commentUpdated = await CommentModel.findByIdAndUpdate(
+      commentId,
+      {
+        $set: { comment },
+      },
+      { new: true },
+    )
+    if (!commentUpdated) return null
+
+    return MongoHelper.mapToId(commentUpdated.toObject())
   }
 }

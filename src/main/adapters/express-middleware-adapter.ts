@@ -18,7 +18,7 @@ export const expressMiddlewareAdapter = (middleware: Middleware) => {
 
     const httpResponse = await middleware.handle(httpRequest)
 
-    if (httpResponse?.statusCode === 403) {
+    if (httpResponse?.statusCode !== 200) {
       res.status(httpResponse.statusCode).json(httpResponse.body)
     } else {
       req.currentUserId = httpResponse?.body?.currentUserId
