@@ -1,13 +1,13 @@
-import { ok, badRequest } from '../../helpers/http-helper'
-import { Validator } from '../../interfaces/validator'
-import { DeleteCommentServiceInterface } from '../../../application/interfaces/post-interface/comment-interface/delete-comment-service-interface'
-import { checkApplicationError } from '../../helpers/application-errors-helper'
-import { InvalidParamError } from '../../errors/invalid-param-error'
 import {
   Controller,
   HttpRequest,
   HttpResponse,
-} from '../../interfaces/controller'
+} from '@presentation/interfaces/controller'
+import { DeleteCommentServiceInterface } from '@application/interfaces/comment-interface/delete-comment-service-interface'
+import { InvalidParamError } from '@presentation/errors/invalid-param-error'
+import { checkApplicationError } from '@presentation/helpers/application-errors-helper'
+import { badRequest, ok } from '@presentation/helpers/http-helper'
+import { Validator } from '@presentation/interfaces/validator'
 
 export class DeleteCommentController implements Controller {
   constructor(
@@ -36,6 +36,7 @@ export class DeleteCommentController implements Controller {
         userId,
         commentId,
         postId,
+        currentUserId: httpRequest.currentUserId,
       })
 
       return ok(response)

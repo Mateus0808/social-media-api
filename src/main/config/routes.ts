@@ -3,7 +3,7 @@ import { postRoutes } from '../routes/post-routes/index'
 import { commentRouter } from '../routes/comment-routes'
 import { userRouter } from '../routes/user-routes'
 
-export default (app: Express): void => {
+export const setupRoutes = (app: Express): void => {
   const router = Router()
 
   app.use(express.json())

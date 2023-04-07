@@ -5,7 +5,7 @@ import {
   ListPostsServiceResponse,
 } from '../../interfaces/post-interface/list-post-service-interface'
 import { LoadPostsRepositoryInterface } from '../../ports/repositories/post/load-posts-repository-interface'
-import { PostsNotFoundError } from '../../errors/post-errors/post-not-found-error'
+import { PostNotFoundError } from '../../errors/post-errors/post-not-found-error'
 import { postToPaginationDto } from '../../helpers/post-dto'
 
 export class ListPostsService implements ListPostsServiceInterface {
@@ -23,7 +23,7 @@ export class ListPostsService implements ListPostsServiceInterface {
 
     const posts = await this.loadPostsRepository.loadPosts(param)
     if (!posts) {
-      throw new PostsNotFoundError()
+      throw new PostNotFoundError()
     }
 
     return postToPaginationDto(posts)

@@ -1,36 +1,34 @@
 <div id="top" align="center">
 
-# Social Media
+# Social Network Backend
 
 </div>
 
 <p align="center">
- <a href="#sobre">Sobre</a> •
- <a href="#time">Time</a> •
- <a href="#pre-requisitos">Pré Requisitos</a> •
- <a href="#bibliotecas">Bibliotecas</a> •
- <a href="#tecnologiasstack">Tecnologias/Stack</a> •
- <a href="#variaveis-de-ambiente">Variaveis de Ambiente</a> •
- <a href="#como-executar">Como Executar</a> •
+ <a href="#sobre">About</a> •
+ <a href="#time">Team</a> •
+ <a href="#pre-requisitos">Pre Requirements</a> •
+ <a href="#bibliotecas">Libraries</a> •
+ <a href="#tecnologiasstack">Technologies/Stacks</a> •
+ <a href="#variaveis-de-ambiente">Environment Variables</a> •
+ <a href="#como-executar">Execution</a> •
  <a href="#features">Features</a> •
- <a href="#rotas">Rotas</a> •
- <a href="#padrões-de-código">Padrões de Código</a>
+ <a href="#rotas">Router</a> •
 </p>
 
-
-------------
+---
 
 ## Sobre
 
-Mini rede social
+Social Network
 
-------------
+---
 
 ## Time
 
-- Desenvolvedores(as): <a href="https://www.linkedin.com/in/mateus-dos-santos/">Mateus dos Santos Loiola</a>
+- Developer(s): <a href="https://www.linkedin.com/in/mateus-dos-santos/">Mateus dos Santos Loiola</a>
 
-<p align="right">(<a href="#top">ir para o topo</a>)</p>
+<p align="right">(<a href="#top">Go to the top</a>)</p>
 
 ## Pre Requisitos
 
@@ -39,19 +37,20 @@ Antes de continuar, certifique-se que você atende aos seguintes requisitos:
 - `IDE` instalada para execução e desenvolvimento do projeto
 - `Node.js` instalado
 
-<p align="right">(<a href="#top">ir para o topo</a>)</p>
+<p align="right">(<a href="#top">Go to the top</a>)</p>
 
-## Bibliotecas
+## Libraries
 
 Bibliotecas utilizadas e as respectivas versões.
-  *  "bcryptjs": "^2.4.3",
-  *  "dotenv": "^16.0.1",
-  *  "express": "^4.18.1",
-  *  "jsonwebtoken": "^8.5.1",
-  *  "mongoose": "^6.4.4",
-  *  "mongoose-paginate-ts": "^1.2.6"
 
-<p align="right">(<a href="#top">ir para o topo</a>)</p>
+- "bcryptjs": "^2.4.3",
+- "dotenv": "^16.0.1",
+- "express": "^4.18.1",
+- "jsonwebtoken": "^8.5.1",
+- "mongoose": "^6.4.4",
+- "mongoose-paginate-ts": "^1.2.6"
+
+<p align="right">(<a href="#top">Go to the top</a>)</p>
 
 ## Tecnologias/Stack
 
@@ -61,7 +60,7 @@ Tecnologias utilizadas.
 - Express
 - MongoDB
 
-<p align="right">(<a href="#top">ir para o topo</a>)</p>
+<p align="right">(<a href="#top">Go to the top</a>)</p>
 
 ## Variáveis de Ambiente
 
@@ -69,74 +68,76 @@ Tecnologias utilizadas.
 - `DB_PRODUCTION`: Url do banco de dados do mongoose utilizada para conexão com o banco de dados
 - `JWT_SECRET`: Chave de decodificação de senha
 
-<p align="right">(<a href="#top">ir para o topo</a>)</p>
+<p align="right">(<a href="#top">Go to the top</a>)</p>
 
 ## Instalação e Execução
 
-* Instalar bibliotecas:
+- Instalar bibliotecas:
   Execute `npm run install` ou `yarn` no terminal para instalar as bibliotecas
 
-* Executar a aplicação:
+- Executar a aplicação:
   - `yarn dev` ou `npm run dev` - Para executar aplicação em desenvolvimento
   - `yarn tsc` ou `npm run tsc` - Fazer a build da aplicação
   - `yarn start` ou `npm run start`- Para executar aplicação em produção
 
-<p align="right">(<a href="#top">ir para o topo</a>)</p>
+<p align="right">(<a href="#top">Go to the top</a>)</p>
 
 ## Features
 
 - Authenticate
-    - [X] 1.1 Middleware de autenticação
-    - [X] 1.2 Login do usuário com email e password
+  - [x] 1.1 Middleware de autenticação
+  - [x] 1.2 Login do usuário com email e password
 - Usuário
-    - [X] 1.1 Cadastrar usuário com email e password
-    - [X] 1.2 Listar usuários
-    - [X] 1.3 Listar usuário pelo ID
-    - [X] 1.4 Seguir um usuário
-    - [X] 1.5 Parar de seguir usuário
-    - [X] 1.6 Atualizar informaç~eos do usuário
+  - [x] 1.1 Cadastrar usuário com email e password
+  - [x] 1.2 Listar usuários
+  - [x] 1.3 Listar usuário pelo ID
+  - [x] 1.4 Seguir um usuário
+  - [x] 1.5 Parar de seguir usuário
+  - [x] 1.6 Atualizar informaç~eos do usuário
 - Post
-    - [X] 1.1 Criar post
-    - [X] 1.2 Listar posts
-    - [X] 1.3 Listar post pelo ID
-    - [X] 1.4 Deletar post
-    - [X] 1.5 Adicionar comentário em um post
-    - [X] 1.5 Deletar comentário de um post
-    - [X] 1.6 Listar comentários de um post
-    - [X] 1.4 Curtir um post
-    - [X] 1.4 Deixar de curtir um post
+  - [x] 1.1 Criar post
+  - [x] 1.2 Listar posts
+  - [x] 1.3 Listar post pelo ID
+  - [x] 1.4 Deletar post
+  - [x] 1.5 Adicionar comentário em um post
+  - [x] 1.5 Deletar comentário de um post
+  - [x] 1.6 Listar comentários de um post
+  - [x] 1.4 Curtir um post
+  - [x] 1.4 Deixar de curtir um post
 
+<p align="right">(<a href="#top">Go to the top</a>)</p>
 
-<p align="right">(<a href="#top">ir para o topo</a>)</p>
+---
 
-----------------------------------------------------------------
 ## Rotas
 
-* Usuário
-    - `/users/:id`
-    - `user/authentication`
-    - `/users/register`
-    - `/users`
-    - `/user/follow/:currentUserId/following/:userId`
-      * Exemplificando: `/user/follow/${IdUserAdmin}/:${normalUser}
+- Usuário
 
-* Post
-    - `/post/register/:userId`
-    - `/post/:postId`
-    - `/posts`
+  - `/users/:id`
+  - `user/authentication`
+  - `/users/register`
+  - `/users`
+  - `/user/follow/:currentUserId/following/:userId`
+    - Exemplificando: `/user/follow/${IdUserAdmin}/:${normalUser}
 
-* Comentário
-    - `/comments`
-    - `/comment/register/:userId/:postId`
+- Post
 
-----------------------------------------------------------------
+  - `/post/register/:userId`
+  - `/post/:postId`
+  - `/posts`
+
+- Comentário
+  - `/comments`
+  - `/comment/register/:userId/:postId`
+
+---
 
 ## Padrões de Código
 
 ### Padrão 1
-  * Indentação: utilizar dois (2) espaços
-  * Convenção de Nomes: PascalCase
-  * Clean Architecture
 
-<p align="right">(<a href="#top">ir para o topo</a>)</p>
+- Indentação: utilizar dois (2) espaços
+- Convenção de Nomes: PascalCase
+- Clean Architecture
 
+<p align="right">(<a href="#top">Go to the top</a>)</p>

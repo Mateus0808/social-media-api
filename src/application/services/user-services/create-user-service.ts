@@ -22,10 +22,10 @@ export class CreateUserService implements CreateUserServiceInterface {
     createUserParams: CreateUserParams,
   ): Promise<CreateUserResponse> {
     const { email } = createUserParams
+
     const userAlreadyExists = await this.loadUserByEmailRepository.loadByEmail(
       email,
     )
-
     if (userAlreadyExists) {
       throw new UserAlreadyExistsError(email)
     }
@@ -35,10 +35,9 @@ export class CreateUserService implements CreateUserServiceInterface {
     const params = {
       name: fixName(createUserParams.name),
       lastName: fixName(createUserParams.lastName),
-      username: createUserParams.username,
+      username: '',
       email,
-      address: null,
-      birthDate: createUserParams.birthDate,
+      birthDate: new Date(createUserParams.birthDate),
       maritalStatus: createUserParams.maritalStatus,
       phone: createUserParams.phone,
       gender: createUserParams.gender,

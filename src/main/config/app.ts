@@ -1,6 +1,7 @@
+import 'module-alias/register'
 import express, { Express } from 'express'
 
-import setupRoutes from './routes'
+import { setupRoutes } from './routes'
 
 export class App {
   public server: Express

@@ -19,9 +19,9 @@ export class UpdateUserEmailService implements UpdateUserEmailServiceInterface {
   ) {}
 
   async updateUserEmail(
-    updateUserEmailParams: UpdateUserEmailParams,
+    params: UpdateUserEmailParams,
   ): Promise<UpdateUserEmailResponse> {
-    const { email, userId } = updateUserEmailParams
+    const { email, userId } = params
 
     const user = await this.loadUserByIdRepository.loadById(userId)
     if (!user) throw new UserNotFoundError()

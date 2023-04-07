@@ -7,26 +7,51 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/main/server.js",
-    "dev": "ts-node-dev src/main/server.ts --poll --respawn --transpile-only --ignore-watch node_modules",
+    "start": "node -r ts-node/register -r tsconfig-paths/register dist/main/server.js",
+    "dev": "ts-node-dev -r tsconfig-paths/register src/main/server.ts --poll --respawn --transpile-only --ignore-watch node_modules",
     "lint": "eslint .",
-    "lint:fix": "yarn lint -- --fix ./src/*/*.ts"
+    "lint:fix": "yarn lint -- --fix ./src/*/*.ts",
+    "test": "jest --passWithNoTests --runInBand --no-cache",
+    "test:unit": "npm test -- --watch -c jest-unit-config.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
     "mongoose": "^6.4.4",
-    "mongoose-paginate-ts": "^1.2.6"
+    "mongoose-paginate-ts": "^1.2.6",
+    "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
     "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.13",
+    "@types/jest": "^29.5.0",
     "@types/jsonwebtoken": "^8.5.8",
+    "@types/module-alias": "^2.0.1",
     "@types/node": "^18.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "commitlint-config-gitmoji": "^2.3.1",
+    "conventional-changelog-gitmoji-config": "^1.4.7",
+    "eslint": "^8.37.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "gitmoji-cli": "^8.0.0",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.7",
+    "ts-jest": "^29.0.5",
     "ts-node": "^10.9.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.4"
+  },
+  "_moduleAliases": {
+    " @presentation": "dist/presentation/*",
+    " @application": "dist/application/*"
   }
 }

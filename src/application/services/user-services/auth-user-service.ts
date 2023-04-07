@@ -21,9 +21,7 @@ export class AuthUserService implements AuthUserServiceInterface {
     const { email, password } = authUserParams
 
     const user = await this.loadUserByEmailRepository.loadByEmail(email)
-    if (!user) {
-      throw new UserNotExistsError(email)
-    }
+    if (!user) throw new UserNotExistsError(email)
 
     const passwordMatch = await this.hashComparer.compare(
       password,

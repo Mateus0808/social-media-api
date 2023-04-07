@@ -1,8 +1,8 @@
 import { ApplicationError } from '../application-error'
 
-export class CommentsNotFoundError extends ApplicationError {
+export class CommentNotFoundError extends ApplicationError {
   constructor() {
-    super('Comentários não encontrados')
-    this.name = 'CommentsNotFoundError'
+    super('Comentário não encontrado')
+    this.name = 'CommentNotFoundError'
   }
 }

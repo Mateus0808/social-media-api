@@ -17,9 +17,9 @@ export class UpdateUserUsernameService
   ) {}
 
   async updateUserUsername(
-    updateUserUsernameParams: UpdateUserUsernameParams,
+    params: UpdateUserUsernameParams,
   ): Promise<UpdateUserUsernameResponse> {
-    const { userId, username } = updateUserUsernameParams
+    const { userId, username } = params
 
     const user = await this.loadUserByIdRepository.loadById(userId)
     if (!user) throw new UserNotFoundError()

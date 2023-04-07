@@ -5,7 +5,7 @@ import { ValidatorComposite } from '../../../../../presentation/validators/valid
 
 export const makeCreateCommentValidator = (): ValidatorComposite => {
   const validators: Validator[] = []
-  const params = ['postId', 'userId']
+  const params = ['userId', 'postId']
   for (const param of params) {
     validators.push(new RequiredFieldValidator(param))
     validators.push(new StringFieldValidator(param))

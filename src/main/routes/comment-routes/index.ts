@@ -14,7 +14,7 @@ export const commentRouter = (router: Router): void => {
     expressRouterAdapter(makeCreateCommentControllerFactory()),
   )
   router.get(
-    '/comments',
+    '/comments/:userId',
     expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
     expressRouterAdapter(makeListCommentsControllerFactory()),
   )

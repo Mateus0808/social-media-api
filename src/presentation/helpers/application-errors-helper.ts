@@ -1,7 +1,13 @@
 import { ApplicationError } from '../../application/errors/application-error'
 import { ServerError } from '../errors/server-error'
 import { HttpResponse } from '../interfaces/controller'
-import { badRequest, notFound, serverError, unauthorized } from './http-helper'
+import {
+  badRequest,
+  conflict,
+  notFound,
+  serverError,
+  unauthorized,
+} from './http-helper'
 
 export const checkApplicationError = (
   error: ApplicationError,
@@ -11,6 +17,10 @@ export const checkApplicationError = (
   }
 
   if (error.name === 'IncorrectPasswordError') {
+    return unauthorized(error)
+  }
+
+  if (error.name === 'UserNotAuthorizedError') {
     return unauthorized(error)
   }
 
@@ -27,7 +37,7 @@ export const checkApplicationError = (
   }
 
   if (error.name === 'UserAlreadyExistsError') {
-    return notFound(error)
+    return conflict(error)
   }
 
   if (error.name === 'UserNotUpdatedError') {
@@ -49,6 +59,7 @@ export const checkApplicationError = (
   if (error.name === 'InvalidSectionError') {
     return badRequest(error)
   }
+
   if (error.name === 'ErrorUpdatingUserEmail') {
     return badRequest(error)
   }
@@ -92,7 +103,7 @@ export const checkApplicationError = (
     return badRequest(error)
   }
 
-  if (error.name === 'PostsNotFoundError') {
+  if (error.name === 'PostNotFoundError') {
     return badRequest(error)
   }
 
@@ -100,7 +111,15 @@ export const checkApplicationError = (
     return badRequest(error)
   }
 
-  if (error.name === 'CommentsNotFoundError') {
+  if (error.name === 'CommentNotBelongPostError') {
+    return badRequest(error)
+  }
+
+  if (error.name === 'CommentNotDeletedError') {
+    return badRequest(error)
+  }
+
+  if (error.name === 'CommentNotFoundError') {
     return badRequest(error)
   }
 

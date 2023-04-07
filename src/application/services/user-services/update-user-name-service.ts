@@ -15,9 +15,9 @@ export class UpdateUserNameService implements UpdateUserNameServiceInterface {
   ) {}
 
   async updateUserName(
-    updateUserNameParams: UpdateUserNameParams,
+    params: UpdateUserNameParams,
   ): Promise<UpdateUserNameResponse> {
-    const { userId, name, lastName } = updateUserNameParams
+    const { userId, name, lastName } = params
 
     const user = await this.loadUserByIdRepository.loadById(userId)
     if (!user) throw new UserNotFoundError()

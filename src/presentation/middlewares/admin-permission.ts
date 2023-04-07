@@ -1,3 +1,4 @@
+import { UserNotFoundError } from '@application/errors/user-not-found-error'
 import { getToken } from '../helpers/authorization-header-helper'
 import { badRequest, forbidden } from '../helpers/http-helper'
 import { Middleware } from '../interfaces/middleware'
@@ -16,16 +17,17 @@ export class AdminPermissionMiddleware implements Middleware {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const authorizationHeader = httpRequest.headers.authorization
-
+      const { userId } = httpRequest.params
       if (!authorizationHeader) {
         return badRequest(new MissingHeaderError('authorization'))
       }
 
       const token = getToken(authorizationHeader)
       const { id } = await this.encrypterVerifier.verify(token)
+
       const user = await this.loadUserByIdRepository.loadById(id)
-      if (user && !user.isAdmin) {
-        return forbidden()
+      if (!user) {
+        return badRequest(new UserNotFoundError())
       }
 
       return {

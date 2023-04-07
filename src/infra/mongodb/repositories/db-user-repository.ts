@@ -54,6 +54,7 @@ export class UserRepository
     if (!userCreated) {
       return null
     }
+
     return MongoHelper.mapToId(userCreated.toObject())
   }
 

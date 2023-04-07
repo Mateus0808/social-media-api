@@ -1,13 +1,12 @@
-import { ok, badRequest } from '../../helpers/http-helper'
-import { InvalidParamError } from '../../errors/invalid-param-error'
-
 import {
   Controller,
   HttpRequest,
   HttpResponse,
-} from '../../interfaces/controller'
-import { checkApplicationError } from '../../helpers/application-errors-helper'
-import { ListPostsServiceInterface } from '../../../application/interfaces/post-interface/list-post-service-interface'
+} from '@presentation/interfaces/controller'
+import { badRequest, ok } from '@presentation/helpers/http-helper'
+import { checkApplicationError } from '@presentation/helpers/application-errors-helper'
+import { ListPostsServiceInterface } from '@application/interfaces/post-interface/list-post-service-interface'
+import { InvalidParamError } from '@presentation/errors/invalid-param-error'
 
 export class ListPostsController implements Controller {
   private readonly listPostsService: ListPostsServiceInterface

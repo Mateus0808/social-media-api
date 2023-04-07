@@ -10,6 +10,6 @@ export interface UpdateUserEmailResponse {
 
 export interface UpdateUserEmailServiceInterface {
   updateUserEmail: (
-    updateUserEmailParams: UpdateUserEmailParams,
+    params: UpdateUserEmailParams,
   ) => Promise<UpdateUserEmailResponse>
 }

@@ -1,13 +1,17 @@
-import { MissingParamError } from '../../errors/missing-param-error'
-import { checkApplicationError } from '../../helpers/application-errors-helper'
-import { badRequest, created } from '../../helpers/http-helper'
 import {
   Controller,
   HttpRequest,
   HttpResponse,
-} from '../../interfaces/controller'
-import { CreateCommentServiceInterface } from '../../../application/interfaces/post-interface/comment-interface/create-comment-service-interface'
-import { Validator } from '../../interfaces/validator'
+} from '@presentation/interfaces/controller'
+import { CreateCommentServiceInterface } from '@application/interfaces/comment-interface/create-comment-service-interface'
+import {
+  badRequest,
+  created,
+  unauthorized,
+} from '@presentation/helpers/http-helper'
+import { checkApplicationError } from '@presentation/helpers/application-errors-helper'
+import { MissingParamError } from '@presentation/errors/missing-param-error'
+import { Validator } from '@presentation/interfaces/validator'
 
 export class CreateCommentController implements Controller {
   constructor(
@@ -28,10 +32,12 @@ export class CreateCommentController implements Controller {
       }
 
       const { postId, userId } = httpRequest.params
+
       const commentCreated = await this.createCommentService.createComment({
         comment,
         postId,
         userId,
+        currentUserId: httpRequest.currentUserId,
       })
 
       return created(commentCreated)

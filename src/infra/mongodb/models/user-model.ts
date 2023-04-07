@@ -19,7 +19,6 @@ const userSchema = new Schema<User>(
     },
     username: {
       type: String,
-      required: true,
       unique: true,
       lowercase: true,
     },
@@ -67,10 +66,6 @@ const userSchema = new Schema<User>(
         default: [],
       },
     ],
-    isAdmin: {
-      type: Boolean,
-      default: false,
-    },
     status: {
       type: String,
       enum: ['Active', 'Closed', 'Canceled', 'Disabled'],

@@ -1,8 +1,8 @@
 import { ApplicationError } from '../application-error'
 
-export class PostsNotFoundError extends ApplicationError {
+export class PostNotFoundError extends ApplicationError {
   constructor() {
-    super('Posts não encontrados')
-    this.name = 'PostsNotFoundError'
+    super('Post não encontrado')
+    this.name = 'PostNotFoundError'
   }
 }

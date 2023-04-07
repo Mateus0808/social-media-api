@@ -1,4 +1,4 @@
-import { PostsNotFoundError } from '../../errors/post-errors/post-not-found-error'
+import { PostNotFoundError } from '../../errors/post-errors/post-not-found-error'
 import {
   DeletePostServiceInterface,
   DeletePostServiceResponse,
@@ -16,7 +16,7 @@ export class DeletePostService implements DeletePostServiceInterface {
     const postDeleted = await this.postRepository.deletePost(id)
 
     if (!postDeleted) {
-      throw new PostsNotFoundError()
+      throw new PostNotFoundError()
     }
 
     return {

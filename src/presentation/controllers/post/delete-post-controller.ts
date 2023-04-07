@@ -1,12 +1,12 @@
-import { ok, badRequest } from '../../helpers/http-helper'
 import {
   Controller,
   HttpRequest,
   HttpResponse,
-} from '../../interfaces/controller'
-import { checkApplicationError } from '../../helpers/application-errors-helper'
-import { DeletePostServiceInterface } from '../../../application/interfaces/post-interface/delete-post-service-interface'
-import { Validator } from '../../interfaces/validator'
+} from '@presentation/interfaces/controller'
+import { badRequest, ok } from '@presentation/helpers/http-helper'
+import { checkApplicationError } from '@presentation/helpers/application-errors-helper'
+import { Validator } from '@presentation/interfaces/validator'
+import { DeletePostServiceInterface } from '@application/interfaces/post-interface/delete-post-service-interface'
 
 export class DeletePostController implements Controller {
   private readonly deletePostService: DeletePostServiceInterface

@@ -1,14 +1,14 @@
-import { Validator } from '../../interfaces/validator'
-import { InvalidParamError } from '../../errors/invalid-param-error'
-import { MissingParamError } from '../../errors/missing-param-error'
-import { badRequest, created } from '../../helpers/http-helper'
-import { checkApplicationError } from '../../helpers/application-errors-helper'
 import {
   Controller,
   HttpRequest,
   HttpResponse,
-} from '../../interfaces/controller'
-import { CreatePostServiceInterface } from '../../../application/interfaces/post-interface/create-post-service-interface'
+} from '@presentation/interfaces/controller'
+import { MissingParamError } from '@presentation/errors/missing-param-error'
+import { badRequest, created } from '@presentation/helpers/http-helper'
+import { checkApplicationError } from '@presentation/helpers/application-errors-helper'
+import { CreatePostServiceInterface } from '@application/interfaces/post-interface/create-post-service-interface'
+import { InvalidParamError } from '@presentation/errors/invalid-param-error'
+import { Validator } from '@presentation/interfaces/validator'
 
 export class CreatePostController implements Controller {
   constructor(

@@ -1,13 +1,12 @@
-import { ListCommentsServiceInterface } from '../../../application/interfaces/post-interface/comment-interface/list-comments-service-interface'
-
-import { InvalidParamError } from '../../errors/invalid-param-error'
-import { checkApplicationError } from '../../helpers/application-errors-helper'
-import { badRequest, ok } from '../../helpers/http-helper'
 import {
   Controller,
   HttpRequest,
   HttpResponse,
-} from '../../interfaces/controller'
+} from '@presentation/interfaces/controller'
+import { InvalidParamError } from '@presentation/errors/invalid-param-error'
+import { checkApplicationError } from '@presentation/helpers/application-errors-helper'
+import { badRequest, ok } from '@presentation/helpers/http-helper'
+import { ListCommentsServiceInterface } from '@application/interfaces/comment-interface/list-comments-service-interface'
 
 export class ListCommentsController implements Controller {
   constructor(

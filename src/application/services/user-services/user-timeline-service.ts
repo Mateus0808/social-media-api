@@ -1,5 +1,5 @@
 import { postToPaginationDto } from '../../helpers/post-dto'
-import { PostsNotFoundError } from '../../errors/post-errors/post-not-found-error'
+import { PostNotFoundError } from '../../errors/post-errors/post-not-found-error'
 import { UserNotFoundError } from '../../errors/user-not-found-error'
 import { LoadUserByIdRepositoryInterface } from '../../ports/repositories/user/load-user-by-id-repository-interface'
 import {
@@ -27,7 +27,7 @@ export class UserTimelineService implements UserTimelineServiceInterface {
       await this.loadPostsFromUserByIdRepository.loadPostsFromUserById({
         userId,
       })
-    if (!userPosts) throw new PostsNotFoundError()
+    if (!userPosts) throw new PostNotFoundError()
 
     const friendPosts = await Promise.all(
       user.followings.map(friendId => {
@@ -36,7 +36,7 @@ export class UserTimelineService implements UserTimelineServiceInterface {
         })
       }),
     )
-    if (!friendPosts) throw new PostsNotFoundError()
+    if (!friendPosts) throw new PostNotFoundError()
 
     const posts = [...userPosts, ...(friendPosts[0] || [])]
 

@@ -1,13 +1,13 @@
-import { checkApplicationError } from '../../helpers/application-errors-helper'
-import { InvalidParamError } from '../../errors/invalid-param-error'
-import { badRequest, ok } from '../../helpers/http-helper'
-import { Validator } from '../../interfaces/validator'
-import { UpdateCommentServiceInterface } from '../../../application/interfaces/post-interface/comment-interface/update-comment-service-interface'
 import {
   Controller,
   HttpRequest,
   HttpResponse,
-} from '../../interfaces/controller'
+} from '@presentation/interfaces/controller'
+import { InvalidParamError } from '@presentation/errors/invalid-param-error'
+import { checkApplicationError } from '@presentation/helpers/application-errors-helper'
+import { badRequest, ok } from '@presentation/helpers/http-helper'
+import { UpdateCommentServiceInterface } from '@application/interfaces/comment-interface/update-comment-service-interface'
+import { Validator } from '@presentation/interfaces/validator'
 
 export class UpdateCommentController implements Controller {
   constructor(
