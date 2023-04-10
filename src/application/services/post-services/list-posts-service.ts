@@ -19,9 +19,9 @@ export class ListPostsService implements ListPostsServiceInterface {
     listPostServiceParams: ListPostServiceParams,
   ): Promise<ListPostsServiceResponse> {
     const { page, limit } = listPostServiceParams
-    const param = postToRepository({ page, limit })
+    const params = postToRepository({ page, limit })
 
-    const posts = await this.loadPostsRepository.loadPosts(param)
+    const posts = await this.loadPostsRepository.loadPosts(params)
     if (!posts) {
       throw new PostNotFoundError()
     }
