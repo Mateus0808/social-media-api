@@ -24,6 +24,11 @@ import {
 import { PostModel } from '../models/post-model'
 import { MongoHelper } from '../helpers/mongo-helper'
 import { DeletePostRepositoryInterface } from '../../../application/ports/repositories/post/delete-post-repository-interface'
+import {
+  ListUserPostsByIdRepositoryInterface,
+  ListUserPostsByIdRepositoryParams,
+  ListUserPostsByIdRepositoryResponse,
+} from '@application/ports/repositories/post/list-user-posts-by-id-repository'
 
 export class PostRepository
   implements
@@ -32,7 +37,8 @@ export class PostRepository
     DeletePostRepositoryInterface,
     UpdatePostCommentsRepositoryInterface,
     DeleteCommentOnAPostRepositoryInterface,
-    LoadPostsFromUserByIdRepositoryInterface
+    LoadPostsFromUserByIdRepositoryInterface,
+    ListUserPostsByIdRepositoryInterface
 {
   async createPost(
     createPostRepositoryParams: CreatePostRepositoryParams,
@@ -58,6 +64,32 @@ export class PostRepository
       page: page ?? 1,
       limit: limit ?? 10,
       populate: 'comments',
+    })
+
+    if (!posts) return null
+
+    const { docs, ...restPostsProps } = posts
+    const postsArray = docs.map(post => MongoHelper.mapToId(post))
+
+    const response: LoadPostsRepositoryResponse = {
+      posts: postsArray,
+      pagination: { ...restPostsProps },
+    }
+    return response
+  }
+
+  async listUserPostsById(
+    params: ListUserPostsByIdRepositoryParams,
+  ): Promise<ListUserPostsByIdRepositoryResponse | null> {
+    const { page, limit, userId } = params
+
+    const posts = await PostModel.paginate({
+      page: page ?? 1,
+      limit: limit ?? 10,
+      populate: 'comments',
+      query: {
+        user: userId,
+      },
     })
 
     if (!posts) return null
