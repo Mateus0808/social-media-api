@@ -41,7 +41,8 @@ export const userDto = (user: UserDbModel): ListOneUserResponse => ({
   profile: user.profile,
   isPrivate: user.isPrivate,
   status: user.status,
-  registrationDate: new Date(user.createdAt),
+  createdAt: new Date(user.createdAt),
+  updatedAt: new Date(user.updatedAt),
 })
 
 export const fixName = (name: string | undefined): string => {

@@ -1,4 +1,3 @@
-import { LoadUserByUsernameRepositoryInterface } from '../../../application/ports/repositories/user/load-user-by-username-repository-interface'
 import {
   UpdateUserUsernameRepositoryInterface,
   UpdateUserUsernameRepositoryParams,
@@ -32,6 +31,12 @@ import {
   FollowUserRepositoryParams,
   UpdateFollowUserRepositoryInterface,
 } from '../../../application/ports/repositories/user/follow-user-repository-interface'
+import {
+  LoadUserByNameRepositoryInterface,
+  SearchUserByNameRepositoryParams,
+  SearchUserByNameRepositoryResponse,
+} from '@application/ports/repositories/user/load-user-by-name-repository-interface'
+import { LoadUserByUsernameRepositoryInterface } from '@application/ports/repositories/user/load-user-by-username-repository-interface'
 
 export class UserRepository
   implements
@@ -43,6 +48,7 @@ export class UserRepository
     UpdateUserEmailRepositoryInterface,
     UpdateUserNameRepositoryInterface,
     UpdateUserUsernameRepositoryInterface,
+    LoadUserByNameRepositoryInterface,
     LoadUserByUsernameRepositoryInterface
 {
   async createUser(
@@ -50,7 +56,6 @@ export class UserRepository
   ): Promise<UserDbModel | null> {
     const userCreated = await UserModel.create({
       ...createUserRepositoryParams,
-      populate: 'UserProfile',
     })
     if (!userCreated) {
       return null
@@ -190,9 +195,38 @@ export class UserRepository
   }
 
   async loadUserByUsername(username: string): Promise<UserDbModel | null> {
-    const user = await UserModel.findOne({ username })
+    const user = await UserModel.findOne({ username }).populate('profile')
     if (!user) return null
 
     return MongoHelper.mapToId(user.toObject())
+  }
+
+  async loadUserByName(
+    params: SearchUserByNameRepositoryParams,
+  ): Promise<SearchUserByNameRepositoryResponse | null> {
+    const { page, limit, name } = params
+
+    const users = await UserModel.paginate({
+      query: {
+        name,
+      },
+      page: page ?? 1,
+      limit: limit ?? 10,
+    })
+
+    if (!users) {
+      return null
+    }
+
+    const { docs, ...restUsersProps } = users
+
+    const usersArray = docs.map(user => MongoHelper.mapToId(user))
+
+    const response: LoadUsersRepositoryResponse = {
+      users: usersArray,
+      pagination: { ...restUsersProps },
+    }
+
+    return response
   }
 }

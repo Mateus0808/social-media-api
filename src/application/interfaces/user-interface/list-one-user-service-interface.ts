@@ -6,7 +6,8 @@ export interface ListOneUserParams {
 
 export interface ListOneUserResponse extends Omit<UserEntity, 'password'> {
   id: string
-  registrationDate: Date
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface ListOneUserServiceInterface {

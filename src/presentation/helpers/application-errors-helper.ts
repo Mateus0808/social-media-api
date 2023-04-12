@@ -48,6 +48,10 @@ export const checkApplicationError = (
     return notFound(error)
   }
 
+  if (error.name === 'UserNotFoundByPropertyError') {
+    return notFound(error)
+  }
+
   if (error.name === 'ErrorUpdatingUserName') {
     return badRequest(error)
   }
