@@ -34,7 +34,6 @@ export class FollowUserService implements FollowUserServiceInterface {
       currentUserId,
       userId,
     })
-
     if (!response) throw new UserUpdateFollowError()
 
     return {

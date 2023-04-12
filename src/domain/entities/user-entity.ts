@@ -1,17 +1,18 @@
-import { AddressEntity } from './address-entity'
+import { UserProfileEntity } from './user-profile-entity'
 
 export interface UserEntity {
   name: string
   lastName: string
   username: string
-  address: AddressEntity
   email: string
   birthDate: Date
   maritalStatus: string
+  profile: UserProfileEntity
   phone: string
   gender: 'MALE' | 'FEMALE'
   followers: Array<string>
   followings: Array<string>
   password: string
-  status: 'Active' | 'Closed' | 'Canceled' | 'Disabled'
+  status: 'ACTIVE' | 'CLOSED' | 'CANCELED' | 'DISABLED'
+  isPrivate: boolean
 }

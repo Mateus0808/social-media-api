@@ -2,7 +2,6 @@ import { GetCommentByIdRepositoryInterface } from '@application/ports/repositori
 import {
   UpdateCommentRepositoryInterface,
   UpdateCommentRepositoryParams,
-  UpdateCommentRepositoryResponse,
 } from '../../../application/ports/repositories/comment/update-comment-repository-interface'
 import { DeleteCommentRepositoryInterface } from '../../../application/ports/repositories/comment/delete-comment-repository-interface'
 import {
@@ -37,9 +36,9 @@ export class CommentRepository
   async createComment(
     createCommentRepositoryParams: CreateCommentRepositoryParams,
   ): Promise<CommentDbModel | null> {
-    const { comment, userId, postId } = createCommentRepositoryParams
+    const { text, userId, postId } = createCommentRepositoryParams
     const commentCreated = await CommentModel.create({
-      comment,
+      text,
       userId,
       postId,
     })
@@ -79,14 +78,14 @@ export class CommentRepository
   }
 
   async updateComment(
-    commentParams: UpdateCommentRepositoryParams,
-  ): Promise<UpdateCommentRepositoryResponse | null> {
-    const { commentId, comment } = commentParams
+    params: UpdateCommentRepositoryParams,
+  ): Promise<CommentDbModel | null> {
+    const { commentId, text } = params
 
     const commentUpdated = await CommentModel.findByIdAndUpdate(
       commentId,
       {
-        $set: { comment },
+        $set: { text },
       },
       { new: true },
     )

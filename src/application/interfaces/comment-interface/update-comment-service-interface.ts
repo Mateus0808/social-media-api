@@ -1,21 +1,12 @@
+import { CommentDbModel } from './../../ports/repositories/models/comment-model'
+
 export interface UpdateCommentServiceParams {
   commentId: string
   postId: string
   userId: string
-  comment: string
-}
-
-export interface UpdateCommentServiceResponse {
-  id: string
-  user: string
-  comment: string
-  createdAt: Date
-  updatedAt: Date
-  likes: Array<string>
+  text: string
 }
 
 export interface UpdateCommentServiceInterface {
-  updateComment: (
-    commentParams: UpdateCommentServiceParams,
-  ) => Promise<UpdateCommentServiceResponse>
+  updateComment: (params: UpdateCommentServiceParams) => Promise<CommentDbModel>
 }

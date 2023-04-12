@@ -12,6 +12,6 @@ export interface LoadCommentsRepositoryResponse {
 
 export interface LoadCommentsRepositoryInterface {
   listComments: (
-    loadCommentsRepositoryParams: LoadCommentsRepositoryParams,
+    params: LoadCommentsRepositoryParams,
   ) => Promise<LoadCommentsRepositoryResponse | null>
 }

@@ -8,8 +8,10 @@ export const makeCreateUserController = (): Controller => {
   const salt = 10
   const bcryptAdapter = new BcryptAdapter(salt)
   const dbUserRepository = new UserRepository()
+
   const createUserService = new CreateUserService(
     bcryptAdapter,
+    dbUserRepository,
     dbUserRepository,
     dbUserRepository,
   )

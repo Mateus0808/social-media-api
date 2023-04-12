@@ -1,10 +1,10 @@
+import { CommentDbModel } from './../../ports/repositories/models/comment-model'
 import { CommentNotCreatedError } from '../../errors/comment-errors/comment-not-created-error'
 import { UserNotAuthorizedError } from '../../errors/user-not-authorized-error'
-import { commentCreatedDto } from '../../helpers/comment-dto'
+import { commentDto } from '../../helpers/comment-dto'
 import { CreateCommentRepositoryInterface } from '../../ports/repositories/comment/create-comment-repository-interface'
 import {
   CreateCommentParams,
-  CreateCommentResponse,
   CreateCommentServiceInterface,
 } from '../../interfaces/comment-interface/create-comment-service-interface'
 import { UpdatePostCommentsRepositoryInterface } from '../../ports/repositories/post/update-post-comments-repository-interface'
@@ -16,19 +16,17 @@ export class CreateCommentService implements CreateCommentServiceInterface {
     private readonly postRepository: UpdatePostCommentsRepositoryInterface,
   ) {}
 
-  async createComment(
-    createCommentParams: CreateCommentParams,
-  ): Promise<CreateCommentResponse> {
-    const { comment, userId, postId, currentUserId } = createCommentParams
+  async createComment(params: CreateCommentParams): Promise<CommentDbModel> {
+    const { text, userId, postId, currentUserId } = params
 
     if (currentUserId !== userId) throw new UserNotAuthorizedError()
 
     const commentCreated = await this.commentRepository.createComment({
-      comment,
+      text,
       userId,
       postId,
     })
-    if (!commentCreated) throw new CommentNotCreatedError(comment)
+    if (!commentCreated) throw new CommentNotCreatedError()
 
     const updatePostComments = await this.postRepository.updatePostComments({
       postId,
@@ -36,6 +34,6 @@ export class CreateCommentService implements CreateCommentServiceInterface {
     })
     if (!updatePostComments) throw new PostUpdateCommentError()
 
-    return commentCreatedDto(commentCreated)
+    return commentDto(commentCreated)
   }
 }

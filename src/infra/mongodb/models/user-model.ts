@@ -45,14 +45,13 @@ const userSchema = new Schema<User>(
       enum: ['MALE', 'FEMALE'],
       required: true,
     },
-    address: {
-      type: Schema.Types.ObjectId,
-      ref: 'Address',
-      required: false,
-    },
     password: {
       type: String,
       required: true,
+    },
+    profile: {
+      type: Schema.Types.ObjectId,
+      ref: 'UserProfile',
     },
     followers: [
       {
@@ -68,7 +67,12 @@ const userSchema = new Schema<User>(
     ],
     status: {
       type: String,
-      enum: ['Active', 'Closed', 'Canceled', 'Disabled'],
+      enum: ['ACTIVE', 'CLOSED', 'CANCELED', 'DISABLED'],
+      default: 'ACTIVE',
+    },
+    isPrivate: {
+      type: Boolean,
+      default: false,
     },
   },
   {

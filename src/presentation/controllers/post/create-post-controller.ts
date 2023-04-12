@@ -18,7 +18,7 @@ export class CreatePostController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const requiredParams = ['title', 'content']
+      const requiredParams = ['caption']
 
       for (const param of requiredParams) {
         if (!httpRequest.body[param]) {
@@ -37,11 +37,11 @@ export class CreatePostController implements Controller {
         return badRequest(error)
       }
 
-      const { title, content } = httpRequest.body
+      const { caption } = httpRequest.body
 
       const postCreated = await this.createPostService.createPost({
-        title,
-        content,
+        caption,
+        image: '',
         userId: httpRequest.params.userId,
       })
 

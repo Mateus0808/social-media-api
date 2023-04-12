@@ -1,4 +1,4 @@
-import { CreatedPostModel } from '../../ports/repositories/models/post-model'
+import { PostDbModel } from '../../ports/repositories/models/post-model'
 import { CreatePostRepositoryInterface } from '../../ports/repositories/post/create-post-repository-interface'
 import {
   CreatePostParams,
@@ -6,7 +6,7 @@ import {
 } from '../../interfaces/post-interface/create-post-service-interface'
 import { UserNotFoundError } from '../../errors/user-not-found-error'
 import { PostNotCreatedError } from '../../errors/post-errors/post-not-created-error'
-import { postCreatedDto } from '../../helpers/post-dto'
+import { postDto } from '../../helpers/post-dto'
 import { LoadUserByIdRepositoryInterface } from '../../ports/repositories/user/load-user-by-id-repository-interface'
 
 export class CreatePostService implements CreatePostServiceInterface {
@@ -15,26 +15,19 @@ export class CreatePostService implements CreatePostServiceInterface {
     private readonly loadUserByIdRepository: LoadUserByIdRepositoryInterface,
   ) {}
 
-  async createPost(
-    createPostParams: CreatePostParams,
-  ): Promise<CreatedPostModel> {
-    const { content, userId, title } = createPostParams
+  async createPost(params: CreatePostParams): Promise<PostDbModel> {
+    const { userId, caption, image } = params
 
     const userExists = await this.loadUserByIdRepository.loadById(userId)
+    if (!userExists) throw new UserNotFoundError()
 
-    if (!userExists) {
-      throw new UserNotFoundError()
-    }
     const postCreated = await this.createPostRepository.createPost({
-      title,
-      content,
+      caption,
+      image,
       user: userId,
     })
+    if (!postCreated) throw new PostNotCreatedError()
 
-    if (!postCreated) {
-      throw new PostNotCreatedError(title)
-    }
-
-    return postCreatedDto(postCreated)
+    return postDto(postCreated)
   }
 }

@@ -1,23 +1,11 @@
-import { UserDbModel } from '../../ports/repositories/models/user-model'
+import { PostDbModel } from './../../ports/repositories/models/post-model'
 
 export interface CreatePostParams {
-  title: string
-  content: string
   userId: string
-}
-
-export interface CreatePostResponse {
-  id: string
-  title: string
-  content: string
-  likes: Array<string>
-  comments: Array<string>
-  user: UserDbModel
-  createdAt: Date
+  caption: string
+  image: string
 }
 
 export interface CreatePostServiceInterface {
-  createPost: (
-    createPostParams: CreatePostParams,
-  ) => Promise<CreatePostResponse>
+  createPost: (params: CreatePostParams) => Promise<PostDbModel>
 }

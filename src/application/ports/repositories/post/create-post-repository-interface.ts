@@ -1,4 +1,4 @@
-import { CreatedPostModel } from '../models/post-model'
+import { PostDbModel } from '../models/post-model'
 import { CreatePostParams } from '../../../interfaces/post-interface/create-post-service-interface'
 
 export interface CreatePostRepositoryParams
@@ -9,5 +9,5 @@ export interface CreatePostRepositoryParams
 export interface CreatePostRepositoryInterface {
   createPost: (
     createPostRepository: CreatePostRepositoryParams,
-  ) => Promise<CreatedPostModel | null>
+  ) => Promise<PostDbModel | null>
 }

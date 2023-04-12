@@ -6,19 +6,20 @@ interface Post
   extends Omit<PostDbModel, 'id' | 'createdAt' | 'updatedAt'>,
     Document {}
 
-const postSchema = new Schema(
+const postSchema = new Schema<Post>(
   {
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
+      required: true,
     },
-    title: {
+    caption: {
       type: String,
       required: true,
     },
-    content: {
+    image: {
       type: String,
-      required: true,
+      default: '',
     },
     likes: [
       {
@@ -34,6 +35,26 @@ const postSchema = new Schema(
         default: [],
       },
     ],
+    shareCount: {
+      type: Number,
+      default: 0,
+    },
+    shareDescription: {
+      type: String,
+      default: '',
+    },
+    shareTitle: {
+      type: String,
+      default: '',
+    },
+    shareImage: {
+      type: String,
+      default: '',
+    },
+    shareUrl: {
+      type: String,
+      default: '',
+    },
   },
   {
     timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' },

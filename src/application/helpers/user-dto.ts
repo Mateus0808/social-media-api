@@ -21,6 +21,8 @@ export const userCreatedDto = (
   email: userCreated.email,
   followers: userCreated.followers,
   followings: userCreated.followings,
+  isPrivate: userCreated.isPrivate,
+  status: userCreated.status,
   createdAt: userCreated.createdAt,
 })
 
@@ -32,11 +34,12 @@ export const userDto = (user: UserDbModel): ListOneUserResponse => ({
   birthDate: user.birthDate,
   lastName: user.lastName,
   phone: user.phone,
-  address: user.address,
   gender: user.gender,
   followers: user.followers,
   followings: user.followings,
   maritalStatus: user.maritalStatus,
+  profile: user.profile,
+  isPrivate: user.isPrivate,
   status: user.status,
   registrationDate: new Date(user.createdAt),
 })

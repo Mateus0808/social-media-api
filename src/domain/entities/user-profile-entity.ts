@@ -1,4 +1,7 @@
+import { UserDbModel } from '@application/ports/repositories/models/user-model'
+
 export interface UserProfileEntity {
-  profilePicture: string
-  coverPicture: string
+  user: UserDbModel
+  profilePhoto: string
+  coverPhoto: string
 }

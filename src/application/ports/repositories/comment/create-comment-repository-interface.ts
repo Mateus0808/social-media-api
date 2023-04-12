@@ -8,6 +8,6 @@ export type CreateCommentRepositoryParams = Omit<
 
 export interface CreateCommentRepositoryInterface {
   createComment: (
-    createCommentRepositoryParams: CreateCommentRepositoryParams,
+    params: CreateCommentRepositoryParams,
   ) => Promise<CommentDbModel | null>
 }

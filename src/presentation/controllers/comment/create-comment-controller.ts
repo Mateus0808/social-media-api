@@ -21,9 +21,9 @@ export class CreateCommentController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const { comment } = httpRequest.body
-      if (!comment) {
-        return badRequest(new MissingParamError('comment'))
+      const { text } = httpRequest.body
+      if (!text) {
+        return badRequest(new MissingParamError('text'))
       }
 
       const error = this.validator.validate(httpRequest.params)
@@ -34,7 +34,7 @@ export class CreateCommentController implements Controller {
       const { postId, userId } = httpRequest.params
 
       const commentCreated = await this.createCommentService.createComment({
-        comment,
+        text,
         postId,
         userId,
         currentUserId: httpRequest.currentUserId,

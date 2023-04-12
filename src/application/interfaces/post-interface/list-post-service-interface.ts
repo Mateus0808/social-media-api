@@ -1,23 +1,12 @@
-import { UserDbModel } from '../../ports/repositories/models/user-model'
+import { PostDbModel } from './../../ports/repositories/models/post-model'
 
 export interface ListPostServiceParams {
   page: string | null
   limit: string | null
 }
 
-interface PostServiceResponse {
-  id: string
-  title: string
-  content: string
-  likes: Array<string>
-  user: UserDbModel
-  comments: Array<string>
-  createdAt: Date
-  updatedAt: Date
-}
-
 export interface ListPostsServiceResponse {
-  posts: PostServiceResponse[]
+  posts: PostDbModel[]
   pagination: any
 }
 

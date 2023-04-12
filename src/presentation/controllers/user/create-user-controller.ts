@@ -15,6 +15,7 @@ export class CreateUserController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const requiredParams = [
+        'username',
         'name',
         'lastName',
         'phone',
@@ -38,6 +39,7 @@ export class CreateUserController implements Controller {
       }
 
       const {
+        username,
         name,
         lastName,
         phone,
@@ -49,6 +51,7 @@ export class CreateUserController implements Controller {
       } = httpRequest.body
 
       const userCreated = await this.createUserService.createUser({
+        username,
         name,
         lastName,
         phone,

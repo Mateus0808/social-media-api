@@ -29,6 +29,8 @@ import {
   ListUserPostsByIdRepositoryParams,
   ListUserPostsByIdRepositoryResponse,
 } from '@application/ports/repositories/post/list-user-posts-by-id-repository'
+import { GetPostByIdRepositoryInterface } from '@application/ports/repositories/post/get-post-by-id-repository-interface'
+import { CommentDbModel } from '@application/ports/repositories/models/comment-model'
 
 export class PostRepository
   implements
@@ -38,21 +40,27 @@ export class PostRepository
     UpdatePostCommentsRepositoryInterface,
     DeleteCommentOnAPostRepositoryInterface,
     LoadPostsFromUserByIdRepositoryInterface,
-    ListUserPostsByIdRepositoryInterface
+    ListUserPostsByIdRepositoryInterface,
+    GetPostByIdRepositoryInterface
 {
   async createPost(
-    createPostRepositoryParams: CreatePostRepositoryParams,
+    params: CreatePostRepositoryParams,
   ): Promise<PostDbModel | null> {
-    const { title, content, user } = createPostRepositoryParams
     const postCreated = await PostModel.create({
-      title,
-      content,
-      user,
+      ...params,
     })
     if (!postCreated) {
       return null
     }
     return MongoHelper.mapToId(postCreated.toObject())
+  }
+
+  async getPostById(postId: string): Promise<CommentDbModel | null> {
+    const post = await PostModel.findById(postId)
+
+    if (!post) return null
+
+    return MongoHelper.mapToId(post.toObject())
   }
 
   async loadPosts(

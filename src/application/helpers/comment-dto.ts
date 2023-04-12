@@ -1,17 +1,15 @@
-import { CreateCommentResponse } from '../interfaces/comment-interface/create-comment-service-interface'
 import { ListCommentsServiceResponse } from '../interfaces/comment-interface/list-comments-service-interface'
 import { LoadCommentsRepositoryResponse } from '../ports/repositories/comment/load-comments-repository-interface'
 import { CommentDbModel } from '../ports/repositories/models/comment-model'
 
-export const commentCreatedDto = (
-  commentCreated: CommentDbModel,
-): CreateCommentResponse => ({
-  id: commentCreated.id,
-  user: commentCreated.userId,
-  post: commentCreated.postId,
-  comment: commentCreated.comment,
-  likes: commentCreated.likes,
-  createdAt: commentCreated.createdAt,
+export const commentDto = (comment: CommentDbModel): CommentDbModel => ({
+  id: comment.id,
+  userId: comment.userId,
+  postId: comment.postId,
+  text: comment.text,
+  likes: comment.likes,
+  createdAt: comment.createdAt,
+  updatedAt: new Date(comment.updatedAt),
 })
 
 export const commentsToPaginationDto = (
@@ -20,10 +18,10 @@ export const commentsToPaginationDto = (
   comments: param.comments.map(comment => {
     return {
       id: comment.id,
-      comment: comment.comment,
+      userId: comment.userId,
+      postId: comment.postId,
+      text: comment.text,
       likes: comment.likes,
-      user: comment.userId,
-      post: comment.postId,
       createdAt: new Date(comment.createdAt),
       updatedAt: new Date(comment.updatedAt),
     }

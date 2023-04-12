@@ -1,6 +1,5 @@
-import { UserEntity } from '../../../domain/entities/user-entity'
-
 export interface CreateUserParams {
+  username: string
   name: string
   lastName: string
   email: string
@@ -20,6 +19,8 @@ export interface CreateUserResponse {
   maritalStatus: string
   gender: 'MALE' | 'FEMALE'
   phone: string
+  isPrivate: boolean
+  status: 'ACTIVE' | 'CLOSED' | 'CANCELED' | 'DISABLED'
   id: string
   followers: Array<string>
   followings: Array<string>

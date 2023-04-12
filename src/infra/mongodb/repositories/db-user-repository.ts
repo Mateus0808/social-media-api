@@ -50,6 +50,7 @@ export class UserRepository
   ): Promise<UserDbModel | null> {
     const userCreated = await UserModel.create({
       ...createUserRepositoryParams,
+      populate: 'UserProfile',
     })
     if (!userCreated) {
       return null
