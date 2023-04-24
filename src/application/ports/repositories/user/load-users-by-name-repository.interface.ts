@@ -11,7 +11,7 @@ export interface SearchUserByNameRepositoryResponse {
   pagination: any
 }
 
-export interface LoadUserByNameRepositoryInterface {
+export interface LoadUsersByNameRepositoryInterface {
   loadUserByName: (
     name: SearchUserByNameRepositoryParams,
   ) => Promise<SearchUserByNameRepositoryResponse | null>

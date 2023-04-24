@@ -1,5 +1,4 @@
 import { checkApplicationError } from './../../helpers/application-errors-helper'
-import { MissingParamError } from './../../errors/missing-param-error'
 import { Validator } from './../../interfaces/validator'
 import { badRequest, ok } from './../../helpers/http-helper'
 import { InvalidParamError } from './../../errors/invalid-param-error'
@@ -8,27 +7,26 @@ import {
   HttpRequest,
   HttpResponse,
 } from './../../interfaces/controller'
-import { SearchUserByUsernameServiceInterface } from '@application/interfaces/user-interface/search-user-by-username-service-interface'
+import { SearchUserByNameServiceInterface } from '@application/interfaces/user-interface/search-user-by-name-service-interface'
 
-export class SearchUserByUsernameController implements Controller {
+export class SearchUserByNameController implements Controller {
   constructor(
-    private readonly userService: SearchUserByUsernameServiceInterface,
+    private readonly userService: SearchUserByNameServiceInterface,
     private readonly validator: Validator,
   ) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const requiredParams = ['username']
+      const possibleParams = ['name', 'page', 'limit']
 
-      for (const param of requiredParams) {
-        if (!httpRequest.body[param]) {
-          return badRequest(new MissingParamError(param))
-        }
-      }
-
-      for (const param of requiredParams) {
-        if (typeof httpRequest.body[param] !== 'string') {
-          return badRequest(new InvalidParamError(param))
+      for (const param of possibleParams) {
+        if (httpRequest.queryParams[param]) {
+          if (
+            httpRequest.queryParams[param] === 'undefined' ||
+            httpRequest.queryParams[param] === undefined
+          ) {
+            return badRequest(new InvalidParamError(param))
+          }
         }
       }
 
@@ -37,11 +35,13 @@ export class SearchUserByUsernameController implements Controller {
         return badRequest(error)
       }
 
-      const { username } = httpRequest.body
-      const response = await this.userService.searchUserByUsername({
+      const { name, page, limit } = httpRequest.queryParams
+      const response = await this.userService.searchUserByName({
         currentUserId: httpRequest.currentUserId,
         userId: httpRequest.params.userId,
-        username,
+        name,
+        page,
+        limit,
       })
 
       return ok(response)

@@ -1,3 +1,4 @@
+import { makeSearchUserByNameControllerFactory } from './../../factories/controllers/user/search-user-by-name/search-user-by-name-controller.factory'
 import { makeSearchUserByUsernameControllerFactory } from './../../factories/controllers/user/search-user-by-username/search-user-by-username-controller-factory'
 import { Router } from 'express'
 import { makeUpdateUserNameControllerFactory } from '../../factories/controllers/user/update-user-name/update-user-name-controller-factory'
@@ -61,5 +62,10 @@ export const userRouter = (router: Router): void => {
     '/user/search-by-username/:userId',
     expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
     expressRouterAdapter(makeSearchUserByUsernameControllerFactory()),
+  )
+  router.get(
+    '/user/search-by-name/:userId',
+    expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
+    expressRouterAdapter(makeSearchUserByNameControllerFactory()),
   )
 }

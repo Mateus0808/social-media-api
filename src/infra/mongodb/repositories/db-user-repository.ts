@@ -32,10 +32,10 @@ import {
   UpdateFollowUserRepositoryInterface,
 } from '../../../application/ports/repositories/user/follow-user-repository-interface'
 import {
-  LoadUserByNameRepositoryInterface,
+  LoadUsersByNameRepositoryInterface,
   SearchUserByNameRepositoryParams,
   SearchUserByNameRepositoryResponse,
-} from '@application/ports/repositories/user/load-user-by-name-repository-interface'
+} from '@application/ports/repositories/user/load-users-by-name-repository.interface'
 import { LoadUserByUsernameRepositoryInterface } from '@application/ports/repositories/user/load-user-by-username-repository-interface'
 
 export class UserRepository
@@ -48,7 +48,7 @@ export class UserRepository
     UpdateUserEmailRepositoryInterface,
     UpdateUserNameRepositoryInterface,
     UpdateUserUsernameRepositoryInterface,
-    LoadUserByNameRepositoryInterface,
+    LoadUsersByNameRepositoryInterface,
     LoadUserByUsernameRepositoryInterface
 {
   async createUser(
@@ -213,13 +213,9 @@ export class UserRepository
       page: page ?? 1,
       limit: limit ?? 10,
     })
-
-    if (!users) {
-      return null
-    }
+    if (!users) return null
 
     const { docs, ...restUsersProps } = users
-
     const usersArray = docs.map(user => MongoHelper.mapToId(user))
 
     const response: LoadUsersRepositoryResponse = {

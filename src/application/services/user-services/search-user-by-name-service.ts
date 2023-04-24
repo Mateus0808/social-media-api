@@ -1,5 +1,7 @@
+import { UserNotFoundError } from '@application/errors/user-not-found-error'
+import { ListUsersServiceResponse } from '@application/interfaces/user-interface/list-users-service-interface'
+import { LoadUsersByNameRepositoryInterface } from './../../ports/repositories/user/load-users-by-name-repository.interface'
 import { userToRepository } from './../../helpers/user-to-repository'
-import { LoadUserByNameRepositoryInterface } from '@application/ports/repositories/user/load-user-by-name-repository-interface'
 import {
   SearchUserByNameServiceInterface,
   SearchUserByNameServiceParams,
@@ -8,18 +10,16 @@ import { UserNotFoundByPropertyError } from './../../errors/user-not-found-by-pr
 import { UserNotAuthorizedError } from './../../errors/user-not-authorized-error'
 import { userToPaginationDto } from './../../helpers/user-dto'
 import { LoadUserByIdRepositoryInterface } from './../../ports/repositories/user/load-user-by-id-repository-interface'
-import { UserNotFoundError } from '@application/errors/user-not-found-error'
-import { ListUsersServiceResponse } from '@application/interfaces/user-interface/list-users-service-interface'
 
 export class SearchUserByNameService
   implements SearchUserByNameServiceInterface
 {
-  loadUserByNameRepository: LoadUserByNameRepositoryInterface
+  loadUserByNameRepository: LoadUsersByNameRepositoryInterface
 
   loadUserByIdRepository: LoadUserByIdRepositoryInterface
 
   constructor(
-    private readonly loadUserByNameRep: LoadUserByNameRepositoryInterface,
+    private readonly loadUserByNameRep: LoadUsersByNameRepositoryInterface,
     private readonly loadUserByIdRep: LoadUserByIdRepositoryInterface,
   ) {
     this.loadUserByNameRepository = loadUserByNameRep

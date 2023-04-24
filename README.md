@@ -17,6 +17,7 @@
 ```
 
 - User model
+
 ```javascript
 {
   id: ObjectId, // automatically generated unique id
@@ -40,6 +41,7 @@
 ```
 
 - Publication model
+
 ```javascript
 {
   id: ObjectId, // automatically generated unique id
@@ -59,6 +61,7 @@
 ```
 
 - Comment model
+
 ```javascript
 {
   id: ObjectId, // automatically generated unique id
@@ -73,10 +76,12 @@
 ## Features
 
 - Authentication
+
   - [x] ✅ 1.1 Authentication middleware
   - [x] ✅ 1.2 User login with email and password
 
 - User
+
   - [x] ✅ 1.1 Register user with name, username, email, phone, password, etc
   - [x] ✅ 1.2 List users
   - [x] ✅ 1.3 List user by ID
@@ -87,11 +92,12 @@
         1.6.2 [x] ✅ Update username
         1.6.3 [x] ✅ Update name
         1.6.4 [ ] Update contact information
-  - [ ] 1.7 Search user by username
-  - [ ] 1.8 Search user by name
-  - [ ] 1.9 Create timeline
+  - [x] 1.7 ✅ Search user by username
+  - [x] 1.8 ✅ Search user by name
+  - [ ] 1.9 Create user timeline
 
 - Post
+
   - [x] ✅ 1.1 Create a post
   - [x] ✅ 1.2 List user posts
   - [x] ✅ 1.3 Deletar post by id
@@ -108,7 +114,7 @@
   - [ ] 1.5 Get comment by id
   - [ ] 1.6 Like a comment
   - [ ] 1.7 Unlike a comment
-  - [ ] 1.8 Comment on a comment on a post
+  - [ ] 1.8 Comment on a comment on a post (shortly)
 
 <p align="right">(<a href="#top">Go to the top</a>)</p>
 
@@ -117,6 +123,7 @@
 ## Routes
 
 - User
+
   - `/users/:id`
   - `user/authentication`
   - `/users/register`
@@ -125,6 +132,7 @@
     - Exemplificando: `/user/follow/${IdUserAdmin}/:${normalUser}
 
 - Post
+
   - `/post/register/:userId`
   - `/post/:postId`
   - `/posts`
@@ -134,4 +142,7 @@
   - `/comment/register/:userId/:postId`
 
 ---
+
+```
+
 ```
