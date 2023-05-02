@@ -1,5 +1,5 @@
-import { CommentDbModel } from '../models/comment-model'
+import { PostDbModel } from '../models/post-model'
 
 export interface GetPostByIdRepositoryInterface {
-  getPostById: (postId: string) => Promise<CommentDbModel | null>
+  getPostById: (postId: string) => Promise<PostDbModel | null>
 }

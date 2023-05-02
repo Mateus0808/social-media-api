@@ -4,7 +4,7 @@ export interface UpdateCommentServiceParams {
   commentId: string
   postId: string
   userId: string
-  text: string
+  comment: string
 }
 
 export interface UpdateCommentServiceInterface {

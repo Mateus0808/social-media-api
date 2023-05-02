@@ -17,12 +17,12 @@ export class CreateCommentService implements CreateCommentServiceInterface {
   ) {}
 
   async createComment(params: CreateCommentParams): Promise<CommentDbModel> {
-    const { text, userId, postId, currentUserId } = params
+    const { comment, userId, postId, currentUserId } = params
 
     if (currentUserId !== userId) throw new UserNotAuthorizedError()
 
     const commentCreated = await this.commentRepository.createComment({
-      text,
+      comment,
       userId,
       postId,
     })

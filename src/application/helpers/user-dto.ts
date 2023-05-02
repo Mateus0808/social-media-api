@@ -1,5 +1,5 @@
+import { GetUserByIdResponse } from './../interfaces/user-interface/get-user-by-id-service.interface'
 import { CreateUserResponse } from '../interfaces/user-interface/create-user-service-interface'
-import { ListOneUserResponse } from '../interfaces/user-interface/list-one-user-service-interface'
 import { ListUsersServiceResponse } from '../interfaces/user-interface/list-users-service-interface'
 import {
   CreatedUserModel,
@@ -26,7 +26,7 @@ export const userCreatedDto = (
   createdAt: userCreated.createdAt,
 })
 
-export const userDto = (user: UserDbModel): ListOneUserResponse => ({
+export const userDto = (user: UserDbModel): GetUserByIdResponse => ({
   id: user.id,
   name: user.name,
   email: user.email,

@@ -29,7 +29,7 @@
   phone: string // user's phone number
   gender: 'MALE' | 'FEMALE' // user's gender
   password: String, // encrypted user's password
-  profilePhoto: String, // user's profile photo URL
+  profilePhoto: UserProfileEntity, // user's profile photo URL
   followers: [{ type: ObjectId, ref: 'User' }], // list of ids of users who follow this user
   following: [{ type: ObjectId, ref: 'User' }], // list of ids of users whom this user follows
   posts: [{ type: ObjectId, ref: 'Post' }], // list of ids of user's posts
@@ -37,6 +37,16 @@
   isPrivate: Boolean, // indicates whether user's account is private or not
   createdAt: Date, // user's creation date
   updatedAt: Date // user's last update date
+}
+```
+
+- User Profile model
+
+```javascript
+{
+  user: User,
+  profilePhoto: string,
+  coverPhoto: string
 }
 ```
 
@@ -94,7 +104,7 @@
         1.6.4 [ ] Update contact information
   - [x] 1.7 ✅ Search user by username
   - [x] 1.8 ✅ Search user by name
-  - [ ] 1.9 Create user timeline
+  - [x] 1.9 ✅ Create user timeline
 
 - Post
 
@@ -102,9 +112,10 @@
   - [x] ✅ 1.2 List user posts
   - [x] ✅ 1.3 Deletar post by id
   - [x] ✅ 1.4 List post by ID
-  - [ ] 1.5 Like a post
-  - [ ] 1.6 Unlike a post
+  - [ ] ✅ 1.5 Like a post
+  - [ ] ✅ 1.6 Unlike a post
   - [ ] 1.7 Share a post
+  - [ ] 1.10 Upload image
 
 - Comment
   - [x] ✅ 1.1 Add comment on a post

@@ -1,4 +1,4 @@
-import { ListOneUserService } from '../../../../../src/application/services/user-services/list-one-user-service'
+import { GetUserByIdService } from './../../../../../src/application/services/user-services/get-user-by-id.service'
 import { UserDbModel } from '../../../../../src/application/ports/repositories/models/user-model'
 import { fakeUserDbModel } from '../../../helpers/fake-datas/fake-user-data'
 import { LoadUserByIdRepositoryInterface } from '../../../../../src/application/ports/repositories/user/load-user-by-id-repository-interface'
@@ -15,20 +15,20 @@ const makeLoadUserByIdRepository = (): LoadUserByIdRepositoryInterface => {
 }
 
 interface SutTypes {
-  sut: ListOneUserService
+  sut: GetUserByIdService
   loadUserByIdRepository: LoadUserByIdRepositoryInterface
 }
 
 const makeSut = (): SutTypes => {
   const loadUserByIdRepository = makeLoadUserByIdRepository()
-  const sut = new ListOneUserService(loadUserByIdRepository)
+  const sut = new GetUserByIdService(loadUserByIdRepository)
   return {
     sut,
     loadUserByIdRepository,
   }
 }
 
-describe('ListOneUserService - Integration with dependencies', () => {
+describe('GetUserByIdService - Integration with dependencies', () => {
   it('Should call LoadUserByIdRepository.loadById with correct params', async () => {
     const { sut, loadUserByIdRepository } = makeSut()
     const loadUserByIdRepositorySpy = jest.spyOn(
@@ -36,7 +36,7 @@ describe('ListOneUserService - Integration with dependencies', () => {
       'loadById',
     )
 
-    await sut.listOneUser({ userId: 'any_id' })
+    await sut.getUserById({ userId: 'any_id' })
     expect(loadUserByIdRepositorySpy).toHaveBeenCalledTimes(1)
     expect(loadUserByIdRepositorySpy).toHaveBeenCalledWith('any_id')
   })
@@ -47,7 +47,7 @@ describe('ListOneUserService - Integration with dependencies', () => {
       .spyOn(loadUserByIdRepository, 'loadById')
       .mockReturnValueOnce(new Promise(resolve => resolve(null)))
 
-    const promise = sut.listOneUser({ userId: 'any_id' })
+    const promise = sut.getUserById({ userId: 'any_id' })
     expect(promise).rejects.toThrow(new UserNotFoundError())
   })
 
@@ -59,15 +59,15 @@ describe('ListOneUserService - Integration with dependencies', () => {
         new Promise((resolve, reject) => reject(new Error())),
       )
 
-    const promise = sut.listOneUser({ userId: 'any_id' })
+    const promise = sut.getUserById({ userId: 'any_id' })
     expect(promise).rejects.toThrow()
   })
 })
 
-describe('ListOneUserService - Success case', () => {
+describe('GetUserByIdService - Success case', () => {
   it('Should return an userDto if LoadUserByIdRepository.loadById succeeds', async () => {
     const { sut } = makeSut()
-    const promise = await sut.listOneUser({ userId: 'any_id' })
+    const promise = await sut.getUserById({ userId: 'any_id' })
     expect(promise).toEqual(userDto(fakeUserDbModel()))
   })
 })

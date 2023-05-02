@@ -1,21 +1,21 @@
 import {
-  ListOneUserParams,
-  ListOneUserResponse,
-  ListOneUserServiceInterface,
-} from '../../interfaces/user-interface/list-one-user-service-interface'
+  GetUserByIdParams,
+  GetUserByIdResponse,
+  GetUserByIdServiceInterface,
+} from './../../interfaces/user-interface/get-user-by-id-service.interface'
 import { LoadUserByIdRepositoryInterface } from '../../ports/repositories/user/load-user-by-id-repository-interface'
 import { UserNotFoundError } from '../../errors/user-not-found-error'
 import { userDto } from '../../helpers/user-dto'
 
-export class ListOneUserService implements ListOneUserServiceInterface {
+export class GetUserByIdService implements GetUserByIdServiceInterface {
   constructor(
     private readonly loadUserByIdRepository: LoadUserByIdRepositoryInterface,
   ) {}
 
-  public async listOneUser(
-    listOneUserParams: ListOneUserParams,
-  ): Promise<ListOneUserResponse> {
-    const { userId } = listOneUserParams
+  public async getUserById(
+    params: GetUserByIdParams,
+  ): Promise<GetUserByIdResponse> {
+    const { userId } = params
     const user = await this.loadUserByIdRepository.loadById(userId)
 
     if (!user) {

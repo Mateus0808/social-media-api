@@ -1,3 +1,4 @@
+import { makeToggleLikePostControllerFactory } from './../../factories/controllers/post/toggle-like-post/toggle-like-post-controller.factory'
 import { Router } from 'express'
 import { makeAdminPermissionMiddleware } from '../../factories/middlewares/admin-permission-middleware-factory'
 import { expressMiddlewareAdapter } from '../../adapters/express-middleware-adapter'
@@ -30,5 +31,11 @@ export const postRoutes = (router: Router): void => {
     '/post/:postId',
     expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
     expressRouterAdapter(makeDeletePostControllerFactory()),
+  )
+
+  router.patch(
+    '/posts/:postId/:userId',
+    expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
+    expressRouterAdapter(makeToggleLikePostControllerFactory()),
   )
 }

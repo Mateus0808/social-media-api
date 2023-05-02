@@ -6,10 +6,7 @@ import {
   UpdatePostCommentsRepositoryResponse,
 } from '../../../../../src/application/ports/repositories/post/update-post-comments-repository-interface'
 import { CommentDbModel } from '../../../../../src/application/ports/repositories/models/comment-model'
-import {
-  CreateCommentRepositoryInterface,
-  CreateCommentRepositoryParams,
-} from '../../../../../src/application/ports/repositories/comment/create-comment-repository-interface'
+import { CreateCommentRepositoryInterface } from '../../../../../src/application/ports/repositories/comment/create-comment-repository-interface'
 import { CreateCommentParams } from '../../../../../src/application/interfaces/comment-interface/create-comment-service-interface'
 import { CommentNotCreatedError } from '../../../../../src/application/errors/comment-errors/comment-not-created-error'
 import { PostUpdateCommentError } from '../../../../../src/application/errors/post-errors/post-update-comments-error'
@@ -32,9 +29,7 @@ const makeCreateCommentRepository = (): CreateCommentRepositoryInterface => {
   class CreateCommentRepositoryStub
     implements CreateCommentRepositoryInterface
   {
-    async createComment(
-      createCommentRepositoryParams: CreateCommentRepositoryParams,
-    ): Promise<CommentDbModel | null> {
+    async createComment(): Promise<CommentDbModel | null> {
       return new Promise(resolve => resolve(fakeDbComment()))
     }
   }
@@ -46,9 +41,7 @@ const makeUpdatePostCommentsRepository =
     class UpdatePostCommentsRepositoryStub
       implements UpdatePostCommentsRepositoryInterface
     {
-      async updatePostComments(
-        updatePostCommentsParams: UpdatePostCommentsRepositoryParams,
-      ): Promise<UpdatePostCommentsRepositoryResponse | null> {
+      async updatePostComments(): Promise<UpdatePostCommentsRepositoryResponse | null> {
         return new Promise(resolve => resolve(fakeDbComment()))
       }
     }
@@ -110,9 +103,7 @@ describe('CreateCommentService - Integrations with dependencies', () => {
       .spyOn(createCommentRepository, 'createComment')
       .mockReturnValueOnce(new Promise(resolve => resolve(null)))
     const promise = sut.createComment(fakeCommentParams())
-    expect(promise).rejects.toThrow(
-      new CommentNotCreatedError(fakeCommentParams().comment),
-    )
+    expect(promise).rejects.toThrow(new CommentNotCreatedError())
   })
 
   it('Should throw an error if CommentRepository.createComment throws', async () => {

@@ -2,7 +2,7 @@ import { CommentDbModel } from '../models/comment-model'
 
 export interface UpdateCommentRepositoryParams {
   commentId: string
-  text: string
+  comment: string
 }
 
 export interface UpdateCommentRepositoryInterface {

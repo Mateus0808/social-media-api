@@ -1,6 +1,6 @@
 export interface CommentEntity {
   userId: string
   postId: string
-  text: string
+  comment: string
   likes: Array<string>
 }

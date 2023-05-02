@@ -2,7 +2,7 @@ import { ValidatorComposite } from '../../../../../presentation/validators/valid
 import { Validator } from '../../../../../presentation/interfaces/validator'
 import { RequiredFieldValidator } from '../../../../../presentation/validators/required-field-validator'
 
-export const makeListOneUserValidator = (): ValidatorComposite => {
+export const makeGetUserByIdValidator = (): ValidatorComposite => {
   const validators: Validator[] = []
   const requiredRouteParams = ['userId']
   for (const param of requiredRouteParams) {

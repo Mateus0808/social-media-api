@@ -1,4 +1,4 @@
-import { ListOneUserResponse } from './list-one-user-service-interface'
+import { GetUserByIdResponse } from './get-user-by-id-service.interface'
 
 export interface SearchUserByUsernameServiceParams {
   username: string
@@ -9,5 +9,5 @@ export interface SearchUserByUsernameServiceParams {
 export interface SearchUserByUsernameServiceInterface {
   searchUserByUsername: (
     params: SearchUserByUsernameServiceParams,
-  ) => Promise<ListOneUserResponse>
+  ) => Promise<GetUserByIdResponse>
 }

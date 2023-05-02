@@ -36,9 +36,9 @@ export class CommentRepository
   async createComment(
     createCommentRepositoryParams: CreateCommentRepositoryParams,
   ): Promise<CommentDbModel | null> {
-    const { text, userId, postId } = createCommentRepositoryParams
+    const { comment, userId, postId } = createCommentRepositoryParams
     const commentCreated = await CommentModel.create({
-      text,
+      comment,
       userId,
       postId,
     })
@@ -80,12 +80,12 @@ export class CommentRepository
   async updateComment(
     params: UpdateCommentRepositoryParams,
   ): Promise<CommentDbModel | null> {
-    const { commentId, text } = params
+    const { commentId, comment } = params
 
-    const commentUpdated = await CommentModel.findByIdAndUpdate(
-      commentId,
+    const commentUpdated = await CommentModel.findOneAndUpdate(
+      { _id: commentId },
       {
-        $set: { text },
+        $set: { comment },
       },
       { new: true },
     )

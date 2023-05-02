@@ -30,7 +30,14 @@ import {
   ListUserPostsByIdRepositoryResponse,
 } from '@application/ports/repositories/post/list-user-posts-by-id-repository'
 import { GetPostByIdRepositoryInterface } from '@application/ports/repositories/post/get-post-by-id-repository-interface'
-import { CommentDbModel } from '@application/ports/repositories/models/comment-model'
+import {
+  LikePostRepositoryInterface,
+  LikePostRepositoryParams,
+} from '@application/ports/repositories/post/like-post-repository.interface'
+import {
+  UnlikePostRepositoryInterface,
+  UnlikePostRepositoryParams,
+} from '@application/ports/repositories/post/unlike-post-repository.interface'
 
 export class PostRepository
   implements
@@ -41,7 +48,9 @@ export class PostRepository
     DeleteCommentOnAPostRepositoryInterface,
     LoadPostsFromUserByIdRepositoryInterface,
     ListUserPostsByIdRepositoryInterface,
-    GetPostByIdRepositoryInterface
+    GetPostByIdRepositoryInterface,
+    LikePostRepositoryInterface,
+    UnlikePostRepositoryInterface
 {
   async createPost(
     params: CreatePostRepositoryParams,
@@ -55,7 +64,7 @@ export class PostRepository
     return MongoHelper.mapToId(postCreated.toObject())
   }
 
-  async getPostById(postId: string): Promise<CommentDbModel | null> {
+  async getPostById(postId: string): Promise<PostDbModel | null> {
     const post = await PostModel.findById(postId)
 
     if (!post) return null
@@ -163,5 +172,35 @@ export class PostRepository
     const postsArray = posts.map(post => MongoHelper.mapToId(post.toObject()))
 
     return postsArray
+  }
+
+  async likePost(
+    params: LikePostRepositoryParams,
+  ): Promise<PostDbModel | null> {
+    const { postId, userId } = params
+
+    const post = await PostModel.findByIdAndUpdate(
+      postId,
+      { $push: { likes: userId } },
+      { new: true },
+    )
+    if (!post) return null
+
+    return MongoHelper.mapToId(post.toObject())
+  }
+
+  async unlikePost(
+    params: UnlikePostRepositoryParams,
+  ): Promise<PostDbModel | null> {
+    const { postId, userId } = params
+
+    const post = await PostModel.findByIdAndUpdate(
+      postId,
+      { $pull: { likes: userId } },
+      { new: true },
+    )
+    if (!post) return null
+
+    return MongoHelper.mapToId(post.toObject())
   }
 }

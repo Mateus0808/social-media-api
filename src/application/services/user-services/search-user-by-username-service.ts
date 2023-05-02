@@ -1,6 +1,5 @@
 import { UserNotFoundByPropertyError } from './../../errors/user-not-found-by-property-error'
 import { UserNotAuthorizedError } from './../../errors/user-not-authorized-error'
-import { ListOneUserResponse } from './../../interfaces/user-interface/list-one-user-service-interface'
 import { LoadUserByUsernameRepositoryInterface } from './../../ports/repositories/user/load-user-by-username-repository-interface'
 import {
   SearchUserByUsernameServiceInterface,
@@ -9,6 +8,7 @@ import {
 import { userDto } from './../../helpers/user-dto'
 import { LoadUserByIdRepositoryInterface } from './../../ports/repositories/user/load-user-by-id-repository-interface'
 import { UserNotFoundError } from '@application/errors/user-not-found-error'
+import { GetUserByIdResponse } from '@application/interfaces/user-interface/get-user-by-id-service.interface'
 
 export class SearchUserByUsernameService
   implements SearchUserByUsernameServiceInterface
@@ -27,7 +27,7 @@ export class SearchUserByUsernameService
 
   async searchUserByUsername(
     params: SearchUserByUsernameServiceParams,
-  ): Promise<ListOneUserResponse> {
+  ): Promise<GetUserByIdResponse> {
     const { username, userId, currentUserId } = params
 
     const currentUser = await this.loadUserByIdRepository.loadById(userId)

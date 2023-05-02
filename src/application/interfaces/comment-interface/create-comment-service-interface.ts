@@ -4,7 +4,7 @@ export interface CreateCommentParams {
   userId: string
   postId: string
   currentUserId: string
-  text: string
+  comment: string
 }
 
 export interface CreateCommentServiceInterface {

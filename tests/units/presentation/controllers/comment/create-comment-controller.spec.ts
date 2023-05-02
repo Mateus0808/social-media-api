@@ -1,7 +1,7 @@
+import { CommentDbModel } from '@application/ports/repositories/models/comment-model'
 import { CreateCommentController } from '../../../../../src/presentation/controllers/comment/create-comment-controller'
 import {
   CreateCommentParams,
-  CreateCommentResponse,
   CreateCommentServiceInterface,
 } from '../../../../../src/application/interfaces/comment-interface/create-comment-service-interface'
 import { Validator } from '../../../../../src/presentation/interfaces/validator'
@@ -25,13 +25,14 @@ const fakeCreateCommentParams = (): CreateCommentParams => ({
   comment: 'any_comment',
 })
 
-const fakeCreateCommentResponse = (): CreateCommentResponse => ({
+const fakeCreateCommentResponse = (): CommentDbModel => ({
   id: '1',
-  user: '1',
-  post: '1',
+  userId: '1',
+  postId: '1',
   likes: ['1'],
   comment: 'any_comment',
   createdAt: new Date('05/04/2023'),
+  updatedAt: new Date('05/04/2023'),
 })
 
 const fakeHttpRequest = (): HttpRequest => ({
@@ -46,9 +47,7 @@ const fakeHttpRequest = (): HttpRequest => ({
 
 const makeCreateCommentService = (): CreateCommentServiceInterface => {
   class CreateCommentServiceStub implements CreateCommentServiceInterface {
-    async createComment(
-      createCommentParams: CreateCommentParams,
-    ): Promise<CreateCommentResponse> {
+    async createComment(): Promise<CommentDbModel> {
       return new Promise(resolve => resolve(fakeCreateCommentResponse()))
     }
   }
@@ -127,19 +126,14 @@ describe('CreateCommentController - Integrations with dependencies', () => {
 
   it('Should return status 400 if CreateCommentService.createComment throws CommentNotCreatedError', async () => {
     const { sut, createCommentService } = makeSut()
-    const { comment } = fakeCreateCommentParams()
     jest
       .spyOn(createCommentService, 'createComment')
       .mockReturnValueOnce(
-        new Promise((resolve, reject) =>
-          reject(new CommentNotCreatedError(comment)),
-        ),
+        new Promise((resolve, reject) => reject(new CommentNotCreatedError())),
       )
 
     const httpResponse = await sut.handle(fakeHttpRequest())
-    expect(httpResponse).toEqual(
-      badRequest(new CommentNotCreatedError(comment)),
-    )
+    expect(httpResponse).toEqual(badRequest(new CommentNotCreatedError()))
   })
 
   it('Should return status 400 if CreateCommentService.createComment throws PostUpdateCommentError', async () => {

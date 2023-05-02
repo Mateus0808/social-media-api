@@ -1,12 +1,12 @@
 import { CreateUserController } from '../../../../../src/presentation/controllers/user/create-user-controller'
-
+import { HttpRequest } from '../../../../../src/presentation/interfaces/controller'
+import { MissingParamError } from '../../../../../src/presentation/errors/missing-param-error'
+import { InvalidParamError } from '../../../../../src/presentation/errors/invalid-param-error'
 import {
   CreateUserParams,
   CreateUserResponse,
   CreateUserServiceInterface,
 } from '../../../../../src/application/interfaces/user-interface/create-user-service-interface'
-import { HttpRequest } from '../../../../../src/presentation/interfaces/controller'
-import { MissingParamError } from '../../../../../src/presentation/errors/missing-param-error'
 import {
   badRequest,
   conflict,
@@ -14,12 +14,12 @@ import {
   notFound,
   serverError,
 } from '../../../../../src/presentation/helpers/http-helper'
-import { InvalidParamError } from '../../../../../src/presentation/errors/invalid-param-error'
 import { ServerError } from '../../../../../src/presentation/errors/server-error'
 import { UserAlreadyExistsError } from '../../../../../src/application/errors/user-already-exists-error'
 import { UserNotCreatedError } from '../../../../../src/application/errors/user-not-created-error'
 
 const fakeCreateUserParams = (): CreateUserParams => ({
+  username: 'any_username',
   name: 'any_name',
   lastName: 'any_lastName',
   gender: 'MALE',
@@ -42,6 +42,8 @@ const fakeCreateUserResponse = (): CreateUserResponse => ({
   email: 'any_email@email.com',
   followers: [],
   followings: [],
+  isPrivate: false,
+  status: 'ACTIVE',
   createdAt: new Date('06/04/2023'),
 })
 
@@ -60,12 +62,8 @@ const fakeHttpRequest = (): HttpRequest => ({
 
 const makeCreateUserService = (): CreateUserServiceInterface => {
   class CreateUserServiceStub implements CreateUserServiceInterface {
-    async createUser(
-      createUserParams: CreateUserParams,
-    ): Promise<CreateUserResponse> {
-      return new Promise<CreateUserResponse>(resolve =>
-        resolve(fakeCreateUserResponse()),
-      )
+    async createUser(): Promise<CreateUserResponse> {
+      return new Promise(resolve => resolve(fakeCreateUserResponse()))
     }
   }
   return new CreateUserServiceStub()

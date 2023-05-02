@@ -1,6 +1,6 @@
+import { UserNotFoundError } from './../../errors/user-not-found-error'
 import { userCreatedDto } from '../../helpers/user-dto'
 import { IncorrectPasswordError } from '../../errors/incorrect-password-error'
-import { UserNotExistsError } from '../../errors/user-not-exists-error'
 import {
   AuthUserServiceInterface,
   AuthUserParams,
@@ -21,7 +21,7 @@ export class AuthUserService implements AuthUserServiceInterface {
     const { email, password } = authUserParams
 
     const user = await this.loadUserByEmailRepository.loadByEmail(email)
-    if (!user) throw new UserNotExistsError(email)
+    if (!user) throw new UserNotFoundError()
 
     const passwordMatch = await this.hashComparer.compare(
       password,

@@ -1,4 +1,4 @@
-import { ListOneUserServiceInterface } from '../../../application/interfaces/user-interface/list-one-user-service-interface'
+import { GetUserByIdServiceInterface } from '@application/interfaces/user-interface/get-user-by-id-service.interface'
 import { checkApplicationError } from '../../helpers/application-errors-helper'
 import { badRequest, ok } from '../../helpers/http-helper'
 import {
@@ -8,9 +8,9 @@ import {
 } from '../../interfaces/controller'
 import { Validator } from '../../interfaces/validator'
 
-export class ListOneUserController implements Controller {
+export class GetUserByIdController implements Controller {
   constructor(
-    private readonly listOneUserService: ListOneUserServiceInterface,
+    private readonly listOneUserService: GetUserByIdServiceInterface,
     private readonly validator: Validator,
   ) {}
 
@@ -21,7 +21,7 @@ export class ListOneUserController implements Controller {
         return badRequest(error)
       }
       const { userId } = httpRequest.params
-      const user = await this.listOneUserService.listOneUser(userId)
+      const user = await this.listOneUserService.getUserById(userId)
 
       return ok(user)
     } catch (error: any) {

@@ -2,15 +2,7 @@ import { ValidatorComposite } from '../../../../src/presentation/validators/vali
 import { Validator } from '../../../../src/presentation/interfaces/validator'
 import { MissingParamError } from '../../../../src/presentation/errors/missing-param-error'
 import { InvalidParamError } from '../../../../src/presentation/errors/invalid-param-error'
-
-const makeValidator = (): Validator => {
-  class FakeValidatorStub implements Validator {
-    validate(input: any): Error | null {
-      return null
-    }
-  }
-  return new FakeValidatorStub()
-}
+import { makeValidator } from '../../helpers/mocks/validator.mock'
 
 const fakeValidators = (): Validator[] => [makeValidator(), makeValidator()]
 

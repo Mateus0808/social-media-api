@@ -1,12 +1,8 @@
 import { CommentNotDeletedError } from '../../../../../src/application/errors/comment-errors/comment-not-deleted-error'
 import { CommentNotDeletedOnPostError } from '../../../../../src/application/errors/comment-errors/comment-not-deleted-on-post-error'
 import { CommentNotBelongPostError } from '../../../../../src/application/errors/comment-errors/comment-not-belong-post-error'
-import { PostNotFoundError } from '../../../../../src/application/errors/post-errors/post-not-found-error'
 import { DeleteCommentService } from '../../../../../src/application/services/comment-services/delete-comment-service'
-import {
-  DeleteCommentOnAPostParams,
-  DeleteCommentOnAPostRepositoryInterface,
-} from '../../../../../src/application/ports/repositories/post/delete-comment-on-a-post-repository-interface'
+import { DeleteCommentOnAPostRepositoryInterface } from '../../../../../src/application/ports/repositories/post/delete-comment-on-a-post-repository-interface'
 import { DeleteCommentRepositoryInterface } from '../../../../../src/application/ports/repositories/comment/delete-comment-repository-interface'
 import {
   DeleteCommentParams,
@@ -34,7 +30,7 @@ const makeGetCommentByIdRepository = (): GetCommentByIdRepositoryInterface => {
   class GetCommentByIdRepositoryStub
     implements GetCommentByIdRepositoryInterface
   {
-    async getCommentById(commentId: string): Promise<CommentDbModel | null> {
+    async getCommentById(): Promise<CommentDbModel | null> {
       return new Promise(resolve => resolve(fakeDbComment()))
     }
   }
@@ -45,7 +41,7 @@ const makeDeleteCommentRepository = (): DeleteCommentRepositoryInterface => {
   class DeleteCommentRepositoryStub
     implements DeleteCommentRepositoryInterface
   {
-    async deleteComment(commentId: string): Promise<boolean | null> {
+    async deleteComment(): Promise<boolean | null> {
       return new Promise(resolve => resolve(true))
     }
   }
@@ -57,9 +53,7 @@ const makeDeleteCommentOnAPostRepository =
     class DeleteCommentOnAPostRepositoryStub
       implements DeleteCommentOnAPostRepositoryInterface
     {
-      async deleteCommentOnAPost(
-        params: DeleteCommentOnAPostParams,
-      ): Promise<boolean | null> {
+      async deleteCommentOnAPost(): Promise<boolean | null> {
         return new Promise(resolve => resolve(true))
       }
     }

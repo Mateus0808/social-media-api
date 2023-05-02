@@ -8,7 +8,7 @@ const makeGetCommentByIdRepository = (): GetCommentByIdRepositoryInterface => {
   class GetCommentByIdRepositoryStub
     implements GetCommentByIdRepositoryInterface
   {
-    async getCommentById(commentId: string): Promise<CommentDbModel | null> {
+    async getCommentById(): Promise<CommentDbModel | null> {
       return new Promise(resolve => resolve(fakeDbComment()))
     }
   }
@@ -17,9 +17,10 @@ const makeGetCommentByIdRepository = (): GetCommentByIdRepositoryInterface => {
 
 interface SutTypes {
   sut: GetCommentByIdService
+  getCommentByIdRepository: GetCommentByIdRepositoryInterface
 }
 
-const makeSut = () => {
+const makeSut = (): SutTypes => {
   const getCommentByIdRepository = makeGetCommentByIdRepository()
   const sut = new GetCommentByIdService(getCommentByIdRepository)
   return {

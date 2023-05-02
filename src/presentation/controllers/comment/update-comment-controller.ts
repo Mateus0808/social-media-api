@@ -17,7 +17,7 @@ export class UpdateCommentController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const requiredParams = ['text', 'userId', 'postId']
+      const requiredParams = ['comment', 'userId', 'postId']
 
       for (const param of requiredParams) {
         if (!httpRequest.body[param]) {
@@ -30,11 +30,11 @@ export class UpdateCommentController implements Controller {
         return badRequest(error)
       }
 
-      const { text, userId, postId } = httpRequest.body
+      const { comment, userId, postId } = httpRequest.body
       const { commentId } = httpRequest.params
 
       const response = await this.updateCommentService.updateComment({
-        text,
+        comment,
         commentId,
         userId,
         postId,
@@ -42,6 +42,7 @@ export class UpdateCommentController implements Controller {
 
       return ok(response)
     } catch (error: any) {
+      console.log(error)
       return checkApplicationError(error)
     }
   }

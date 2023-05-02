@@ -21,7 +21,7 @@ export class UpdateCommentService implements UpdateCommentServiceInterface {
   async updateComment(
     params: UpdateCommentServiceParams,
   ): Promise<CommentDbModel> {
-    const { commentId, postId, userId, text } = params
+    const { commentId, postId, userId, comment } = params
 
     const userAlreadyExists = await this.userRepository.loadById(userId)
     if (!userAlreadyExists) throw new UserNotFoundError()
@@ -30,7 +30,7 @@ export class UpdateCommentService implements UpdateCommentServiceInterface {
     if (!post) throw new PostNotFoundError()
 
     const commentUpdated = await this.commentRepository.updateComment({
-      text,
+      comment,
       commentId,
     })
     if (!commentUpdated) throw new CommentNotUpdatedError()

@@ -12,10 +12,6 @@ import {
 export const checkApplicationError = (
   error: ApplicationError,
 ): HttpResponse => {
-  if (error.name === 'UserNotExistsError') {
-    return notFound(error)
-  }
-
   if (error.name === 'IncorrectPasswordError') {
     return unauthorized(error)
   }
@@ -111,6 +107,10 @@ export const checkApplicationError = (
     return badRequest(error)
   }
 
+  if (error.name === 'ToggleLikePostError') {
+    return badRequest(error)
+  }
+
   if (error.name === 'CommentNotCreatedError') {
     return badRequest(error)
   }
@@ -125,6 +125,10 @@ export const checkApplicationError = (
 
   if (error.name === 'CommentNotFoundError') {
     return badRequest(error)
+  }
+
+  if (error.name === 'CommentNotUpdatedError') {
+    return serverError(error)
   }
 
   return serverError(new ServerError())
