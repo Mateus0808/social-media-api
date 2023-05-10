@@ -14,6 +14,7 @@ export const expressMiddlewareAdapter = (middleware: Middleware) => {
       params: req.params,
       body: req.body,
       currentUserId: req.currentUserId,
+      file: req.file,
     }
 
     const httpResponse = await middleware.handle(httpRequest)

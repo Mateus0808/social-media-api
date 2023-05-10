@@ -35,18 +35,22 @@
   posts: [{ type: ObjectId, ref: 'Post' }], // list of ids of user's posts
   status: 'ACTIVE' | 'CLOSED' | 'CANCELED' | 'DISABLED'
   isPrivate: Boolean, // indicates whether user's account is private or not
+  profilePhoto: string,
+  coverPhoto: string,
   createdAt: Date, // user's creation date
   updatedAt: Date // user's last update date
 }
 ```
 
-- User Profile model
+- Image model
 
 ```javascript
 {
-  user: User,
-  profilePhoto: string,
-  coverPhoto: string
+  id: ObjectId,
+  filename: string,
+  size: number,
+  key: string,
+  url: string
 }
 ```
 
@@ -105,6 +109,7 @@
   - [x] 1.7 ✅ Search user by username
   - [x] 1.8 ✅ Search user by name
   - [x] 1.9 ✅ Create user timeline
+  - [x] 1.10 ✅ Upload image profile
 
 - Post
 
@@ -112,20 +117,19 @@
   - [x] ✅ 1.2 List user posts
   - [x] ✅ 1.3 Deletar post by id
   - [x] ✅ 1.4 List post by ID
-  - [ ] ✅ 1.5 Like a post
-  - [ ] ✅ 1.6 Unlike a post
+  - [x] ✅ 1.5 Like a post
+  - [x] ✅ 1.6 Unlike a post
   - [ ] 1.7 Share a post
-  - [ ] 1.10 Upload image
 
 - Comment
   - [x] ✅ 1.1 Add comment on a post
   - [x] ✅ 1.2 Delete comment from a post
   - [x] ✅ 1.3 List comments for a post
   - [x] ✅ 1.4 Update comment on post
-  - [ ] 1.5 Get comment by id
+  - [x] ✅ 1.5 Get comment by id
   - [ ] 1.6 Like a comment
   - [ ] 1.7 Unlike a comment
-  - [ ] 1.8 Comment on a comment on a post (shortly)
+  - [ ] 1.8 Make a comment on a post (shortly)
 
 <p align="right">(<a href="#top">Go to the top</a>)</p>
 

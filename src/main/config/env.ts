@@ -8,4 +8,5 @@ export const env = {
   dbDevelopment: process.env.DB_DEVELOPMENT,
   dbProduction: process.env.DB_PRODUCTION,
   jwtSecret: process.env.JWT_SECRET,
+  storageType: process.env.STORAGE_TYPE,
 }

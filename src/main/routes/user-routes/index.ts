@@ -1,3 +1,5 @@
+import { MulterConfig } from './../../../infra/multer/multer-config.infra'
+import { makeUploadUserProfileControllerFactory } from './../../factories/controllers/user/upload-user-profile/upload-user-profile-controller.factory'
 import { Router } from 'express'
 import { makeGetUserByIdControllerFactory } from './../../factories/controllers/user/get-user-by-id/get-user-by-id-controller.factory'
 import { makeSearchUserByNameControllerFactory } from './../../factories/controllers/user/search-user-by-name/search-user-by-name-controller.factory'
@@ -13,6 +15,7 @@ import { expressRouterAdapter } from '../../adapters/express-route-adapter'
 import { makeCreateUserController } from '../../factories/controllers/user/create-user-controller-factory'
 import { makeListUsersControllerFactory } from '../../factories/controllers/user/list-users-controller-factory'
 import { makeAuthUserController } from '../../factories/controllers/user/login/auth-user-controller-factory'
+import multer from 'multer'
 
 export const userRouter = (router: Router): void => {
   router.post(
@@ -67,5 +70,11 @@ export const userRouter = (router: Router): void => {
     '/user/search-by-name/:userId',
     expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
     expressRouterAdapter(makeSearchUserByNameControllerFactory()),
+  )
+  router.patch(
+    '/user/user-profile/:userId',
+    multer(new MulterConfig('PROFILE').getConfig).single('profile'),
+    expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
+    expressRouterAdapter(makeUploadUserProfileControllerFactory()),
   )
 }

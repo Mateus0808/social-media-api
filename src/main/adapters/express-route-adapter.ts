@@ -16,6 +16,7 @@ export const expressRouterAdapter = (controller: Controller) => {
       queryParams: req.query,
       body: req.body,
       currentUserId: req.currentUserId,
+      file: req.file,
     }
 
     const httpResponse = await controller.handle(httpRequest)

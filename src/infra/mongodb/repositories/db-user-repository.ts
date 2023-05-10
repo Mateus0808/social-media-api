@@ -37,6 +37,10 @@ import {
   SearchUserByNameRepositoryResponse,
 } from '@application/ports/repositories/user/load-users-by-name-repository.interface'
 import { LoadUserByUsernameRepositoryInterface } from '@application/ports/repositories/user/load-user-by-username-repository-interface'
+import {
+  IUpdateUserInformationRepository,
+  UserParamsRepository,
+} from '@application/ports/repositories/user/update-user-information-repository.interface'
 
 export class UserRepository
   implements
@@ -49,7 +53,8 @@ export class UserRepository
     UpdateUserNameRepositoryInterface,
     UpdateUserUsernameRepositoryInterface,
     LoadUsersByNameRepositoryInterface,
-    LoadUserByUsernameRepositoryInterface
+    LoadUserByUsernameRepositoryInterface,
+    IUpdateUserInformationRepository
 {
   async createUser(
     createUserRepositoryParams: CreateUserRepositoryParams,
@@ -224,5 +229,22 @@ export class UserRepository
     }
 
     return response
+  }
+
+  async updateUserInfo(
+    userId: string,
+    params: UserParamsRepository,
+  ): Promise<UserDbModel | null> {
+    const user = await UserModel.findByIdAndUpdate(
+      userId,
+      {
+        $set: { ...params },
+      },
+      { new: true },
+    )
+
+    if (!user) return null
+
+    return MongoHelper.mapToId(user.toObject())
   }
 }

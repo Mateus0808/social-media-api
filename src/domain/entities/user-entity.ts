@@ -1,4 +1,4 @@
-import { UserProfileEntity } from './user-profile-entity'
+import { ImageEntity } from './image-entity'
 
 export interface UserEntity {
   name: string
@@ -7,12 +7,13 @@ export interface UserEntity {
   email: string
   birthDate: Date
   maritalStatus: string
-  profile: UserProfileEntity
   phone: string
   gender: 'MALE' | 'FEMALE'
   followers: Array<string>
   followings: Array<string>
   password: string
+  profilePhoto: ImageEntity
+  coverPhoto: ImageEntity
   status: 'ACTIVE' | 'CLOSED' | 'CANCELED' | 'DISABLED'
   isPrivate: boolean
 }

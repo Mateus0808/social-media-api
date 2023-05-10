@@ -24,6 +24,8 @@ export interface CreateUserResponse {
   id: string
   followers: Array<string>
   followings: Array<string>
+  profilePhoto: any
+  coverPhoto: any
   createdAt: Date
 }
 

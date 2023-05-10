@@ -21,7 +21,7 @@ export class GetUserByIdController implements Controller {
         return badRequest(error)
       }
       const { userId } = httpRequest.params
-      const user = await this.listOneUserService.getUserById(userId)
+      const user = await this.listOneUserService.getUserById({ userId })
 
       return ok(user)
     } catch (error: any) {
