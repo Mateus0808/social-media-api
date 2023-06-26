@@ -18,10 +18,7 @@ import { makeAuthUserController } from '../../factories/controllers/user/login/a
 import multer from 'multer'
 
 export const userRouter = (router: Router): void => {
-  router.post(
-    '/user/authentication',
-    expressRouterAdapter(makeAuthUserController()),
-  )
+  router.post('/users/auth', expressRouterAdapter(makeAuthUserController()))
   router.post(
     '/users/register',
     expressRouterAdapter(makeCreateUserController()),
@@ -42,7 +39,7 @@ export const userRouter = (router: Router): void => {
     expressRouterAdapter(makeFollowUserControllerFactory()),
   )
   router.get(
-    '/user/timeline/:userId',
+    '/users/timeline/:userId',
     expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
     expressRouterAdapter(makeUserTimelineControllerFactory()),
   )

@@ -3,7 +3,7 @@ import { RequiredFieldValidator } from '../../../../../presentation/validators/r
 import { StringFieldValidator } from '../../../../../presentation/validators/string-field-validator'
 import { ValidatorComposite } from '../../../../../presentation/validators/validator-composite'
 
-export const makeToggleLikeValidator = (): ValidatorComposite => {
+export const makeToggleLikePostValidator = (): ValidatorComposite => {
   const validators: Validator[] = []
   const params = ['userId', 'postId']
   for (const param of params) {

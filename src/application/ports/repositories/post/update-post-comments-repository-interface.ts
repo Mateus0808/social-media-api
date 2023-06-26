@@ -1,11 +1,11 @@
-import { CommentDbModel } from '../models/comment-model'
+import { PostDbModel } from '../models/post-model'
 
 export interface UpdatePostCommentsRepositoryParams {
   postId: string
   commentId: string
 }
 
-export type UpdatePostCommentsRepositoryResponse = CommentDbModel
+export type UpdatePostCommentsRepositoryResponse = PostDbModel
 
 export interface UpdatePostCommentsRepositoryInterface {
   updatePostComments: (

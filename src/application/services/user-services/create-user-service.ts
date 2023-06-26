@@ -27,6 +27,7 @@ export class CreateUserService implements CreateUserServiceInterface {
     const userAlreadyExists = await this.loadUserByEmailRepository.loadByEmail(
       email,
     )
+    console.log('userAlreadyExists 2222', userAlreadyExists)
     if (userAlreadyExists) throw new UserAlreadyExistsError(email)
 
     const usernameAlreadyExists =

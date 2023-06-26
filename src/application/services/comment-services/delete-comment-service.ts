@@ -30,11 +30,12 @@ export class DeleteCommentService implements DeleteCommentServiceInterface {
     )
     if (!comment) throw new CommentNotFoundError()
 
-    if (comment.postId !== postId) throw new CommentNotBelongPostError()
+    if (comment.postId.toString() !== postId)
+      throw new CommentNotBelongPostError()
 
     const post = await this.postRepository.deleteCommentOnAPost({
       postId,
-      userId,
+      commentId,
     })
     if (!post) throw new CommentNotDeletedOnPostError()
 

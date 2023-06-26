@@ -32,7 +32,7 @@ const imageSchema = new Schema<Image>(
 
 imageSchema.plugin(mongoosePagination)
 const ImageModel: Pagination<Image> = mongoose.model<Image, Pagination<Image>>(
-  'UserProfile',
+  'Image',
   imageSchema,
 )
 

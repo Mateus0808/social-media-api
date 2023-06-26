@@ -200,7 +200,7 @@ export class UserRepository
   }
 
   async loadUserByUsername(username: string): Promise<UserDbModel | null> {
-    const user = await UserModel.findOne({ username }).populate('profile')
+    const user = await UserModel.findOne({ username }).populate('profilePhoto')
     if (!user) return null
 
     return MongoHelper.mapToId(user.toObject())

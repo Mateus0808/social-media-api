@@ -1,7 +1,6 @@
 import { UserEntity } from '../../../../domain/entities/user-entity'
 
-export interface CreatedUserModel
-  extends Omit<UserEntity, 'address' | 'password'> {
+export interface CreatedUserModel extends Omit<UserEntity, 'address'> {
   id: string
   createdAt: Date
   updatedAt: Date

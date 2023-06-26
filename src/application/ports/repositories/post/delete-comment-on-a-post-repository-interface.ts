@@ -1,6 +1,6 @@
 export interface DeleteCommentOnAPostParams {
   postId: string
-  userId: string
+  commentId: string
 }
 
 export interface DeleteCommentOnAPostRepositoryInterface {

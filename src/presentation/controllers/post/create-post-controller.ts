@@ -47,6 +47,7 @@ export class CreatePostController implements Controller {
 
       return created(postCreated)
     } catch (error: any) {
+      console.log('error', error)
       return checkApplicationError(error)
     }
   }

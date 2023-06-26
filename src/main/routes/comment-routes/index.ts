@@ -1,3 +1,4 @@
+import { makeToggleLikeCommentControllerFactory } from './../../factories/controllers/comment/toggle-like-comment/toggle-like-comment-controller.factory'
 import { Router } from 'express'
 import { makeUpdateCommentControllerFactory } from '../../factories/controllers/comment/update-comment/update-comment-controller-factory'
 import { expressMiddlewareAdapter } from '../../adapters/express-middleware-adapter'
@@ -19,7 +20,7 @@ export const commentRouter = (router: Router): void => {
     expressRouterAdapter(makeListCommentsControllerFactory()),
   )
   router.delete(
-    '/comments/:commentId',
+    '/comments/:userId/:postId/:commentId',
     expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
     expressRouterAdapter(makeDeleteCommentControllerFactory()),
   )
@@ -27,5 +28,10 @@ export const commentRouter = (router: Router): void => {
     '/comment/update/:commentId',
     expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
     expressRouterAdapter(makeUpdateCommentControllerFactory()),
+  )
+  router.patch(
+    '/comment/toggle-like/:userId/:postId/:commentId',
+    expressMiddlewareAdapter(makeAdminPermissionMiddleware()),
+    expressRouterAdapter(makeToggleLikeCommentControllerFactory()),
   )
 }

@@ -27,6 +27,7 @@ export class AuthUserController implements Controller {
 
       return ok(response)
     } catch (error: any) {
+      console.log('AuthUserController', error)
       return checkApplicationError(error)
     }
   }

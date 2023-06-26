@@ -14,6 +14,7 @@ export class CreateUserController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
+      console.log('Chegou aqui', httpRequest.body)
       const requiredParams = [
         'username',
         'name',
@@ -64,6 +65,7 @@ export class CreateUserController implements Controller {
 
       return created(userCreated)
     } catch (error: any) {
+      console.log(error)
       return checkApplicationError(error)
     }
   }

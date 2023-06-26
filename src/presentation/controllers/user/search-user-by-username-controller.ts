@@ -21,13 +21,13 @@ export class SearchUserByUsernameController implements Controller {
       const requiredParams = ['username']
 
       for (const param of requiredParams) {
-        if (!httpRequest.body[param]) {
+        if (!httpRequest.queryParams[param]) {
           return badRequest(new MissingParamError(param))
         }
       }
 
       for (const param of requiredParams) {
-        if (typeof httpRequest.body[param] !== 'string') {
+        if (typeof httpRequest.queryParams[param] !== 'string') {
           return badRequest(new InvalidParamError(param))
         }
       }
@@ -37,7 +37,7 @@ export class SearchUserByUsernameController implements Controller {
         return badRequest(error)
       }
 
-      const { username } = httpRequest.body
+      const { username } = httpRequest.queryParams
       const response = await this.userService.searchUserByUsername({
         currentUserId: httpRequest.currentUserId,
         userId: httpRequest.params.userId,

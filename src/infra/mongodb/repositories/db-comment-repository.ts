@@ -17,6 +17,14 @@ import {
 import { MongoHelper } from '../helpers/mongo-helper'
 
 import { CommentModel } from '../models/comment-model'
+import {
+  ILikeCommentRepository,
+  LikeCommentRepositoryParams,
+} from '@application/ports/repositories/comment/like-comment-repository.interface'
+import {
+  IUnlikeCommentRepository,
+  UnlikeCommentRepositoryParams,
+} from '@application/ports/repositories/comment/unlike-comment-repository.interface'
 
 export class CommentRepository
   implements
@@ -24,7 +32,9 @@ export class CommentRepository
     LoadCommentsRepositoryInterface,
     DeleteCommentRepositoryInterface,
     UpdateCommentRepositoryInterface,
-    GetCommentByIdRepositoryInterface
+    GetCommentByIdRepositoryInterface,
+    ILikeCommentRepository,
+    IUnlikeCommentRepository
 {
   async getCommentById(commentId: string): Promise<CommentDbModel | null> {
     const comment = await CommentModel.findById(commentId)
@@ -92,5 +102,35 @@ export class CommentRepository
     if (!commentUpdated) return null
 
     return MongoHelper.mapToId(commentUpdated.toObject())
+  }
+
+  async likeComment(
+    params: LikeCommentRepositoryParams,
+  ): Promise<CommentDbModel | null> {
+    const { commentId, userId } = params
+
+    const comment = await CommentModel.findByIdAndUpdate(
+      commentId,
+      { $push: { likes: userId } },
+      { new: true },
+    )
+    if (!comment) return null
+
+    return MongoHelper.mapToId(comment.toObject())
+  }
+
+  async unlikeComment(
+    params: UnlikeCommentRepositoryParams,
+  ): Promise<CommentDbModel | null> {
+    const { commentId, userId } = params
+
+    const comment = await CommentModel.findByIdAndUpdate(
+      commentId,
+      { $pull: { likes: userId } },
+      { new: true },
+    )
+    if (!comment) return null
+
+    return MongoHelper.mapToId(comment.toObject())
   }
 }

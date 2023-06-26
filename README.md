@@ -127,9 +127,9 @@
   - [x] ✅ 1.3 List comments for a post
   - [x] ✅ 1.4 Update comment on post
   - [x] ✅ 1.5 Get comment by id
-  - [ ] 1.6 Like a comment
-  - [ ] 1.7 Unlike a comment
-  - [ ] 1.8 Make a comment on a post (shortly)
+  - [x] ✅ 1.6 Like a comment
+  - [x] ✅ 1.7 Unlike a comment
+  - [x] ✅ 1.8 Make a comment on a post (shortly)
 
 <p align="right">(<a href="#top">Go to the top</a>)</p>
 

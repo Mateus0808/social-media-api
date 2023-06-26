@@ -19,6 +19,7 @@ export const userCreatedDto = (
   birthDate: userCreated.birthDate,
   phone: userCreated.phone,
   email: userCreated.email,
+  password: userCreated.password,
   followers: userCreated.followers,
   followings: userCreated.followings,
   profilePhoto: userCreated.profilePhoto,

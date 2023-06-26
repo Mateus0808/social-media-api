@@ -25,7 +25,7 @@ const postSchema = new Schema<Post>(
       {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        unique: true,
+        unique: false,
         default: [],
       },
     ],

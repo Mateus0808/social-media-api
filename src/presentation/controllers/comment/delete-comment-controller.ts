@@ -17,21 +17,12 @@ export class DeleteCommentController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const requiredParams = ['userId', 'postId']
-
-      for (const param of requiredParams) {
-        if (!httpRequest.body[param]) {
-          return badRequest(new InvalidParamError(param))
-        }
-      }
-
       const error = this.validator.validate(httpRequest.params)
       if (error) {
         return badRequest(error)
       }
 
-      const { commentId } = httpRequest.params
-      const { userId, postId } = httpRequest.body
+      const { userId, postId, commentId } = httpRequest.params
       const response = await this.deleteCommentService.deleteComment({
         userId,
         commentId,

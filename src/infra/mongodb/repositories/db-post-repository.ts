@@ -140,7 +140,7 @@ export class PostRepository
       postId,
       { $push: { comments: commentId } },
       { new: true },
-    )
+    ).populate('comments')
     if (!post) return null
 
     return MongoHelper.mapToId(post.toObject())
@@ -149,13 +149,14 @@ export class PostRepository
   async deleteCommentOnAPost(
     deleteCommentOnAPostParams: DeleteCommentOnAPostParams,
   ): Promise<boolean | null> {
-    const { postId, userId } = deleteCommentOnAPostParams
+    const { postId, commentId } = deleteCommentOnAPostParams
 
     const post = await PostModel.findByIdAndUpdate(
       postId,
-      { $pull: { comments: userId } },
+      { $pull: { comments: commentId } },
       { new: true },
     )
+    console.log('delete comment on post', post)
     if (!post) return null
 
     return true
@@ -167,6 +168,10 @@ export class PostRepository
     const { userId } = repositoryParams
 
     const posts = await PostModel.find({ user: userId })
+      .sort({ updatedAt: 'descending' })
+      .populate('comments')
+      .populate('user')
+
     if (!posts) return null
 
     const postsArray = posts.map(post => MongoHelper.mapToId(post.toObject()))
@@ -184,6 +189,8 @@ export class PostRepository
       { $push: { likes: userId } },
       { new: true },
     )
+      .populate('comments')
+      .populate('user')
     if (!post) return null
 
     return MongoHelper.mapToId(post.toObject())
@@ -199,6 +206,8 @@ export class PostRepository
       { $pull: { likes: userId } },
       { new: true },
     )
+      .populate('comments')
+      .populate('user')
     if (!post) return null
 
     return MongoHelper.mapToId(post.toObject())

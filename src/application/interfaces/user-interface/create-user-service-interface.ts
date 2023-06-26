@@ -19,6 +19,7 @@ export interface CreateUserResponse {
   maritalStatus: string
   gender: 'MALE' | 'FEMALE'
   phone: string
+  password: string
   isPrivate: boolean
   status: 'ACTIVE' | 'CLOSED' | 'CANCELED' | 'DISABLED'
   id: string

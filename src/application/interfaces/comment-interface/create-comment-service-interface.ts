@@ -1,4 +1,4 @@
-import { CommentDbModel } from './../../ports/repositories/models/comment-model'
+import { PostDbModel } from '@application/ports/repositories/models/post-model'
 
 export interface CreateCommentParams {
   userId: string
@@ -8,5 +8,5 @@ export interface CreateCommentParams {
 }
 
 export interface CreateCommentServiceInterface {
-  createComment: (params: CreateCommentParams) => Promise<CommentDbModel>
+  createComment: (params: CreateCommentParams) => Promise<PostDbModel>
 }

@@ -39,7 +39,6 @@ export class UserTimelineService implements UserTimelineServiceInterface {
     if (!friendPosts) throw new PostNotFoundError()
 
     const posts = [...userPosts, ...(friendPosts[0] || [])]
-
     return postToPaginationDto({ posts, pagination: {} })
   }
 }
